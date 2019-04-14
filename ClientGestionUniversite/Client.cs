@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ClientGestionUniversite.businessLogic;
+using ClientGestionUniversite.modele;
+using ClientGestionUniversite.view;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +19,19 @@ namespace ClientGestionUniversite
 
         public Client()
         {
+            //
+            // diplomesView
+            //
+            this.diplomesView = new System.Collections.Generic.List<view.DiplomeView>();
+            int i = 1;
+            foreach (Diplome d in DiplomeDAO.getAll())
+            {
+                DiplomeView dv = new DiplomeView();
+                dv.Name = "diplomeView" + i;
+                dv.Text = d.libelle;
+                dv.UseVisualStyleBackColor = true;
+                diplomesView.Add(dv);
+            }
             InitializeComponent();
             edit = false;
             switchEdition(null, null);

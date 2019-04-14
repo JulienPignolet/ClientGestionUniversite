@@ -63,10 +63,7 @@
             // 
             // personnelView
             // 
-            this.personnelView.Location = new System.Drawing.Point(4, 22);
             this.personnelView.Name = "personnelView";
-            this.personnelView.Padding = new System.Windows.Forms.Padding(3);
-            this.personnelView.Size = new System.Drawing.Size(782, 408);
             this.personnelView.TabIndex = 0;
             this.personnelView.Text = "Personnel";
             this.personnelView.UseVisualStyleBackColor = true;
@@ -74,6 +71,9 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.personnelView);
+            foreach (ClientGestionUniversite.view.DiplomeView dv in diplomesView) {
+                this.tabControl1.Controls.Add(dv);
+            }
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -104,6 +104,7 @@
         private System.Windows.Forms.ToolStripMenuItem editionMenu;
         private System.Windows.Forms.ToolStripMenuItem editionMode;
         private ClientGestionUniversite.view.PersonnelView personnelView;
+        private System.Collections.Generic.List<ClientGestionUniversite.view.DiplomeView> diplomesView;
         private System.Windows.Forms.TabControl tabControl1;
     }
 }

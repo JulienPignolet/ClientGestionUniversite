@@ -55,6 +55,7 @@
     <Compile Include="businessLogic\CategoriePersonnelDAO.cs" />
     <Compile Include="businessLogic\ConnectionMySql.cs" />
     <Compile Include="businessLogic\CoursDAO.cs" />
+    <Compile Include="businessLogic\DiplomeDAO.cs" />
     <Compile Include="businessLogic\PersonnelDAO.cs" />
     <Compile Include="Client.cs">
       <SubType>Form</SubType>
@@ -73,6 +74,12 @@
     <Compile Include="model\TypeCours.cs" />
     <Compile Include="model\UniteEnseignement.cs" />
     <Compile Include="viewModel\CoursViewModel.cs" />
+    <Compile Include="view\DiplomeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="view\DiplomeView.Designer.cs">
+      <DependentUpon>DiplomeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\PersonnelView.cs">
       <SubType>Component</SubType>
     </Compile>
