@@ -1,0 +1,12 @@
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\bin\Release\ClientGestionUniversite.exe.config
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.csprojResolveAssemblyReference.cache
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.Client.resources
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.Properties.Resources.resources
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.csproj.GenerateResource.Cache
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\bin\Release\ClientGestionUniversite.exe
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\bin\Release\ClientGestionUniversite.pdb
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\bin\Release\MySql.Data.dll
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.exe
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.pdb
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Release\ClientGestionUniversite.view.PersonnelView.resources
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\bin\Release\Equin.ApplicationFramework.BindingListView.dll
