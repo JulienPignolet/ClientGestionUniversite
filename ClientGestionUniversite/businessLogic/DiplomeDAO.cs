@@ -12,6 +12,10 @@ namespace ClientGestionUniversite.businessLogic
     {
         public static MySqlConnection _connection = ConnectionMySql.getInstance();
 
+        /// <summary>
+        /// Retourne l'ensemble des diplomes
+        /// </summary>
+        /// <returns>diplomes</returns>
         public static List<Diplome> getAll()
         {
             MySqlCommand _cmd = new MySqlCommand();
@@ -40,6 +44,11 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
+        /// <summary>
+        /// Remplissage d'un diplome
+        /// </summary>
+        /// <param name="reader">resultat requete</param>
+        /// <returns>diplome</returns>
         public static Diplome populateDiplome(MySqlDataReader reader)
         {
             Diplome resultat = new Diplome();

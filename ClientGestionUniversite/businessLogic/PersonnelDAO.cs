@@ -48,10 +48,85 @@ namespace ClientGestionUniversite.businessLogic
                 Console.WriteLine("Exception : " + e);
             }
             _cmd.Dispose();
-            resultats.Add(new Personnel("Bosco", "Gaetan", new CategoriePersonnel("git master", 200)));
-            resultats.Add(new Personnel("Fath", "Yoan", new CategoriePersonnel("chauve master", 200)));
-            resultats.Add(new Personnel("Scheffler", "Arnaud", new CategoriePersonnel("la mere a bosco", 200)));
             return resultats;
+        }
+
+        /// <summary>
+        /// Création d'un personnel
+        /// </summary>
+        /// <param name="obj">personnel</param>
+        public static void create(Personnel obj)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+            _cmd.Connection = _connection;
+            String sql = "";
+            try
+            {
+                sql = "INSERT INTO personnel (id, prenom, nom , categorie_id) VALUES (@id ,@prenom ,@nom, @categorieId) ";
+                _cmd.CommandText = sql;
+                _cmd.Parameters.AddWithValue("@id", obj.id);
+                _cmd.Parameters.AddWithValue("@prenom", obj.Prenom);
+                _cmd.Parameters.AddWithValue("@nom", obj.Nom);
+                _cmd.Parameters.AddWithValue("@categorieId", obj.categoriePersonnel.id);
+                _cmd.ExecuteNonQuery();
+                obj.id = _cmd.LastInsertedId;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+            _cmd.Dispose();
+        }
+
+        /// <summary>
+        /// Suppression d'un personnel
+        /// </summary>
+        /// <param name="obj">personnel</param>
+        public static void delete(Personnel obj)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+            _cmd.Connection = _connection;
+            String sql = "";
+            try
+            {
+                sql = "DELETE FROM personnel WHERE id = @id";
+                _cmd.CommandText = sql;
+                _cmd.Parameters.AddWithValue("@id", obj.id);
+                _cmd.ExecuteNonQuery();
+                obj.id = _cmd.LastInsertedId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+            _cmd.Dispose();
+        }
+
+        /// <summary>
+        /// Mise à jour d'un personnel
+        /// </summary>
+        /// <param name="obj">personnel</param>
+        public static void update(Personnel obj)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+            _cmd.Connection = _connection;
+            String sql = "";
+            try
+            {
+                sql = "UPDATE personnel set nom = @nom WHERE id = @id";
+                _cmd.CommandText = sql;
+                _cmd.Parameters.AddWithValue("@id", obj.id);
+                _cmd.Parameters.AddWithValue("@nom", obj.Nom);
+                _cmd.Parameters.AddWithValue("@prenom", obj.Prenom);
+                _cmd.ExecuteNonQuery();
+                obj.id = _cmd.LastInsertedId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+            _cmd.Dispose();
         }
 
         /// <summary>
@@ -66,19 +141,6 @@ namespace ClientGestionUniversite.businessLogic
             resultat.Nom = (String)reader["personnelNom"];
             resultat.Prenom = (String)reader["personnelPrenom"];
             return resultat;
-        }
-
-        /// <summary>
-        /// Retourne le détail sur une personne
-        /// </summary>
-        /// <param name="id">id de la personne</param>
-        /// <param name="personnelViewModel">données à mettre à jours</param>
-        public static void get(string id, PersonnelViewModel personnelViewModel)
-        {
-            // TODO Données à remplir via requête
-            personnelViewModel.nomPrenom = "Julien";
-            personnelViewModel.titre = "Professeur";
-            personnelViewModel.heureEff = "200";
         }
     }
 }

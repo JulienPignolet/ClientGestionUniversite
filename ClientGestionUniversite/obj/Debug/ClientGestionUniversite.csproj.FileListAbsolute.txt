@@ -10,3 +10,4 @@ C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\Cl
 C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Debug\ClientGestionUniversite.view.PersonnelView.resources
 C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\bin\Debug\Equin.ApplicationFramework.BindingListView.dll
 C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Debug\ClientGestionUniversite.csprojResolveAssemblyReference.cache
+C:\Users\Julien\Documents\Visual Studio 2013\Projects\ClientGestionUniversite\ClientGestionUniversite\obj\Debug\ClientGestionUniversite.view.InputModifPersonnelForm.resources

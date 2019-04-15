@@ -17,6 +17,14 @@ namespace ClientGestionUniversite.view
         public PersonnelView()
         {
             InitializeComponent();
+            personnelGridViewLoad();
+        }
+
+        /// <summary>
+        /// Charge les données de la grille personnel
+        /// </summary>
+        private void personnelGridViewLoad()
+        {
             BindingListView<Personnel> bindingSourcePersonnel = new BindingListView<Personnel>(PersonnelDAO.getAll());
             personnelGridView.DataSource = bindingSourcePersonnel;
         }
@@ -31,6 +39,11 @@ namespace ClientGestionUniversite.view
             personnelGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
+        /// <summary>
+        /// Évènement fin de remplissage de la grille affectation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void personnelDetailsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             personnelDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -41,13 +54,30 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void personnelGridView_SelectionChanged(object sender, EventArgs e)
         {
+            Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                personnelViewModel.update(p);
+                BindingListView<CoursViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursViewModel>(CoursDAO.getAll());
+                personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
+            }
+        }
+
+        /// <summary>
+        /// Personnel sélectionné
+        /// </summary>
+        /// <returns>personnel</returns>
+        private Personnel getCurrentPersonnel()
+        {
             if (personnelGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = personnelGridView.SelectedCells[0].RowIndex;
                 Personnel personnel = ((ObjectView<Personnel>)personnelGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                personnelViewModel.update(personnel);
-                BindingListView<CoursViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursViewModel>(CoursDAO.getAll());
-                personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
+                return personnel;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -66,7 +96,12 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void supprimerPersonnel(object sender, EventArgs e)
         {
-
+            Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                PersonnelDAO.delete(p);
+                personnelGridViewLoad();
+            }
         }
 
         /// <summary>
@@ -82,7 +117,14 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void modifierPersonnel(object sender, EventArgs e)
         {
+            Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                var formPopup = new InputModifPersonnelForm("Modifier Personnel", p);
+                formPopup.ShowDialog(this);
+                personnelGridViewLoad();
 
+            }
         }
 
         /// <summary>
@@ -98,7 +140,10 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterPersonnel(object sender, EventArgs e)
         {
-
+            var formPopup = new InputModifPersonnelForm("Nouveau Personnel");
+            formPopup.ShowDialog(this);
+            personnelGridViewLoad();
+            personnelGridView.Refresh();
         }
 
         /// <summary>

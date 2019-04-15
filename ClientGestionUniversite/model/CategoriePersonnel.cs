@@ -19,6 +19,11 @@ namespace ClientGestionUniversite.modele
 
         }
 
+        public CategoriePersonnel(long id)
+        {
+            this.id = id;
+        }
+
         public CategoriePersonnel(String libelle, int volumeHoraire)
         {
             this.libelle = libelle;

@@ -56,6 +56,10 @@ namespace ClientGestionUniversite.viewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Mise à jour des variables
+        /// </summary>
+        /// <param name="p">personnel</param>
         public void update(Personnel p)
         {
             nomPrenom = p.Nom.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.Prenom.ToLower()) 

@@ -37,6 +37,9 @@ namespace ClientGestionUniversite
             switchEdition(null, null);
         }
 
+        /// <summary>
+        /// Changement mode edition
+        /// </summary>
         private void switchEdition(object sender, EventArgs e)
         {
             edit = !edit;
