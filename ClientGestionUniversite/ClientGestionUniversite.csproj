@@ -52,11 +52,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="businessLogic\AnneeDAO.cs" />
     <Compile Include="businessLogic\CategoriePersonnelDAO.cs" />
     <Compile Include="businessLogic\ConnectionMySql.cs" />
     <Compile Include="businessLogic\CoursDAO.cs" />
     <Compile Include="businessLogic\DiplomeDAO.cs" />
+    <Compile Include="businessLogic\PeriodeDAO.cs" />
     <Compile Include="businessLogic\PersonnelDAO.cs" />
+    <Compile Include="businessLogic\UniteEnseignementDAO.cs" />
     <Compile Include="Client.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +98,12 @@
       <DependentUpon>PersonnelView.cs</DependentUpon>
     </Compile>
     <Compile Include="viewModel\PersonnelViewModel.cs" />
+    <Compile Include="view\StatistiquesView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="view\StatistiquesView.Designer.cs">
+      <DependentUpon>StatistiquesView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>

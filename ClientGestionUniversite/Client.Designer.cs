@@ -32,6 +32,7 @@
             this.editionMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editionMode = new System.Windows.Forms.ToolStripMenuItem();
             this.personnelView = new ClientGestionUniversite.view.PersonnelView();
+            this.statistiquesView = new view.StatistiquesView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.menu.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -68,9 +69,16 @@
             this.personnelView.Text = "Personnel";
             this.personnelView.UseVisualStyleBackColor = true;
             // 
+            // statistiquesView
+            // 
+            this.statistiquesView.Name = "statistiquesView";
+            this.statistiquesView.Text = "Statistiques";
+            this.statistiquesView.UseVisualStyleBackColor = true;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.personnelView);
+            this.tabControl1.Controls.Add(this.statistiquesView);
             foreach (ClientGestionUniversite.view.DiplomeView dv in diplomesView) {
                 this.tabControl1.Controls.Add(dv);
             }
@@ -104,6 +112,7 @@
         private System.Windows.Forms.ToolStripMenuItem editionMenu;
         private System.Windows.Forms.ToolStripMenuItem editionMode;
         private ClientGestionUniversite.view.PersonnelView personnelView;
+        private ClientGestionUniversite.view.StatistiquesView statistiquesView;
         private System.Collections.Generic.List<ClientGestionUniversite.view.DiplomeView> diplomesView;
         private System.Windows.Forms.TabControl tabControl1;
     }
