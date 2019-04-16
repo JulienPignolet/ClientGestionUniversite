@@ -16,7 +16,7 @@ namespace ClientGestionUniversite.businessLogic
         /// Retourne l'ensemble des diplomes
         /// </summary>
         /// <returns>diplomes</returns>
-        public static List<Diplome> getAll()
+        public static List<Diplome> findAll()
         {
             MySqlCommand _cmd = new MySqlCommand();
             _cmd.Connection = _connection;

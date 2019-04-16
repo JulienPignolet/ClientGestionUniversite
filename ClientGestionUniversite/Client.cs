@@ -24,7 +24,7 @@ namespace ClientGestionUniversite
             //
             this.diplomesView = new System.Collections.Generic.List<view.DiplomeView>();
             int i = 1;
-            foreach (Diplome d in DiplomeDAO.getAll())
+            foreach (Diplome d in DiplomeDAO.findAll())
             {
                 DiplomeView dv = new DiplomeView();
                 dv.Name = "diplomeView" + i;

@@ -19,7 +19,7 @@ namespace ClientGestionUniversite.businessLogic
         /// <summary>
         /// Retourne l'ensemble du personnel
         /// </summary>
-        public static List<Personnel> getAll()
+        public static List<Personnel> findAll()
         {
             MySqlCommand _cmd = new MySqlCommand();
             _cmd.Connection = _connection;

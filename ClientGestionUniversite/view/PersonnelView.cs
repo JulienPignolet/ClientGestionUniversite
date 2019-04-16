@@ -25,7 +25,7 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void personnelGridViewLoad()
         {
-            BindingListView<Personnel> bindingSourcePersonnel = new BindingListView<Personnel>(PersonnelDAO.getAll());
+            BindingListView<Personnel> bindingSourcePersonnel = new BindingListView<Personnel>(PersonnelDAO.findAll());
             personnelGridView.DataSource = bindingSourcePersonnel;
         }
 
@@ -58,7 +58,7 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 personnelViewModel.update(p);
-                BindingListView<CoursViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursViewModel>(CoursDAO.getAll());
+                BindingListView<CoursViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursViewModel>(CoursDAO.findAll());
                 personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
             }
         }
