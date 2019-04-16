@@ -1,0 +1,5 @@
+ClientGestionUniversite/obj/*
+ClientGestionUniversite/bin/*
+BaseDeDonneesTests/bin/*
+BaseDeDonneesTests/obj/*
+*/*.suo
