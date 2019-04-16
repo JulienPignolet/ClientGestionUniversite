@@ -11,6 +11,7 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class CoursDAO
     {
+        // TODO COURS DAO 
         private static MySqlConnection _connection = ConnectionMySql.getInstance();
 
         public static List<CoursViewModel> findAll()
