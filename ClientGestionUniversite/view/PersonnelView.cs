@@ -87,8 +87,8 @@ namespace ClientGestionUniversite.view
         private void filterBox_TextChanged(object sender, EventArgs e)
         {
             ((BindingListView<Personnel>)personnelGridView.DataSource).ApplyFilter(
-                delegate(Personnel personnel) { return personnel.Nom.ToLower().Contains(filterBox.Text.ToLower()) 
-                    || personnel.Prenom.ToLower().Contains(filterBox.Text.ToLower()); });
+                delegate(Personnel personnel) { return personnel.nom.ToLower().Contains(filterBox.Text.ToLower()) 
+                    || personnel.prenom.ToLower().Contains(filterBox.Text.ToLower()); });
         }
 
         /// <summary>

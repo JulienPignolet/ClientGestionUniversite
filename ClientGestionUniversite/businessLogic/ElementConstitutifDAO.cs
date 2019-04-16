@@ -1,6 +1,6 @@
-﻿using ClientGestionUniversite.modele;
+﻿using System;
+using ClientGestionUniversite.modele;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ClientGestionUniversite.businessLogic
 {
-    public static class UniteEnseignementDAO
+    public static class ElementConstitutifDAO
     {
         public static MySqlConnection _connection = ConnectionMySql.getInstance();
 
-        public static UniteEnseignement find(long id)
+        public static ElementConstitutif find(long id)
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -21,19 +21,21 @@ namespace ClientGestionUniversite.businessLogic
             String sql = "";
             MySqlDataReader reader = null;
 
-            UniteEnseignement resultat = new UniteEnseignement();
+            ElementConstitutif resultat = new ElementConstitutif();
 
             try
             {
-                sql = "SELECT unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
+                sql = "SELECT element_constitutif.id as elemConstID, element_constitutif.libelle as elemConstLibelle, "
+                    + "unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
                     + "periode.id AS periodeID, periode.libelle AS periodeLibelle, "
                     + "annee.id AS anneeId, annee.libelle AS anneeLibelle, "
                     + "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle "
-                    + "FROM unite_enseignement "
+                    + "FROM element_constitutif "
+                    + "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id "
                     + "JOIN periode ON unite_enseignement.periode_id = periode.id "
                     + "JOIN annee ON periode.annee_id = annee.id "
                     + "JOIN diplome ON annee.diplome_id = diplome.id "
-                    + "WHERE unite_enseignement.id = @id";
+                    + "WHERE element_constitutif.id = @id";
 
                 _cmd.CommandText = sql;
                 _cmd.Parameters.AddWithValue("@id", id);
@@ -41,8 +43,6 @@ namespace ClientGestionUniversite.businessLogic
 
                 while (reader.Read())
                 {
-                    resultat = populateUniteEnseignement(reader);
-
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
@@ -51,7 +51,11 @@ namespace ClientGestionUniversite.businessLogic
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
                     tempPeriode.annee = tempAnnee;
 
-                    resultat.periode = tempPeriode;
+                    UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
+                    tempUnite.periode = tempPeriode;
+
+                    resultat = populateElementConstitutif(reader);
+                    resultat.uniteEnseignement = tempUnite;
 
                 }
                 reader.Close();
@@ -65,7 +69,7 @@ namespace ClientGestionUniversite.businessLogic
             return resultat;
         }
 
-        public static List<UniteEnseignement> findAll()
+        public static List<ElementConstitutif> findAll()
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -74,15 +78,17 @@ namespace ClientGestionUniversite.businessLogic
             String sql = "";
             MySqlDataReader reader = null;
 
-            List<UniteEnseignement> resultats = new List<UniteEnseignement>();
+            List<ElementConstitutif> resultats = new List<ElementConstitutif>();
 
             try
             {
-                sql = "SELECT unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
+                sql = "SELECT element_constitutif.id as elemConstID, element_constitutif.libelle as elemConstLibelle, "
+                    + "unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
                     + "periode.id AS periodeID, periode.libelle AS periodeLibelle, "
                     + "annee.id AS anneeId, annee.libelle AS anneeLibelle, "
                     + "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle "
-                    + "FROM unite_enseignement "
+                    + "FROM element_constitutif "
+                    + "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id "
                     + "JOIN periode ON unite_enseignement.periode_id = periode.id "
                     + "JOIN annee ON periode.annee_id = annee.id "
                     + "JOIN diplome ON annee.diplome_id = diplome.id ";
@@ -93,8 +99,6 @@ namespace ClientGestionUniversite.businessLogic
 
                 while (reader.Read())
                 {
-                    UniteEnseignement tempUnite = populateUniteEnseignement(reader);
-
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
@@ -103,9 +107,13 @@ namespace ClientGestionUniversite.businessLogic
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
                     tempPeriode.annee = tempAnnee;
 
+                    UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
                     tempUnite.periode = tempPeriode;
 
-                    resultats.Add(tempUnite);
+                    ElementConstitutif tempElementConstitutif = populateElementConstitutif(reader);
+                    tempElementConstitutif.uniteEnseignement = tempUnite;
+
+                    resultats.Add(tempElementConstitutif);
                 }
                 reader.Close();
             }
@@ -118,7 +126,7 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
-        public static List<UniteEnseignement> findByLibelle(String libelle)
+        public static List<ElementConstitutif> findByLibelle(String libelle)
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -127,19 +135,21 @@ namespace ClientGestionUniversite.businessLogic
             String sql = "";
             MySqlDataReader reader = null;
 
-            List<UniteEnseignement> resultats = new List<UniteEnseignement>();
+            List<ElementConstitutif> resultats = new List<ElementConstitutif>();
 
             try
             {
-                sql = "SELECT unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
+                sql = "SELECT element_constitutif.id as elemConstID, element_constitutif.libelle as elemConstLibelle, "
+                    + "unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
                     + "periode.id AS periodeID, periode.libelle AS periodeLibelle, "
                     + "annee.id AS anneeId, annee.libelle AS anneeLibelle, "
                     + "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle "
-                    + "FROM unite_enseignement "
+                    + "FROM element_constitutif "
+                    + "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id "
                     + "JOIN periode ON unite_enseignement.periode_id = periode.id "
                     + "JOIN annee ON periode.annee_id = annee.id "
                     + "JOIN diplome ON annee.diplome_id = diplome.id "
-                    + "WHERE unite_enseignement.libelle LIKE @libelle";
+                    + "WHERE element_constitutif.libelle LIKE @libelle";
 
                 _cmd.CommandText = sql;
 
@@ -148,8 +158,6 @@ namespace ClientGestionUniversite.businessLogic
 
                 while (reader.Read())
                 {
-                    UniteEnseignement tempUnite = populateUniteEnseignement(reader);
-
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
@@ -158,9 +166,13 @@ namespace ClientGestionUniversite.businessLogic
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
                     tempPeriode.annee = tempAnnee;
 
+                    UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
                     tempUnite.periode = tempPeriode;
 
-                    resultats.Add(tempUnite);
+                    ElementConstitutif tempElementConstitutif = populateElementConstitutif(reader);
+                    tempElementConstitutif.uniteEnseignement = tempUnite;
+
+                    resultats.Add(tempElementConstitutif);
                 }
                 reader.Close();
             }
@@ -173,7 +185,7 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
-        public static UniteEnseignement create(UniteEnseignement obj)
+        public static ElementConstitutif create(ElementConstitutif obj)
         {
 
             MySqlCommand _cmd = new MySqlCommand();
@@ -184,12 +196,12 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "INSERT INTO unite_enseignement (id, libelle, periode_id) VALUES (@id,@libelle,@periode) ";
+                sql = "INSERT INTO element_constitutif (id, libelle, ue_id) VALUES (@id,@libelle,@UniteEnseignement) ";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
                 _cmd.Parameters.AddWithValue("@libelle", obj.libelle);
-                _cmd.Parameters.AddWithValue("@periode", obj.periode.id);
+                _cmd.Parameters.AddWithValue("@UniteEnseignement", obj.uniteEnseignement.id);
 
                 _cmd.ExecuteNonQuery();
 
@@ -207,7 +219,7 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
-        public static UniteEnseignement update(UniteEnseignement obj)
+        public static ElementConstitutif update(ElementConstitutif obj)
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -217,7 +229,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE unite_enseignement set libelle = @libelle WHERE id = @id";
+                sql = "UPDATE element_constitutif set libelle = @libelle WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
@@ -238,7 +250,7 @@ namespace ClientGestionUniversite.businessLogic
             return obj;
         }
 
-        public static void delete(UniteEnseignement obj)
+        public static void delete(ElementConstitutif obj)
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -248,7 +260,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "DELETE FROM unite_enseignement WHERE id = @id";
+                sql = "DELETE FROM element_constitutif WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
@@ -265,11 +277,13 @@ namespace ClientGestionUniversite.businessLogic
             _cmd.Dispose();
         }
 
-        public static UniteEnseignement populateUniteEnseignement(MySqlDataReader reader)
+        public static ElementConstitutif populateElementConstitutif(MySqlDataReader reader)
         {
-            UniteEnseignement resultat = new UniteEnseignement();
-            resultat.id = Convert.ToInt64(reader["uniteEnsID"]);
-            resultat.libelle = (String)reader["uniteEnsLibelle"];
+            ElementConstitutif resultat = new ElementConstitutif();
+
+            resultat.id = Convert.ToInt64(reader["elemConstID"]);
+            resultat.libelle = (String)reader["elemConstLibelle"];
+
             return resultat;
         }
     }

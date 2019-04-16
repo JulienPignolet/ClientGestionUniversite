@@ -1,6 +1,6 @@
-﻿using ClientGestionUniversite.modele;
+﻿using System;
+using ClientGestionUniversite.modele;
 using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ClientGestionUniversite.businessLogic
 {
-    public static class AnneeDAO
+    public static class TypeCoursDAO
     {
         public static MySqlConnection _connection = ConnectionMySql.getInstance();
 
-        public static Annee find(long id)
+        public static TypeCours find(long id)
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -21,15 +21,13 @@ namespace ClientGestionUniversite.businessLogic
             String sql = "";
             MySqlDataReader reader = null;
 
-            Annee resultat = new Annee();
+            TypeCours resultat = new TypeCours();
 
             try
             {
-                sql = "SELECT annee.id AS anneeId, annee.libelle AS anneeLibelle, "
-                + "diplome.libelle AS diplomeLibelle, diplome.id AS diplomeId "
-                + "FROM annee JOIN diplome ON annee.diplome_id = diplome.id "
-                + "WHERE annee.id = @id";
-                // sql = "SELECT * FROM annee WHERE id = @id";
+                sql = "SELECT type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle "
+                + "FROM type_cours "
+                + "WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", id);
@@ -38,9 +36,7 @@ namespace ClientGestionUniversite.businessLogic
 
                 while (reader.Read())
                 {
-                    resultat = populateAnnee(reader);
-                    Diplome d = DiplomeDAO.populateDiplome(reader);
-                    resultat.diplome = d;
+                    resultat = populateTypeCours(reader);
                 }
                 reader.Close();
 
@@ -54,7 +50,7 @@ namespace ClientGestionUniversite.businessLogic
             return resultat;
         }
 
-        public static List<Annee> findAll()
+        public static List<TypeCours> findAll()
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -63,23 +59,57 @@ namespace ClientGestionUniversite.businessLogic
             String sql = "";
             MySqlDataReader reader = null;
 
-            List<Annee> resultats = new List<Annee>();
+            List<TypeCours> resultats = new List<TypeCours>();
 
             try
             {
-                sql = "SELECT annee.id as anneeId, annee.libelle as anneeLibelle, diplome.libelle as diplomeLibelle, diplome.id as diplomeId " +
-                     "FROM annee JOIN diplome where annee.diplome_id = diplome.id";
+                sql = "SELECT type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle "
+                + "FROM type_cours ";
                 _cmd.CommandText = sql;
 
                 reader = _cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Annee temp = populateAnnee(reader);
-                    Diplome d = DiplomeDAO.populateDiplome(reader);
-                    temp.diplome = d;
-
+                    TypeCours temp = populateTypeCours(reader);
                     resultats.Add(temp);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+            _cmd.Dispose();
+
+            return resultats;
+        }
+
+        public static List<TypeCours> findByLibelle(String libelle)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+            MySqlDataReader reader = null;
+            List<TypeCours> resultats = new List<TypeCours>();
+
+            try
+            {
+                sql = "SELECT type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle "
+                + "FROM type_cours "
+                + "WHERE libelle LIKE @libelle";
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@libelle", libelle);
+
+                reader = _cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TypeCours resultat = populateTypeCours(reader);
+                    resultats.Add(resultat);
                 }
                 reader.Close();
 
@@ -93,50 +123,7 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
-        public static List<Annee> findByLibelle(String libelle)
-        {
-            MySqlCommand _cmd = new MySqlCommand();
-
-            _cmd.Connection = _connection;
-
-            String sql = "";
-            MySqlDataReader reader = null;
-
-            List<Annee> annees = new List<Annee>();
-
-            try
-            {
-                sql = "SELECT annee.id AS anneeId, annee.libelle AS anneeLibelle, "
-                + "diplome.libelle AS diplomeLibelle, diplome.id AS diplomeId "
-                + "FROM annee "
-                + "JOIN diplome ON annee.diplome_id = diplome.id "
-                + "AND annee.libelle LIKE @libelle";
-                _cmd.CommandText = sql;
-
-                _cmd.Parameters.AddWithValue("@libelle", libelle);
-
-                reader = _cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Annee temp = populateAnnee(reader);
-                    Diplome d = DiplomeDAO.populateDiplome(reader);
-                    temp.diplome = d;
-
-                    annees.Add(temp);
-                }
-                reader.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception : " + e);
-            }
-            _cmd.Dispose();
-
-            return annees;
-        }
-
-        public static Annee create(Annee obj)
+        public static TypeCours create(TypeCours obj)
         {
 
             MySqlCommand _cmd = new MySqlCommand();
@@ -147,12 +134,11 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "INSERT INTO annee (id, libelle, diplome_id) VALUES (@id,@libelle,@diplome) ";
+                sql = "INSERT INTO type_cours (id, libelle) VALUES (@id,@libelle) ";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
                 _cmd.Parameters.AddWithValue("@libelle", obj.libelle);
-                _cmd.Parameters.AddWithValue("@diplome", obj.diplome.id);
 
                 _cmd.ExecuteNonQuery();
 
@@ -170,7 +156,7 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
-        public static Annee update(Annee obj)
+        public static TypeCours update(TypeCours obj)
         {
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -180,7 +166,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE annee set libelle = @libelle WHERE id = @id";
+                sql = "UPDATE type_cours set libelle = @libelle WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
@@ -201,9 +187,8 @@ namespace ClientGestionUniversite.businessLogic
             return obj;
         }
 
-        public static void delete(Annee obj)
+        public static void delete(TypeCours obj)
         {
-
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -212,7 +197,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "DELETE FROM annee WHERE id = @id";
+                sql = "DELETE FROM type_cours WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
@@ -229,11 +214,13 @@ namespace ClientGestionUniversite.businessLogic
             _cmd.Dispose();
         }
 
-        public static Annee populateAnnee(MySqlDataReader reader)
+        public static TypeCours populateTypeCours(MySqlDataReader reader)
         {
-            Annee resultat = new Annee();
-            resultat.id = Convert.ToInt64(reader["anneeId"]);
-            resultat.libelle = (String)reader["anneeLibelle"];
+            TypeCours resultat = new TypeCours();
+
+            resultat.id = Convert.ToInt64(reader["typeCoursID"]);
+            resultat.libelle = (String)reader["typeCoursLibelle"];
+
             return resultat;
         }
     }

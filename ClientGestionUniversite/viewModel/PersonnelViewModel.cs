@@ -62,7 +62,7 @@ namespace ClientGestionUniversite.viewModel
         /// <param name="p">personnel</param>
         public void update(Personnel p)
         {
-            nomPrenom = p.Nom.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.Prenom.ToLower()) 
+            nomPrenom = p.nom.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.prenom.ToLower()) 
                 + " ( " + p.id + " )";
             heureEff = "100 / " + p.categoriePersonnel.volumeHoraire;
             titre = p.categoriePersonnel.libelle;

@@ -35,8 +35,8 @@ namespace ClientGestionUniversite.view
             input = false;
             this.Text = name;
             InitializeComponent();
-            this.nomBox.Text = p.Nom;
-            this.prenomBox.Text = p.Prenom;
+            this.nomBox.Text = p.nom;
+            this.prenomBox.Text = p.prenom;
             this.categorieComboBox.SelectedValue = p.categoriePersonnel.id;
             this.modifId = p.id;
         }

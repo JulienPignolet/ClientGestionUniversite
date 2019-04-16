@@ -10,9 +10,9 @@ namespace ClientGestionUniversite.modele
     {
         public long id { get; set; }
 
-        public String Nom { get; set; }
+        public String nom { get; set; }
 
-        public String Prenom { get; set; }
+        public String prenom { get; set; }
 
         public CategoriePersonnel categoriePersonnel { get; set; }
 
@@ -23,14 +23,14 @@ namespace ClientGestionUniversite.modele
 
         public Personnel(String nom, String prenom, CategoriePersonnel categoriePersonnel)
         {
-            this.Nom = nom;
-            this.Prenom = prenom;
+            this.nom = nom;
+            this.prenom = prenom;
             this.categoriePersonnel = categoriePersonnel;
         }
 
         public override String ToString()
         {
-            return "Personnel (id : " + id + " nom : " + Nom + " prenom : " + Prenom + ")";
+            return "Personnel (id : " + id + " nom : " + nom + " prenom : " + prenom + ")";
         }
     }
 }
