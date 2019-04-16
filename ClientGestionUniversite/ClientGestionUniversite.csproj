@@ -57,8 +57,11 @@
     <Compile Include="businessLogic\ConnectionMySql.cs" />
     <Compile Include="businessLogic\CoursDAO.cs" />
     <Compile Include="businessLogic\DiplomeDAO.cs" />
+    <Compile Include="businessLogic\ElementConstitutifDAO.cs" />
     <Compile Include="businessLogic\PeriodeDAO.cs" />
     <Compile Include="businessLogic\PersonnelDAO.cs" />
+    <Compile Include="businessLogic\RatioDAO.cs" />
+    <Compile Include="businessLogic\TypeCoursDAO.cs" />
     <Compile Include="businessLogic\UniteEnseignementDAO.cs" />
     <Compile Include="Client.cs">
       <SubType>Form</SubType>

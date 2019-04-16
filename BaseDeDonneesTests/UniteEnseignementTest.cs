@@ -22,6 +22,7 @@ namespace BaseDeDonneesTests.modele
              TestUniteEnseignementLienAvecPeriode();
              TestFindByLibelleUniteEnseignement();
              TestUpdateUniteEnseignement();
+             TestFindByDiplomeUniteEnseignement();
              TestDeleteUniteEnseignement();
          }
 
@@ -84,6 +85,13 @@ namespace BaseDeDonneesTests.modele
                  Assert.AreNotEqual(0, resultat.periode.annee);
                  Assert.AreNotEqual(0, resultat.periode.annee.diplome);
              }
+         }
+
+         public void TestFindByDiplomeUniteEnseignement()
+         {
+             // test du fin by libelle
+             List<UniteEnseignement> resultatFind = UniteEnseignementDAO.findByDiplome(3);    
+             Assert.IsTrue(resultatFind.Count > 0);
          }
 
          public void TestUpdateUniteEnseignement()

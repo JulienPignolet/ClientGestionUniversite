@@ -173,6 +173,62 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
+        
+        public static List<UniteEnseignement> findByDiplome(long id)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+            MySqlDataReader reader = null;
+
+            List<UniteEnseignement> resultats = new List<UniteEnseignement>();
+
+            try
+            {
+                sql = "SELECT unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
+                    + "periode.id AS periodeID, periode.libelle AS periodeLibelle, "
+                    + "annee.id AS anneeId, annee.libelle AS anneeLibelle, "
+                    + "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle "
+                    + "FROM unite_enseignement "
+                    + "JOIN periode ON unite_enseignement.periode_id = periode.id "
+                    + "JOIN annee ON periode.annee_id = annee.id "
+                    + "JOIN diplome ON annee.diplome_id = diplome.id "
+                    + "WHERE diplome.id = @id";
+
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@id", id);
+                reader = _cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    UniteEnseignement tempUnite = populateUniteEnseignement(reader);
+
+                    Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
+
+                    Annee tempAnnee = AnneeDAO.populateAnnee(reader);
+                    tempAnnee.diplome = tempDiplome;
+
+                    Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
+                    tempPeriode.annee = tempAnnee;
+
+                    tempUnite.periode = tempPeriode;
+
+                    resultats.Add(tempUnite);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+            _cmd.Dispose();
+
+            return resultats;
+        }
+
         public static UniteEnseignement create(UniteEnseignement obj)
         {
 

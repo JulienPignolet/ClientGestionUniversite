@@ -22,6 +22,7 @@ namespace BaseDeDonneesTests.modele
              TestFindAll(); // DEBUG PURPOSE : add breakpoint in it
              TestElementConstitutifLienAvecUniteEnseignement();
              TestFindByLibelleElementConstitutif();
+             TestFindByUniteEnseignementElementConstitutif();
              TestUpdateElementConstitutif();
              TestDeleteElementConstitutif();
          }
@@ -92,7 +93,14 @@ namespace BaseDeDonneesTests.modele
                  Assert.AreNotEqual(0, resultat.uniteEnseignement.periode.annee.diplome.id);
              }
          }
-
+         public void TestFindByUniteEnseignementElementConstitutif()
+         {
+             // test du fin by libelle
+             List<ElementConstitutif> resultatFind = ElementConstitutifDAO.findByUniteEnseignement(3);
+             Assert.IsTrue(resultatFind.Count > 0);
+                 
+         }
+        
          public void TestUpdateElementConstitutif()
          {
 

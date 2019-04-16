@@ -185,6 +185,65 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
+        public static List<ElementConstitutif> findByUniteEnseignement(long id)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+            MySqlDataReader reader = null;
+
+            List<ElementConstitutif> resultats = new List<ElementConstitutif>();
+
+            try
+            {
+                sql = "SELECT element_constitutif.id as elemConstID, element_constitutif.libelle as elemConstLibelle, "
+                    + "unite_enseignement.id as uniteEnsID, unite_enseignement.libelle as uniteEnsLibelle, "
+                    + "periode.id AS periodeID, periode.libelle AS periodeLibelle, "
+                    + "annee.id AS anneeId, annee.libelle AS anneeLibelle, "
+                    + "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle "
+                    + "FROM element_constitutif "
+                    + "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id "
+                    + "JOIN periode ON unite_enseignement.periode_id = periode.id "
+                    + "JOIN annee ON periode.annee_id = annee.id "
+                    + "JOIN diplome ON annee.diplome_id = diplome.id "
+                    + "WHERE unite_enseignement.id = @id";
+
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@id", id);
+                reader = _cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
+
+                    Annee tempAnnee = AnneeDAO.populateAnnee(reader);
+                    tempAnnee.diplome = tempDiplome;
+
+                    Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
+                    tempPeriode.annee = tempAnnee;
+
+                    UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
+                    tempUnite.periode = tempPeriode;
+
+                    ElementConstitutif tempElementConstitutif = populateElementConstitutif(reader);
+                    tempElementConstitutif.uniteEnseignement = tempUnite;
+
+                    resultats.Add(tempElementConstitutif);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+            _cmd.Dispose();
+
+            return resultats;
+        }
+
         public static ElementConstitutif create(ElementConstitutif obj)
         {
 

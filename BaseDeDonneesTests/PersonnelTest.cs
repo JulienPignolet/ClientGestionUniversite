@@ -40,10 +40,11 @@ namespace BaseDeDonneesTests.modele
         public void TestFind()
         {
             // test du find simple
-            Personnel resultatFind = PersonnelDAO.find(34);
-            Assert.AreEqual("Jacquie", resultatFind.nom);
-            Assert.AreEqual("Pierre", resultatFind.prenom);
-            Assert.AreEqual(1, resultatFind.categoriePersonnel.id);
+            Personnel p = creerPersonnel("test", "franck");
+            Personnel resultatFind = PersonnelDAO.find(p.id);
+            Assert.AreEqual("test", resultatFind.nom);
+            Assert.AreEqual("franck", resultatFind.prenom);
+            Assert.AreEqual(p.categoriePersonnel.id, resultatFind.categoriePersonnel.id);
         }
 
         public void TestCreationPersonnel()
