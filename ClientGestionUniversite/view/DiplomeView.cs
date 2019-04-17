@@ -80,5 +80,68 @@ namespace ClientGestionUniversite.view
                     || uevm.Annee.ToLower().Contains(filterBox.Text) 
                     || uevm.Periode.ToLower().Contains(filterBox.Text); });
         }
+
+        /// <summary>
+        /// Supression d'un personnel
+        /// </summary>
+        private void supprimerPersonnel(object sender, EventArgs e)
+        {
+            /*Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                PersonnelDAO.delete(p);
+                personnelGridViewLoad();
+            }*/
+        }
+
+        /// <summary>
+        /// Modification d'un personnel
+        /// </summary>
+        private void modifierPersonnel(object sender, EventArgs e)
+        {
+            /*Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                var formPopup = new InputModifPersonnelForm("Modifier Personnel", p);
+                formPopup.ShowDialog(this);
+                personnelGridViewLoad();
+
+            }*/
+        }
+
+        /// <summary>
+        /// Ajouter un personnel
+        /// </summary>
+        private void ajouterPersonnel(object sender, EventArgs e)
+        {
+            /*var formPopup = new InputModifPersonnelForm("Nouveau Personnel");
+            formPopup.ShowDialog(this);
+            personnelGridViewLoad();
+            personnelGridView.Refresh();*/
+        }
+
+        /// <summary>
+        /// Suppression d'une affectation
+        /// </summary>
+        private void supprimerAffectation(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Modification d'une affectation
+        /// </summary>
+        private void modifierAffectation(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Ajouter une affectation
+        /// </summary>
+        private void ajouterAffectation(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -45,6 +45,8 @@ namespace ClientGestionUniversite
             edit = !edit;
             editionMode.Text = (edit) ? ("Désactiver l'édition") : ("Activer l'édition");
             personnelView.editPanel.Visible = edit;
+            foreach(DiplomeView dv in diplomesView)
+                dv.editPanel.Visible = edit;
         }
     }
 }
