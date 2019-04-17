@@ -30,6 +30,15 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
+        /// Charge les données des affectations
+        /// </summary>
+        private void personnelDetailsGridViewLoad()
+        {
+            BindingListView<CoursParPersonnelViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursParPersonnelViewModel>(CoursDAO.findAll());
+            personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
+        }
+
+        /// <summary>
         /// Évènement fin de remplissage de la grille du personnel
         /// </summary>
         private void personnelGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -58,8 +67,7 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 personnelViewModel.update(p);
-                BindingListView<CoursParPersonnelViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursParPersonnelViewModel>(CoursDAO.findAll());
-                personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
+                personnelDetailsGridViewLoad();
             }
         }
 
@@ -82,13 +90,34 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
+        /// Affectation sélectionnée
+        /// </summary>
+        /// <returns>affectation</returns>
+        private CoursParPersonnelViewModel getCurrentAffectation()
+        {
+            if (personnelDetailsGridView.SelectedCells.Count > 0)
+            {
+                int selectedRowIndex = personnelDetailsGridView.SelectedCells[0].RowIndex;
+                CoursParPersonnelViewModel cppvm = ((ObjectView<CoursParPersonnelViewModel>)personnelDetailsGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                return cppvm;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Application du filtre
         /// </summary>
         private void filterBox_TextChanged(object sender, EventArgs e)
         {
             ((BindingListView<Personnel>)personnelGridView.DataSource).ApplyFilter(
-                delegate(Personnel personnel) { return personnel.nom.ToLower().Contains(filterBox.Text.ToLower()) 
-                    || personnel.prenom.ToLower().Contains(filterBox.Text.ToLower()); });
+                delegate(Personnel personnel)
+                {
+                    return personnel.nom.ToLower().Contains(filterBox.Text.ToLower())
+                        || personnel.prenom.ToLower().Contains(filterBox.Text.ToLower());
+                });
         }
 
         /// <summary>
@@ -132,7 +161,13 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void modifierAffectation(object sender, EventArgs e)
         {
-
+            CoursParPersonnelViewModel cppvm = getCurrentAffectation();
+            if (cppvm != null)
+            {
+                var formPopup = new InputModifCoursParPersonnelForm("Modifier Affectation");
+                formPopup.ShowDialog(this);
+                personnelDetailsGridViewLoad();
+            }
         }
 
         /// <summary>
@@ -143,7 +178,6 @@ namespace ClientGestionUniversite.view
             var formPopup = new InputModifPersonnelForm("Nouveau Personnel");
             formPopup.ShowDialog(this);
             personnelGridViewLoad();
-            personnelGridView.Refresh();
         }
 
         /// <summary>
@@ -152,6 +186,9 @@ namespace ClientGestionUniversite.view
         private void ajouterAffectation(object sender, EventArgs e)
         {
 
+            var formPopup = new InputModifCoursParPersonnelForm("Ajouter Affectation");
+            formPopup.ShowDialog(this);
+            personnelDetailsGridViewLoad();
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace ClientGestionUniversite.view
 {
-    public partial class InputModifPersonnelForm: Form
+    public partial class InputModifPersonnelForm : Form
     {
         private bool input; // true = input / false = modif
         private long modifId;// id du personnel actuellement modifié

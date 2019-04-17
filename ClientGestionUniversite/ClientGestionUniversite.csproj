@@ -85,6 +85,12 @@
     <Compile Include="view\DiplomeView.Designer.cs">
       <DependentUpon>DiplomeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\InputModifCoursParPersonnelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\InputModifCoursParPersonnelForm.Designer.cs">
+      <DependentUpon>InputModifCoursParPersonnelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\InputModifPersonnelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </Compile>
     <EmbeddedResource Include="view\DiplomeView.resx">
       <DependentUpon>DiplomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifCoursParPersonnelForm.resx">
+      <DependentUpon>InputModifCoursParPersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifPersonnelForm.resx">
       <DependentUpon>InputModifPersonnelForm.cs</DependentUpon>
