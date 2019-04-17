@@ -118,6 +118,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\DiplomeView.resx">
+      <DependentUpon>DiplomeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifPersonnelForm.resx">
       <DependentUpon>InputModifPersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
