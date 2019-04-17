@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace ClientGestionUniversite.view
 {
-    public partial class InputModifPersonnelForm : Form
+    public partial class InputModifDiplomeForm : Form
     {
         private bool input; // true = input / false = modif
-        private long modifId;// id du personnel actuellement modifié
+        private long modifId; // id du diplome actuellement modifié
 
         /// <summary>
         /// Constructeur de création
         /// </summary>
         /// <param name="name">nom de la fenetre</param>
-        public InputModifPersonnelForm(string name)
+        public InputModifDiplomeForm(string name)
         {
             input = true;
             this.Text = name;
@@ -29,16 +29,14 @@ namespace ClientGestionUniversite.view
         /// Constructeur de modification
         /// </summary>
         /// <param name="name">nom de la fenetre</param>
-        /// <param name="p">personnel</param>
-        public InputModifPersonnelForm(string name, Personnel p)
+        /// <param name="d">diplome a modifier</param>
+        public InputModifDiplomeForm(string name, Diplome d)
         {
             input = false;
             this.Text = name;
+            this.modifId = d.id;
             InitializeComponent();
-            this.nomBox.Text = p.nom;
-            this.prenomBox.Text = p.prenom;
-            this.categorieComboBox.SelectedValue = p.categoriePersonnel.id;
-            this.modifId = p.id;
+            this.nomBox.Text = d.libelle;
         }
 
         /// <summary>
@@ -54,15 +52,15 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            Personnel p = new Personnel(this.nomBox.Text, this.prenomBox.Text, new CategoriePersonnel(Convert.ToInt64(((CategoriePersonnel)categorieComboBox.SelectedItem).id)));
+            Diplome d = new Diplome(this.nomBox.Text);
             if (input)
             {
-                PersonnelDAO.create(p);
+                DiplomeDAO.create(d);
             }
             else
             {
-                p.id = modifId;
-                PersonnelDAO.update(p);
+                d.id = modifId;
+                DiplomeDAO.update(d);
             }
             this.Close();
         }

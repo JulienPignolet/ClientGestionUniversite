@@ -19,20 +19,8 @@ namespace ClientGestionUniversite
 
         public Client()
         {
-            //
-            // diplomesView
-            //
-            this.diplomesView = new System.Collections.Generic.List<view.DiplomeView>();
-            int i = 1;
-            foreach (Diplome d in DiplomeDAO.findAll())
-            {
-                DiplomeView dv = new DiplomeView();
-                dv.Name = "diplomeView" + i;
-                dv.Text = d.libelle;
-                dv.UseVisualStyleBackColor = true;
-                diplomesView.Add(dv);
-            }
             InitializeComponent();
+            diplomeViewLoad();
             edit = false;
             switchEdition(null, null);
         }
@@ -44,9 +32,92 @@ namespace ClientGestionUniversite
         {
             edit = !edit;
             editionMode.Text = (edit) ? ("Désactiver l'édition") : ("Activer l'édition");
+            ajouterDiplome.Visible = edit;
+            modifierDiplome.Visible = edit;
+            supprimerDiplome.Visible = edit;
             personnelView.editPanel.Visible = edit;
             foreach(DiplomeView dv in diplomesView)
                 dv.editPanel.Visible = edit;
+        }
+
+        /// <summary>
+        /// Charge les diplomes
+        /// </summary>
+        private void diplomeViewLoad()
+        {
+            if (diplomesView != null)
+            {
+                foreach (DiplomeView dv in diplomesView)
+                {
+                    tabControl1.Controls.Remove(dv);
+                }
+            }
+            this.diplomesView = new System.Collections.Generic.List<view.DiplomeView>();
+            int i = 1;
+            foreach (Diplome d in DiplomeDAO.findAll())
+            {
+                DiplomeView dv = new DiplomeView();
+                dv.Name = "diplomeView" + i;
+                dv.Text = d.libelle;
+                dv.Tag = d;
+                dv.UseVisualStyleBackColor = true;
+                diplomesView.Add(dv);
+            }
+            foreach (ClientGestionUniversite.view.DiplomeView dv in diplomesView)
+            {
+                this.tabControl1.Controls.Add(dv);
+            }
+        }
+
+        /// <summary>
+        /// Ajouter un diplome
+        /// </summary>
+        private void addDiplome(object sender, EventArgs e) {
+            var formPopup = new InputModifDiplomeForm("Ajouter Diplome");
+            formPopup.ShowDialog(this);
+            diplomeViewLoad();
+        }
+
+        /// <summary>
+        /// Modifier un diplome
+        /// </summary>
+        private void modDiplome(object sender, EventArgs e)
+        {
+            Diplome d = getCurrentDiplome();
+            if (d != null)
+            {
+                var formPopup = new InputModifDiplomeForm("Modifier Diplome", d);
+                formPopup.ShowDialog(this);
+                diplomeViewLoad();
+            }
+        }
+
+        /// <summary>
+        /// Supprimer un diplome
+        /// </summary>
+        private void supDiplome(object sender, EventArgs e)
+        {
+            Diplome d = getCurrentDiplome();
+            if (d != null) {
+                DiplomeDAO.delete(d);
+                diplomeViewLoad();
+            }
+        }
+
+        /// <summary>
+        /// Diplome sélectionnée
+        /// </summary>
+        /// <returns></returns>
+        private Diplome getCurrentDiplome()
+        {
+            if (tabControl1.SelectedTab.Name.Contains("diplomeView"))
+            {
+                return (Diplome)tabControl1.SelectedTab.Tag;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

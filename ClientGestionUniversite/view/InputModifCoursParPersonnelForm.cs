@@ -1,5 +1,4 @@
-﻿using ClientGestionUniversite.businessLogic;
-using ClientGestionUniversite.modele;
+﻿using ClientGestionUniversite.viewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +8,15 @@ using System.Windows.Forms;
 
 namespace ClientGestionUniversite.view
 {
-    public partial class InputModifPersonnelForm : Form
+    public partial class InputModifCoursParPersonnelForm : Form
     {
         private bool input; // true = input / false = modif
-        private long modifId;// id du personnel actuellement modifié
 
         /// <summary>
         /// Constructeur de création
         /// </summary>
         /// <param name="name">nom de la fenetre</param>
-        public InputModifPersonnelForm(string name)
+        public InputModifCoursParPersonnelForm(string name)
         {
             input = true;
             this.Text = name;
@@ -29,16 +27,12 @@ namespace ClientGestionUniversite.view
         /// Constructeur de modification
         /// </summary>
         /// <param name="name">nom de la fenetre</param>
-        /// <param name="p">personnel</param>
-        public InputModifPersonnelForm(string name, Personnel p)
+        /// <param name="cppvm">affectation</param>
+        public InputModifCoursParPersonnelForm(string name, CoursParPersonnelViewModel cppvm)
         {
             input = false;
             this.Text = name;
             InitializeComponent();
-            this.nomBox.Text = p.nom;
-            this.prenomBox.Text = p.prenom;
-            this.categorieComboBox.SelectedValue = p.categoriePersonnel.id;
-            this.modifId = p.id;
         }
 
         /// <summary>
@@ -54,15 +48,13 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            Personnel p = new Personnel(this.nomBox.Text, this.prenomBox.Text, new CategoriePersonnel(Convert.ToInt64(((CategoriePersonnel)categorieComboBox.SelectedItem).id)));
             if (input)
             {
-                PersonnelDAO.create(p);
+
             }
             else
             {
-                p.id = modifId;
-                PersonnelDAO.update(p);
+
             }
             this.Close();
         }
