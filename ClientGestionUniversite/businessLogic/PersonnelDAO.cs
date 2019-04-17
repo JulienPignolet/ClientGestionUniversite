@@ -232,12 +232,13 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE personnel set nom = @nom WHERE id = @id";
+                sql = "UPDATE personnel set nom = @nom, prenom = @prenom, categorie_id = @categId WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
                 _cmd.Parameters.AddWithValue("@nom", obj.nom);
                 _cmd.Parameters.AddWithValue("@prenom", obj.prenom);
+                _cmd.Parameters.AddWithValue("@categId", obj.categoriePersonnel.id);
 
                 _cmd.ExecuteNonQuery();
 

@@ -180,11 +180,12 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE annee set libelle = @libelle WHERE id = @id";
+                sql = "UPDATE annee set libelle = @libelle, diplome_id = @diplome_id WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
                 _cmd.Parameters.AddWithValue("@libelle", obj.libelle);
+                _cmd.Parameters.AddWithValue("@diplome_id", obj.diplome.id);
 
                 _cmd.ExecuteNonQuery();
 

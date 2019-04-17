@@ -288,11 +288,12 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE element_constitutif set libelle = @libelle WHERE id = @id";
+                sql = "UPDATE element_constitutif set libelle = @libelle, ue_id = @ue_id WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
                 _cmd.Parameters.AddWithValue("@libelle", obj.libelle);
+                _cmd.Parameters.AddWithValue("@ue_id", obj.uniteEnseignement.id);
 
                 _cmd.ExecuteNonQuery();
 

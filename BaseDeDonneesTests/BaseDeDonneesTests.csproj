@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="AnneeTest.cs" />
     <Compile Include="CategoriePersonnelTest.cs" />
+    <Compile Include="CoursTest.cs" />
     <Compile Include="DiplomeTest.cs" />
     <Compile Include="ElementConstitutifTest.cs" />
     <Compile Include="PeriodeTest.cs" />
