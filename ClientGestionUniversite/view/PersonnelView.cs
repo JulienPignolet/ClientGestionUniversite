@@ -58,7 +58,7 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 personnelViewModel.update(p);
-                BindingListView<CoursViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursViewModel>(CoursDAO.findAll());
+                BindingListView<CoursParPersonnelViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursParPersonnelViewModel>(CoursDAO.findAll());
                 personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
             }
         }

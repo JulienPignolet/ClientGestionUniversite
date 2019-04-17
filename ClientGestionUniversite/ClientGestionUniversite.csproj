@@ -79,7 +79,8 @@
     <Compile Include="model\Ratio.cs" />
     <Compile Include="model\TypeCours.cs" />
     <Compile Include="model\UniteEnseignement.cs" />
-    <Compile Include="viewModel\CoursViewModel.cs" />
+    <Compile Include="viewModel\CoursParPersonnelViewModel.cs" />
+    <Compile Include="viewModel\UeViewModel.cs" />
     <Compile Include="view\DiplomeView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -119,12 +120,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\DiplomeView.resx">
+      <DependentUpon>DiplomeView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifPersonnelForm.resx">
       <DependentUpon>InputModifPersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\PersonnelView.resx">
       <DependentUpon>PersonnelView.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

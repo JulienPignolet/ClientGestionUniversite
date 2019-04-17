@@ -16,11 +16,11 @@ namespace ClientGestionUniversite.businessLogic
         //Liste des cours d'un prof (Nom, Type, Heure)
         private static MySqlConnection _connection = ConnectionMySql.getInstance();
 
-        public static List<CoursViewModel> findAll()
+        public static List<CoursParPersonnelViewModel> findAll()
         {
-            List<CoursViewModel> res = new List<CoursViewModel>();
-            res.Add(new CoursViewModel("Mathématique", "CM", 10));
-            res.Add(new CoursViewModel("Mathématique", "CM", 10));
+            List<CoursParPersonnelViewModel> res = new List<CoursParPersonnelViewModel>();
+            res.Add(new CoursParPersonnelViewModel("Mathématique", "CM", 10));
+            res.Add(new CoursParPersonnelViewModel("Mathématique", "CM", 10));
             return res;
         }
     }

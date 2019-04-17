@@ -242,7 +242,7 @@ namespace ClientGestionUniversite.view
             this.filterLabel.Name = "filterLabel";
             this.filterLabel.Size = new System.Drawing.Size(35, 13);
             this.filterLabel.TabIndex = 0;
-            this.filterLabel.Text = "Nom :";
+            this.filterLabel.Text = "Filtre :";
             // 
             // personnelGridView
             // 
