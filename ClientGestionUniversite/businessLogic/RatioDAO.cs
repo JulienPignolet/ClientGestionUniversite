@@ -11,7 +11,7 @@ namespace ClientGestionUniversite.businessLogic
     public static class RatioDAO
     {
         public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
+        // TODO CLASSE DE TEST
         public static Ratio find(long id)
         {
             MySqlCommand _cmd = new MySqlCommand();
@@ -25,12 +25,13 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "SELECT ratio.id AS ratioId, "
+                sql = "SELECT ratio.ratio AS ratio, "
                  + "type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle "
                  + "categorie_personnel.id AS categID, categorie_personnel.libelle AS categLibelle, categorie_personnel.volume_horaire as categVolume "
                  + "FROM ratio "
                  + "JOIN categorie_personnel ON ratio.categorie_id = categorie_personnel.id "
-                 + "JOIN type_cours ON ratio.type_id = type_cours.id";
+                 + "JOIN type_cours ON ratio.type_id = type_cours.id " +
+                 "WHERE type_id = @typeId, categorie_id = @categorieId";
 
                 _cmd.CommandText = sql;
 
@@ -72,7 +73,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "SELECT ratio.id AS ratioId, "
+                sql = "SELECT ratio.ratio AS ratio, "
                 + "type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle "
                 + "categorie_personnel.id AS categID, categorie_personnel.libelle AS categLibelle, categorie_personnel.volume_horaire as categVolume "
                 + "FROM ratio "
@@ -115,16 +116,47 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "INSERT INTO ratio (id, type_id, categorie_id) VALUES (@id ,@typeId, @categorieId) ";
+                sql = "INSERT INTO ratio (ratio, type_id, categorie_id) VALUES (@ratio ,@typeId, @categorieId) ";
                 _cmd.CommandText = sql;
 
-                _cmd.Parameters.AddWithValue("@id", obj.id);
+                _cmd.Parameters.AddWithValue("@ratio", obj.ratio);
                 _cmd.Parameters.AddWithValue("@typeId", obj.typeCours.id);
                 _cmd.Parameters.AddWithValue("@categorieId", obj.categoriePersonnel.id);
 
                 _cmd.ExecuteNonQuery();
 
-                obj.id = _cmd.LastInsertedId;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+
+            _cmd.Dispose();
+
+            return obj;
+
+        }
+
+        public static Ratio update(Ratio obj)
+        {
+
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+
+            try
+            {
+                sql = "UPDATE ratio set ratio = @ratio WHERE type_id = @typeId, categorie_id = @categorieId ";
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@categorieId", obj.categoriePersonnel.id);
+                _cmd.Parameters.AddWithValue("@typeId", obj.typeCours.id);
+                _cmd.Parameters.AddWithValue("@ratio", obj.ratio);
+                
+
+                _cmd.ExecuteNonQuery();
 
             }
             catch (Exception e)
@@ -148,14 +180,13 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "DELETE FROM ratio WHERE id = @id";
+                sql = "DELETE FROM ratio WHERE type_id = @typeId, categorie_id = @categorieId";
                 _cmd.CommandText = sql;
 
-                _cmd.Parameters.AddWithValue("@id", obj.id);
+                _cmd.Parameters.AddWithValue("@categorieId", obj.categoriePersonnel.id);
+                _cmd.Parameters.AddWithValue("@typeId", obj.typeCours.id);
 
                 _cmd.ExecuteNonQuery();
-
-                obj.id = _cmd.LastInsertedId;
 
             }
             catch (Exception e)
@@ -169,7 +200,7 @@ namespace ClientGestionUniversite.businessLogic
         {
             Ratio resultat = new Ratio();
 
-            resultat.id = Convert.ToInt64(reader["ratioId"]);
+            resultat.ratio = Convert.ToInt32(reader["ratio"]);
 
             return resultat;
         }

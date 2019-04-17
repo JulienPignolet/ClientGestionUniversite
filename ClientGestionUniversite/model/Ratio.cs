@@ -8,15 +8,14 @@ namespace ClientGestionUniversite.modele
 {
     public class Ratio
     {
-        public long id { get; set; }
-
         public TypeCours typeCours { get; set; }
 
         public CategoriePersonnel categoriePersonnel{ get; set; }
 
+        public int ratio { get; set; }
+
         public Ratio(TypeCours type, CategoriePersonnel categorie)
         {
-            this.id = 0;
             this.typeCours = type;
             this.categoriePersonnel = categorie;
         }
@@ -28,7 +27,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "Ratio (id : " + id + " TypeCours : " + typeCours + " de la categorie de personnel : " + categoriePersonnel.libelle + ")";
+            return "Ratio " + " TypeCours : " + typeCours + " de la categorie de personnel : " + categoriePersonnel.libelle + ")";
         }
 
 
