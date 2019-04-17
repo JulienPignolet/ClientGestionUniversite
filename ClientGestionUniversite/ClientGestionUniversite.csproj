@@ -91,6 +91,12 @@
     <Compile Include="view\InputModifCoursParPersonnelForm.Designer.cs">
       <DependentUpon>InputModifCoursParPersonnelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\InputModifDiplomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\InputModifDiplomeForm.Designer.cs">
+      <DependentUpon>InputModifDiplomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\InputModifPersonnelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,7 +142,6 @@
     <EmbeddedResource Include="view\PersonnelView.resx">
       <DependentUpon>PersonnelView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
