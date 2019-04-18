@@ -153,7 +153,9 @@ namespace ClientGestionUniversite.view
             if (ueGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ueGridView.SelectedCells[0].RowIndex;
-                UniteEnseignement ue = ((ObjectView<UniteEnseignement>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                UeViewModel ueV = ((ObjectView<UeViewModel>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                UniteEnseignement ue = new UniteEnseignement(ueV.Nom, new Periode(ueV.Nom, new Annee(ueV.Nom, new Diplome(ueV.Nom))));
+                ue.id = ueV.id;
                 return ue;
             }
             else
