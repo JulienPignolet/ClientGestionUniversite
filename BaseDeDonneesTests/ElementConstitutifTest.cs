@@ -45,10 +45,11 @@ namespace BaseDeDonneesTests.modele
          public void TestFind()
          {
              // test du find simple
-             ElementConstitutif resultatFind = ElementConstitutifDAO.find(3);
-             Assert.AreEqual("combinatoire", resultatFind.libelle);
+             ElementConstitutif resultat = creerElementConstitutif("TEST_ElementConstitutif");
+             ElementConstitutif resultatFind = ElementConstitutifDAO.find(resultat.id);
+             Assert.AreEqual("TEST_ElementConstitutif", resultatFind.libelle);
              Assert.AreNotEqual(0, resultatFind.id);
-             Assert.AreEqual(3, resultatFind.uniteEnseignement.id);
+             Assert.AreNotEqual(0, resultatFind.uniteEnseignement.id);
              Assert.AreNotEqual(0, resultatFind.uniteEnseignement.periode.id);
              Assert.AreNotEqual(0, resultatFind.uniteEnseignement.periode.annee.id);
              Assert.AreNotEqual(0, resultatFind.uniteEnseignement.periode.annee.diplome.id);
@@ -96,7 +97,7 @@ namespace BaseDeDonneesTests.modele
          public void TestFindByUniteEnseignementElementConstitutif()
          {
              // test du fin by libelle
-             List<ElementConstitutif> resultatFind = ElementConstitutifDAO.findByUniteEnseignement(3);
+             List<ElementConstitutif> resultatFind = ElementConstitutifDAO.findByUniteEnseignement(87);
              Assert.IsTrue(resultatFind.Count > 0);
                  
          }

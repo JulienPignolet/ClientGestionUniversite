@@ -42,9 +42,11 @@ namespace BaseDeDonneesTests.modele
          public void TestFind()
          {
              // test du find simple
-             UniteEnseignement resultatFind = UniteEnseignementDAO.find(3);
-             Assert.AreEqual("optimisation", resultatFind.libelle);
-             Assert.AreEqual(1, resultatFind.periode.id);
+             UniteEnseignement resultat = creerUniteEnseignement("TEST_UniteEnseignement");
+
+             UniteEnseignement resultatFind = UniteEnseignementDAO.find(resultat.id);
+             Assert.AreEqual("TEST_UniteEnseignement", resultatFind.libelle);
+             Assert.AreNotEqual(0, resultatFind.periode.id);
              Assert.AreNotEqual(0, resultatFind.id);
              Assert.AreNotEqual(0, resultatFind.periode.annee.id);
              Assert.AreNotEqual(0, resultatFind.periode.annee.diplome.id);

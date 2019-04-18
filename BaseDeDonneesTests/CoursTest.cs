@@ -25,14 +25,15 @@ namespace BaseDeDonneesTests
         public void TestFind()
         {
             // test du find simple
-            Cours resultatFind = CoursDAO.find(2);
+            Cours res = creerCours(66,66);
+            Cours resultatFind = CoursDAO.find(res.id);
             // cours
-            Assert.AreEqual(7, resultatFind.volumeHoraire);
-            Assert.AreEqual(2, resultatFind.numeroGroupe);
+            Assert.AreEqual(66, resultatFind.volumeHoraire);
+            Assert.AreEqual(66, resultatFind.numeroGroupe);
             // autres entites
-            Assert.AreEqual(3, resultatFind.elementConstitutif.id);
-            Assert.AreEqual(3, resultatFind.elementConstitutif.uniteEnseignement.id);
-            Assert.AreEqual(1, resultatFind.elementConstitutif.uniteEnseignement.periode.id);
+            Assert.AreNotEqual(0, resultatFind.elementConstitutif.id);
+            Assert.AreNotEqual(0, resultatFind.elementConstitutif.uniteEnseignement.id);
+            Assert.AreNotEqual(0, resultatFind.elementConstitutif.uniteEnseignement.periode.id);
 
             Assert.AreNotEqual(0, resultatFind.id);
             Assert.AreNotEqual(0, resultatFind.elementConstitutif.uniteEnseignement.periode.annee.id);
