@@ -524,13 +524,5 @@ namespace ClientGestionUniversite.businessLogic
 
             return resultat;
         }
-        
-        public static List<CoursParPersonnelViewModel> findAll()
-        {
-            List<CoursParPersonnelViewModel> res = new List<CoursParPersonnelViewModel>();
-            res.Add(new CoursParPersonnelViewModel("Mathématique", "CM", 10));
-            res.Add(new CoursParPersonnelViewModel("Mathématique", "CM", 10));
-            return res;
-        }
     }
 }

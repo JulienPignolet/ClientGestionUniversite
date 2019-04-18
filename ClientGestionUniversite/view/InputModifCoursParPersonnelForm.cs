@@ -33,6 +33,9 @@ namespace ClientGestionUniversite.view
             input = false;
             this.Text = name;
             InitializeComponent();
+            this.coursBox.Items.Add(cppvm);
+            this.coursBox.SelectedValue = cppvm.id;
+            this.heureBox.Text = cppvm.Heure + "" ;
         }
 
         /// <summary>

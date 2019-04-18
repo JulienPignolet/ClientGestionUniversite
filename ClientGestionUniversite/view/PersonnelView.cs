@@ -34,8 +34,18 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void personnelDetailsGridViewLoad()
         {
-            BindingListView<CoursParPersonnelViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursParPersonnelViewModel>(CoursDAO.findAll());
-            personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
+            Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                List<Cours> cours = CoursDAO.findByPersonnel(p.id);
+                List<CoursParPersonnelViewModel> cppvm = new List<CoursParPersonnelViewModel>();
+                foreach (Cours c in cours)
+                {
+                    cppvm.Add(new CoursParPersonnelViewModel(c.id, c.elementConstitutif.libelle, c.typeCours.libelle, c.volumeHoraire));
+                }
+                BindingListView<CoursParPersonnelViewModel> bindingSourcePersonnelDetails = new BindingListView<CoursParPersonnelViewModel>(cppvm);
+                personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
+            }
         }
 
         /// <summary>
@@ -55,6 +65,7 @@ namespace ClientGestionUniversite.view
         /// <param name="e"></param>
         private void personnelDetailsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            personnelDetailsGridView.Columns["id"].Visible = false;
             personnelDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -138,7 +149,14 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void supprimerAffectation(object sender, EventArgs e)
         {
-
+            CoursParPersonnelViewModel cppvm = getCurrentAffectation();
+            if (cppvm != null)
+            {
+                Cours c = new Cours();
+                c.id = cppvm.id;
+                c.intervenant = null;
+                personnelDetailsGridViewLoad();
+            }
         }
 
         /// <summary>
@@ -164,7 +182,7 @@ namespace ClientGestionUniversite.view
             CoursParPersonnelViewModel cppvm = getCurrentAffectation();
             if (cppvm != null)
             {
-                var formPopup = new InputModifCoursParPersonnelForm("Modifier Affectation");
+                var formPopup = new InputModifCoursParPersonnelForm("Modifier Affectation", cppvm);
                 formPopup.ShowDialog(this);
                 personnelDetailsGridViewLoad();
             }
@@ -185,7 +203,6 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterAffectation(object sender, EventArgs e)
         {
-
             var formPopup = new InputModifCoursParPersonnelForm("Ajouter Affectation");
             formPopup.ShowDialog(this);
             personnelDetailsGridViewLoad();

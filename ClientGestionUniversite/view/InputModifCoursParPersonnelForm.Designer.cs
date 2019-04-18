@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ClientGestionUniversite.businessLogic;
+using ClientGestionUniversite.modele;
+using ClientGestionUniversite.viewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,19 +59,43 @@ namespace ClientGestionUniversite.view
             // 
             // coursBox
             // 
+            this.coursBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.coursBox.FormattingEnabled = true;
             this.coursBox.Location = new System.Drawing.Point(110, 13);
             this.coursBox.Name = "coursBox";
             this.coursBox.Size = new System.Drawing.Size(280, 21);
             this.coursBox.TabIndex = 4;
+            this.coursBox.DisplayMember = "Cours";
+            this.coursBox.ValueMember = "id";
+            if (input)
+            {
+                List<Cours> cours = CoursDAO.findAllCours();
+                foreach (Cours c in cours)
+                {
+                    if (c.intervenant == null)
+                    {
+                        CoursParPersonnelViewModel cppvm = new CoursParPersonnelViewModel(c.id, c.elementConstitutif.libelle, c.typeCours.libelle, c.volumeHoraire);
+                        this.coursBox.Items.Add(cppvm);
+                    }
+                }
+            }
             // 
             // typeBox
             // 
+            this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeBox.FormattingEnabled = true;
             this.typeBox.Location = new System.Drawing.Point(110, 41);
             this.typeBox.Name = "typeBox";
             this.typeBox.Size = new System.Drawing.Size(280, 21);
             this.typeBox.TabIndex = 5;
+            this.typeBox.DisplayMember = "libelle";
+            this.typeBox.ValueMember = "id";
+            List<TypeCours> typeCours = TypeCoursDAO.findAll();
+            foreach (TypeCours tc in typeCours)
+            {
+                this.typeBox.Items.Add(tc);
+            }
+            this.typeBox.SelectedIndex = 0;
             // 
             // validerButton
             // 
