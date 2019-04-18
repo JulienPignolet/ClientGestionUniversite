@@ -82,22 +82,22 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
-        /// Supression d'un personnel
+        /// Supression d'un UE
         /// </summary>
-        private void supprimerPersonnel(object sender, EventArgs e)
+        private void supprimerUE(object sender, EventArgs e)
         {
-            /*Personnel p = getCurrentPersonnel();
+            UniteEnseignement p = getCurrentUE();
             if (p != null)
             {
-                PersonnelDAO.delete(p);
-                personnelGridViewLoad();
-            }*/
+                UniteEnseignementDAO.delete(p);
+                ueGridViewLoad();
+            }
         }
 
         /// <summary>
-        /// Modification d'un personnel
+        /// Modification d'un UE
         /// </summary>
-        private void modifierPersonnel(object sender, EventArgs e)
+        private void modifierUE(object sender, EventArgs e)
         {
             /*Personnel p = getCurrentPersonnel();
             if (p != null)
@@ -110,9 +110,9 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
-        /// Ajouter un personnel
+        /// Ajouter un UE
         /// </summary>
-        private void ajouterPersonnel(object sender, EventArgs e)
+        private void ajouterUE(object sender, EventArgs e)
         {
             /*var formPopup = new InputModifPersonnelForm("Nouveau Personnel");
             formPopup.ShowDialog(this);
@@ -142,6 +142,24 @@ namespace ClientGestionUniversite.view
         private void ajouterAffectation(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Personnel sélectionné
+        /// </summary>
+        /// <returns>personnel</returns>
+        private UniteEnseignement getCurrentUE()
+        {
+            if (ueGridView.SelectedCells.Count > 0)
+            {
+                int selectedRowIndex = ueGridView.SelectedCells[0].RowIndex;
+                UniteEnseignement ue = ((ObjectView<UniteEnseignement>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                return ue;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

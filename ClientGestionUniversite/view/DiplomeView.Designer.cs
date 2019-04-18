@@ -130,7 +130,7 @@ namespace ClientGestionUniversite.view
             this.supprimerUEButton.Size = new System.Drawing.Size(128, 23);
             this.supprimerUEButton.TabIndex = 0;
             this.supprimerUEButton.Text = "Supprimer cette UE";
-            this.supprimerUEButton.Click += new System.EventHandler(this.supprimerPersonnel);
+            this.supprimerUEButton.Click += new System.EventHandler(this.supprimerUE);
             // 
             // modifierPersonnelButton
             // 
@@ -140,7 +140,7 @@ namespace ClientGestionUniversite.view
             this.modifierUEButton.Size = new System.Drawing.Size(118, 23);
             this.modifierUEButton.TabIndex = 1;
             this.modifierUEButton.Text = "Modifier cette UE";
-            this.modifierUEButton.Click += new System.EventHandler(this.modifierPersonnel);
+            this.modifierUEButton.Click += new System.EventHandler(this.modifierUE);
             // 
             // ajouterPersonnelButton
             // 
@@ -150,7 +150,7 @@ namespace ClientGestionUniversite.view
             this.ajouterUEButton.Size = new System.Drawing.Size(114, 23);
             this.ajouterUEButton.TabIndex = 2;
             this.ajouterUEButton.Text = "Ajouter une UE";
-            this.ajouterUEButton.Click += new System.EventHandler(this.ajouterPersonnel);
+            this.ajouterUEButton.Click += new System.EventHandler(this.ajouterUE);
             // 
             // supprimerAffectationButton
             // 
