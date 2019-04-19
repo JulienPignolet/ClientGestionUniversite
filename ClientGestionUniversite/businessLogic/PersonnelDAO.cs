@@ -286,7 +286,10 @@ namespace ClientGestionUniversite.businessLogic
         public static Personnel populatePersonnel(MySqlDataReader reader)
         {
             Personnel resultat = new Personnel();
-
+            if (reader.IsDBNull(reader.GetOrdinal("personnelId")) || reader.IsDBNull(reader.GetOrdinal("personnelPrenom")) || reader.IsDBNull(reader.GetOrdinal("personnelNom")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["personnelId"]);
             resultat.nom = (String)reader["personnelNom"];
             resultat.prenom = (String)reader["personnelPrenom"];

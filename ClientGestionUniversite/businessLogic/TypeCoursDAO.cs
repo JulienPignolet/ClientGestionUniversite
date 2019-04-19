@@ -217,7 +217,10 @@ namespace ClientGestionUniversite.businessLogic
         public static TypeCours populateTypeCours(MySqlDataReader reader)
         {
             TypeCours resultat = new TypeCours();
-
+            if (reader.IsDBNull(reader.GetOrdinal("typeCoursID")) || reader.IsDBNull(reader.GetOrdinal("typeCoursLibelle")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["typeCoursID"]);
             resultat.libelle = (String)reader["typeCoursLibelle"];
 

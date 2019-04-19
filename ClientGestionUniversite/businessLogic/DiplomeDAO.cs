@@ -257,8 +257,14 @@ namespace ClientGestionUniversite.businessLogic
         public static Diplome populateDiplome(MySqlDataReader reader)
         {
             Diplome resultat = new Diplome();
+            
+            if (reader.IsDBNull(reader.GetOrdinal("diplomeID")) || reader.IsDBNull(reader.GetOrdinal("diplomeLibelle")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["diplomeID"]);
             resultat.libelle = (String)reader["diplomeLibelle"];
+            
             return resultat;
         }
     }

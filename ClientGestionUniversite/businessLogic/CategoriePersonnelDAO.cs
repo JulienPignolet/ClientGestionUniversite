@@ -219,7 +219,10 @@ namespace ClientGestionUniversite.businessLogic
         public static CategoriePersonnel populateCategoriePersonnel(MySqlDataReader reader)
         {
             CategoriePersonnel resultat = new CategoriePersonnel();
-
+            if (reader.IsDBNull(reader.GetOrdinal("categID")) || reader.IsDBNull(reader.GetOrdinal("categLibelle")) || reader.IsDBNull(reader.GetOrdinal("categVolume")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["categID"]);
             resultat.libelle = (String)reader["categLibelle"];
             resultat.volumeHoraire = Convert.ToInt32(reader["categVolume"]);

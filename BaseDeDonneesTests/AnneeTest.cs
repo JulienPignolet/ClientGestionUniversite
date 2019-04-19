@@ -122,7 +122,7 @@ namespace BaseDeDonneesTests.modele
 
         public static void supprimerAnnee(Annee annee)
         {
-                DiplomeTest.supprimerDiplome(annee.diplome);
+                if(annee != null && annee.diplome != null) DiplomeTest.supprimerDiplome(annee.diplome);
                 AnneeDAO.delete(annee);            
         }
     }

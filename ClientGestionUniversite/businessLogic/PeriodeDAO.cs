@@ -253,6 +253,10 @@ namespace ClientGestionUniversite.businessLogic
         public static Periode populatePeriode(MySqlDataReader reader)
         {
             Periode resultat = new Periode();
+            if (reader.IsDBNull(reader.GetOrdinal("periodeID")) || reader.IsDBNull(reader.GetOrdinal("periodeLibelle")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["periodeID"]);
             resultat.libelle = (String)reader["periodeLibelle"];
             return resultat;

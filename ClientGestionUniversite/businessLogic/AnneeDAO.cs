@@ -233,6 +233,10 @@ namespace ClientGestionUniversite.businessLogic
         public static Annee populateAnnee(MySqlDataReader reader)
         {
             Annee resultat = new Annee();
+            if (reader.IsDBNull(reader.GetOrdinal("anneeId")) || reader.IsDBNull(reader.GetOrdinal("anneeLibelle")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["anneeId"]);
             resultat.libelle = (String)reader["anneeLibelle"];
             return resultat;

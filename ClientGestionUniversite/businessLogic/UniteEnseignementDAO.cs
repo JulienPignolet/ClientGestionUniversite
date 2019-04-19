@@ -324,6 +324,10 @@ namespace ClientGestionUniversite.businessLogic
         public static UniteEnseignement populateUniteEnseignement(MySqlDataReader reader)
         {
             UniteEnseignement resultat = new UniteEnseignement();
+            if (reader.IsDBNull(reader.GetOrdinal("uniteEnsID")) || reader.IsDBNull(reader.GetOrdinal("uniteEnsLibelle")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["uniteEnsID"]);
             resultat.libelle = (String)reader["uniteEnsLibelle"];
             return resultat;

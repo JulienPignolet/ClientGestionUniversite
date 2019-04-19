@@ -153,9 +153,10 @@ namespace BaseDeDonneesTests.modele
         }
 
         public static void supprimerPersonnel(Personnel personnel)
-        {           
-            PersonnelDAO.delete(personnel);
-            CategoriePersonnelTest.supprimeCategoriePersonnel(personnel.categoriePersonnel);
+        {
+             PersonnelDAO.delete(personnel);
+             if (personnel.categoriePersonnel != null) CategoriePersonnelTest.supprimeCategoriePersonnel(personnel.categoriePersonnel);     
+           
         }
     }
 }

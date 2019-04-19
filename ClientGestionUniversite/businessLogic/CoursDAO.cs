@@ -36,14 +36,14 @@ namespace ClientGestionUniversite.businessLogic
                     "annee.id AS anneeId, annee.libelle AS anneeLibelle, "+
                     "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle "+ 
                     "FROM cours "+
-					"JOIN type_cours on cours.type_id = type_cours.id "+
-					"JOIN element_constitutif on cours.ec_id = element_constitutif.id "+
-					"JOIN personnel on cours.personnel_id = personnel.id "+
-					"JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id "+
-                    "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id "+
-                    "JOIN periode ON unite_enseignement.periode_id = periode.id "+
-                    "JOIN annee ON periode.annee_id = annee.id "+
-                    "JOIN diplome ON annee.diplome_id = diplome.id "+
+                    "LEFT JOIN type_cours on cours.type_id = type_cours.id " +
+                    "LEFT JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
+                    "LEFT JOIN personnel on cours.personnel_id = personnel.id " +
+                    "LEFT JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
+                    "LEFT JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
+                    "LEFT JOIN periode ON unite_enseignement.periode_id = periode.id " +
+                    "LEFT JOIN annee ON periode.annee_id = annee.id " +
+                    "LEFT JOIN diplome ON annee.diplome_id = diplome.id " +
                     "WHERE cours.id = @id";
 
                 _cmd.CommandText = sql;
@@ -55,17 +55,17 @@ namespace ClientGestionUniversite.businessLogic
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
-                    tempAnnee.diplome = tempDiplome;
+                    if (tempDiplome != null) tempAnnee.diplome = tempDiplome;
 
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
-                    tempPeriode.annee = tempAnnee;
+                    if (tempPeriode != null) tempPeriode.annee = tempAnnee;
 
                     UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
-                    tempUnite.periode = tempPeriode;
+                    if (tempUnite != null) tempUnite.periode = tempPeriode;
 
                     ElementConstitutif tempElemConstitutif = ElementConstitutifDAO.populateElementConstitutif(reader);
-                    tempElemConstitutif.uniteEnseignement = tempUnite;
-                    
+                    if (tempElemConstitutif != null) tempElemConstitutif.uniteEnseignement = tempUnite;
+
                     // champ du cours
                     resultat = populateCours(reader);
                     // ajout element constitutif
@@ -76,8 +76,9 @@ namespace ClientGestionUniversite.businessLogic
                     // ajout intervenant et sa categorie
                     CategoriePersonnel tempCategPersonnel = CategoriePersonnelDAO.populateCategoriePersonnel(reader);
                     Personnel tempPersonnel = PersonnelDAO.populatePersonnel(reader);
-                    tempPersonnel.categoriePersonnel = tempCategPersonnel;
+                    if (tempPersonnel != null) tempPersonnel.categoriePersonnel = tempCategPersonnel;
                     resultat.intervenant = tempPersonnel;
+          
              
                 }
                 reader.Close();
@@ -114,14 +115,14 @@ namespace ClientGestionUniversite.businessLogic
                     "annee.id AS anneeId, annee.libelle AS anneeLibelle, " +
                     "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle " +
                     "FROM cours " +
-                    "JOIN type_cours on cours.type_id = type_cours.id " +
-                    "JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
-                    "JOIN personnel on cours.personnel_id = personnel.id " +
-                    "JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
-                    "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
-                    "JOIN periode ON unite_enseignement.periode_id = periode.id " +
-                    "JOIN annee ON periode.annee_id = annee.id " +
-                    "JOIN diplome ON annee.diplome_id = diplome.id ";
+                    "LEFT JOIN type_cours on cours.type_id = type_cours.id " +
+                    "LEFT JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
+                    "LEFT JOIN personnel on cours.personnel_id = personnel.id " +
+                    "LEFT JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
+                    "LEFT JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
+                    "LEFT JOIN periode ON unite_enseignement.periode_id = periode.id " +
+                    "LEFT JOIN annee ON periode.annee_id = annee.id " +
+                    "LEFT JOIN diplome ON annee.diplome_id = diplome.id ";
 
                 _cmd.CommandText = sql;
 
@@ -134,16 +135,16 @@ namespace ClientGestionUniversite.businessLogic
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
-                    tempAnnee.diplome = tempDiplome;
+                    if (tempDiplome != null) tempAnnee.diplome = tempDiplome;
 
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
-                    tempPeriode.annee = tempAnnee;
+                    if (tempPeriode != null) tempPeriode.annee = tempAnnee;
 
                     UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
-                    tempUnite.periode = tempPeriode;
+                    if (tempUnite != null) tempUnite.periode = tempPeriode;
 
                     ElementConstitutif tempElemConstitutif = ElementConstitutifDAO.populateElementConstitutif(reader);
-                    tempElemConstitutif.uniteEnseignement = tempUnite;
+                    if (tempElemConstitutif != null) tempElemConstitutif.uniteEnseignement = tempUnite;
 
                     // champ du cours
                     resultat = populateCours(reader);
@@ -155,7 +156,7 @@ namespace ClientGestionUniversite.businessLogic
                     // ajout intervenant et sa categorie
                     CategoriePersonnel tempCategPersonnel = CategoriePersonnelDAO.populateCategoriePersonnel(reader);
                     Personnel tempPersonnel = PersonnelDAO.populatePersonnel(reader);
-                    tempPersonnel.categoriePersonnel = tempCategPersonnel;
+                    if (tempPersonnel != null) tempPersonnel.categoriePersonnel = tempCategPersonnel;
                     resultat.intervenant = tempPersonnel;
 
                     resultats.Add(resultat);
@@ -194,14 +195,14 @@ namespace ClientGestionUniversite.businessLogic
                     "annee.id AS anneeId, annee.libelle AS anneeLibelle, " +
                     "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle " +
                     "FROM cours " +
-                    "JOIN type_cours on cours.type_id = type_cours.id " +
-                    "JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
-                    "JOIN personnel on cours.personnel_id = personnel.id " +
-                    "JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
-                    "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
-                    "JOIN periode ON unite_enseignement.periode_id = periode.id " +
-                    "JOIN annee ON periode.annee_id = annee.id " +
-                    "JOIN diplome ON annee.diplome_id = diplome.id "+
+                    "LEFT JOIN type_cours on cours.type_id = type_cours.id " +
+                    "LEFT JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
+                    "LEFT JOIN personnel on cours.personnel_id = personnel.id " +
+                    "LEFT JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
+                    "LEFT JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
+                    "LEFT JOIN periode ON unite_enseignement.periode_id = periode.id " +
+                    "LEFT JOIN annee ON periode.annee_id = annee.id " +
+                    "LEFT JOIN diplome ON annee.diplome_id = diplome.id " +
                     "WHERE cours.groupe = @groupe";
 
                 _cmd.CommandText = sql;
@@ -215,29 +216,29 @@ namespace ClientGestionUniversite.businessLogic
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
-                    tempAnnee.diplome = tempDiplome;
+                    if(tempDiplome != null) tempAnnee.diplome = tempDiplome;
 
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
-                    tempPeriode.annee = tempAnnee;
+                    if (tempPeriode != null) tempPeriode.annee = tempAnnee;
 
                     UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
-                    tempUnite.periode = tempPeriode;
+                    if (tempUnite != null) tempUnite.periode = tempPeriode;
 
                     ElementConstitutif tempElemConstitutif = ElementConstitutifDAO.populateElementConstitutif(reader);
-                    tempElemConstitutif.uniteEnseignement = tempUnite;
+                    if (tempElemConstitutif != null) tempElemConstitutif.uniteEnseignement = tempUnite;
 
                     // champ du cours
                     resultat = populateCours(reader);
                     // ajout element constitutif
-                    resultat.elementConstitutif = tempElemConstitutif;
+                    if (tempElemConstitutif != null) resultat.elementConstitutif = tempElemConstitutif;
                     // ajout type de cours
                     TypeCours tempTypeCours = TypeCoursDAO.populateTypeCours(reader);
-                    resultat.typeCours = tempTypeCours;
+                    if (tempTypeCours != null) resultat.typeCours = tempTypeCours;
                     // ajout intervenant et sa categorie
                     CategoriePersonnel tempCategPersonnel = CategoriePersonnelDAO.populateCategoriePersonnel(reader);
                     Personnel tempPersonnel = PersonnelDAO.populatePersonnel(reader);
-                    tempPersonnel.categoriePersonnel = tempCategPersonnel;
-                    resultat.intervenant = tempPersonnel;
+                    if (tempPersonnel != null) tempPersonnel.categoriePersonnel = tempCategPersonnel;
+                    if (tempPersonnel != null) resultat.intervenant = tempPersonnel;
 
                     resultats.Add(resultat);
                 }
@@ -275,14 +276,14 @@ namespace ClientGestionUniversite.businessLogic
                     "annee.id AS anneeId, annee.libelle AS anneeLibelle, " +
                     "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle " +
                     "FROM cours " +
-                    "JOIN type_cours on cours.type_id = type_cours.id " +
-                    "JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
-                    "JOIN personnel on cours.personnel_id = personnel.id " +
-                    "JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
-                    "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
-                    "JOIN periode ON unite_enseignement.periode_id = periode.id " +
-                    "JOIN annee ON periode.annee_id = annee.id " +
-                    "JOIN diplome ON annee.diplome_id = diplome.id " +
+                    "LEFT JOIN type_cours on cours.type_id = type_cours.id " +
+                    "LEFT JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
+                    "LEFT JOIN personnel on cours.personnel_id = personnel.id " +
+                    "LEFT JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
+                    "LEFT JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
+                    "LEFT JOIN periode ON unite_enseignement.periode_id = periode.id " +
+                    "LEFT JOIN annee ON periode.annee_id = annee.id " +
+                    "LEFT JOIN diplome ON annee.diplome_id = diplome.id " +
                     "WHERE element_constitutif.id = @id";
 
                 _cmd.CommandText = sql;
@@ -296,16 +297,16 @@ namespace ClientGestionUniversite.businessLogic
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
-                    tempAnnee.diplome = tempDiplome;
+                    if (tempDiplome != null) tempAnnee.diplome = tempDiplome;
 
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
-                    tempPeriode.annee = tempAnnee;
+                    if (tempPeriode != null) tempPeriode.annee = tempAnnee;
 
                     UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
-                    tempUnite.periode = tempPeriode;
+                    if (tempUnite != null) tempUnite.periode = tempPeriode;
 
                     ElementConstitutif tempElemConstitutif = ElementConstitutifDAO.populateElementConstitutif(reader);
-                    tempElemConstitutif.uniteEnseignement = tempUnite;
+                    if (tempElemConstitutif != null) tempElemConstitutif.uniteEnseignement = tempUnite;
 
                     // champ du cours
                     resultat = populateCours(reader);
@@ -317,7 +318,7 @@ namespace ClientGestionUniversite.businessLogic
                     // ajout intervenant et sa categorie
                     CategoriePersonnel tempCategPersonnel = CategoriePersonnelDAO.populateCategoriePersonnel(reader);
                     Personnel tempPersonnel = PersonnelDAO.populatePersonnel(reader);
-                    tempPersonnel.categoriePersonnel = tempCategPersonnel;
+                    if (tempPersonnel != null) tempPersonnel.categoriePersonnel = tempCategPersonnel;
                     resultat.intervenant = tempPersonnel;
 
                     resultats.Add(resultat);
@@ -356,14 +357,14 @@ namespace ClientGestionUniversite.businessLogic
                     "annee.id AS anneeId, annee.libelle AS anneeLibelle, " +
                     "diplome.id AS diplomeID, diplome.libelle AS diplomeLibelle " +
                     "FROM cours " +
-                    "JOIN type_cours on cours.type_id = type_cours.id " +
-                    "JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
-                    "JOIN personnel on cours.personnel_id = personnel.id " +
-                    "JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
-                    "JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
-                    "JOIN periode ON unite_enseignement.periode_id = periode.id " +
-                    "JOIN annee ON periode.annee_id = annee.id " +
-                    "JOIN diplome ON annee.diplome_id = diplome.id " +
+                    "LEFT JOIN type_cours on cours.type_id = type_cours.id " +
+                    "LEFT JOIN element_constitutif on cours.ec_id = element_constitutif.id " +
+                    "LEFT JOIN personnel on cours.personnel_id = personnel.id " +
+                    "LEFT JOIN categorie_personnel ON personnel.categorie_id = categorie_personnel.id " +
+                    "LEFT JOIN unite_enseignement on element_constitutif.ue_id = unite_enseignement.id " +
+                    "LEFT JOIN periode ON unite_enseignement.periode_id = periode.id " +
+                    "LEFT JOIN annee ON periode.annee_id = annee.id " +
+                    "LEFT JOIN diplome ON annee.diplome_id = diplome.id " +
                     "WHERE personnel.id = @id";
 
                 _cmd.CommandText = sql;
@@ -377,16 +378,16 @@ namespace ClientGestionUniversite.businessLogic
                     Diplome tempDiplome = DiplomeDAO.populateDiplome(reader);
 
                     Annee tempAnnee = AnneeDAO.populateAnnee(reader);
-                    tempAnnee.diplome = tempDiplome;
+                    if (tempDiplome != null) tempAnnee.diplome = tempDiplome;
 
                     Periode tempPeriode = PeriodeDAO.populatePeriode(reader);
-                    tempPeriode.annee = tempAnnee;
+                    if (tempPeriode != null) tempPeriode.annee = tempAnnee;
 
                     UniteEnseignement tempUnite = UniteEnseignementDAO.populateUniteEnseignement(reader);
-                    tempUnite.periode = tempPeriode;
+                    if (tempUnite != null) tempUnite.periode = tempPeriode;
 
                     ElementConstitutif tempElemConstitutif = ElementConstitutifDAO.populateElementConstitutif(reader);
-                    tempElemConstitutif.uniteEnseignement = tempUnite;
+                    if (tempElemConstitutif != null) tempElemConstitutif.uniteEnseignement = tempUnite;
 
                     // champ du cours
                     resultat = populateCours(reader);
@@ -398,7 +399,7 @@ namespace ClientGestionUniversite.businessLogic
                     // ajout intervenant et sa categorie
                     CategoriePersonnel tempCategPersonnel = CategoriePersonnelDAO.populateCategoriePersonnel(reader);
                     Personnel tempPersonnel = PersonnelDAO.populatePersonnel(reader);
-                    tempPersonnel.categoriePersonnel = tempCategPersonnel;
+                    if (tempPersonnel != null) tempPersonnel.categoriePersonnel = tempCategPersonnel;
                     resultat.intervenant = tempPersonnel;
 
                     resultats.Add(resultat);
@@ -450,41 +451,6 @@ namespace ClientGestionUniversite.businessLogic
 
             return obj;
 
-        }
-
-        public static Cours update(Cours obj)
-        {
-            MySqlCommand _cmd = new MySqlCommand();
-
-            _cmd.Connection = _connection;
-
-            String sql = "";
-
-            try
-            {
-                sql = "UPDATE cours set volume = @volume, groupe = @groupe, ec_id = @ec_id, "+
-                    "type_id = @type_id, personnel_id = @personnel_id WHERE id = @id";
-                _cmd.CommandText = sql;
-
-                _cmd.Parameters.AddWithValue("@id", obj.id);
-                _cmd.Parameters.AddWithValue("@ec_id", obj.elementConstitutif.id);
-                _cmd.Parameters.AddWithValue("@volume", obj.volumeHoraire);
-                _cmd.Parameters.AddWithValue("@type_id", obj.typeCours.id);
-                _cmd.Parameters.AddWithValue("@personnel_id", obj.intervenant.id);
-                _cmd.Parameters.AddWithValue("@groupe", obj.numeroGroupe);
-                _cmd.ExecuteNonQuery();
-
-                obj.id = _cmd.LastInsertedId;
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception : " + e);
-            }
-
-            _cmd.Dispose();
-
-            return obj;
         }
 
         public static void updateIntervenant(long idPersonnel, long idCours)

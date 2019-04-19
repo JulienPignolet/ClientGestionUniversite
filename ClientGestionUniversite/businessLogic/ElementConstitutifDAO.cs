@@ -340,7 +340,10 @@ namespace ClientGestionUniversite.businessLogic
         public static ElementConstitutif populateElementConstitutif(MySqlDataReader reader)
         {
             ElementConstitutif resultat = new ElementConstitutif();
-
+            if (reader.IsDBNull(reader.GetOrdinal("elemConstID")) || reader.IsDBNull(reader.GetOrdinal("elemConstLibelle")))
+            {
+                return null;
+            }
             resultat.id = Convert.ToInt64(reader["elemConstID"]);
             resultat.libelle = (String)reader["elemConstLibelle"];
 

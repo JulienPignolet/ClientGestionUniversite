@@ -18,7 +18,6 @@ namespace BaseDeDonneesTests
             TestFindAll();
             TestFindByElementConstitutif();
             TestFindByPersonnel();
-            TestUpdateCours();
             TestDeleteCours();
         }
 
@@ -100,35 +99,9 @@ namespace BaseDeDonneesTests
                 Assert.AreNotEqual(0, resultat.numeroGroupe);
                 Assert.AreNotEqual(0, resultat.volumeHoraire);
 
-                Assert.AreNotEqual(0, resultat.elementConstitutif.id);
-                Assert.AreNotEqual(0, resultat.elementConstitutif.uniteEnseignement.id);
-                Assert.AreNotEqual(0, resultat.elementConstitutif.uniteEnseignement.periode.id);
-
-                Assert.AreNotEqual(0, resultat.elementConstitutif.uniteEnseignement.periode.annee.id);
-                Assert.AreNotEqual(0, resultat.elementConstitutif.uniteEnseignement.periode.annee.diplome.id);
-
-                Assert.AreNotEqual(0, resultat.typeCours.id);
-                Assert.AreNotEqual(0, resultat.intervenant.id);
-                Assert.AreNotEqual(0, resultat.intervenant.categoriePersonnel.id);
-            }
-        }
-        public void TestUpdateCours()
-        {
-
-            List<Cours> cours = CoursDAO.findByGroupe(66);
-            foreach (Cours resultat in cours)
-            {
-                resultat.numeroGroupe = 67;
-
-                CoursDAO.update(resultat);
+              
 
             }
-
-            List<Cours> resultatFind2 = CoursDAO.findByGroupe(67);
-
-            Assert.IsTrue(resultatFind2.Count > 0);
-            Assert.IsTrue(resultatFind2.Count == cours.Count);
-
         }
 
         public void TestCreationCours()
@@ -185,9 +158,9 @@ namespace BaseDeDonneesTests
 
         public static void supprimerCours(Cours cours)
         {
-            TypeCoursTest.supprimeTypeCours(cours.typeCours);
-            PersonnelTest.supprimerPersonnel(cours.intervenant);
-            ElementConstitutifTest.supprimerElementConstitutif(cours.elementConstitutif);
+            if (cours.typeCours != null) TypeCoursTest.supprimeTypeCours(cours.typeCours);
+            if (cours.intervenant != null) PersonnelTest.supprimerPersonnel(cours.intervenant);
+            if (cours.elementConstitutif != null) ElementConstitutifTest.supprimerElementConstitutif(cours.elementConstitutif);
             CoursDAO.delete(cours);
         }
     }

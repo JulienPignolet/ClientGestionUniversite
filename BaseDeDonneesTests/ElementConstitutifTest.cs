@@ -97,7 +97,8 @@ namespace BaseDeDonneesTests.modele
          public void TestFindByUniteEnseignementElementConstitutif()
          {
              // test du fin by libelle
-             List<ElementConstitutif> resultatFind = ElementConstitutifDAO.findByUniteEnseignement(87);
+             ElementConstitutif elem = creerElementConstitutif("TEST_ELEM");
+             List<ElementConstitutif> resultatFind = ElementConstitutifDAO.findByUniteEnseignement(elem.uniteEnseignement.id);
              Assert.IsTrue(resultatFind.Count > 0);
                  
          }
