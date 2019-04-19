@@ -542,8 +542,10 @@ namespace ClientGestionUniversite.businessLogic
 
             resultat.id = Convert.ToInt64(reader["coursID"]);
             resultat.volumeHoraire = Convert.ToInt32(reader["coursVolume"]);
-            resultat.numeroGroupe = Convert.ToInt32(reader["coursGroupe"]);
-
+            if (!reader.IsDBNull(reader.GetOrdinal("coursGroupe")))
+            {
+                resultat.numeroGroupe = Convert.ToInt32(reader["coursGroupe"]);
+            }
             return resultat;
         }
     }
