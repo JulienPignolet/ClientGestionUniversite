@@ -114,10 +114,9 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterUE(object sender, EventArgs e)
         {
-            /*var formPopup = new InputModifPersonnelForm("Nouveau Personnel");
+            var formPopup = new InputModifUEForm("Nouveau Personnel");
             formPopup.ShowDialog(this);
-            personnelGridViewLoad();
-            personnelGridView.Refresh();*/
+            ueGridViewLoad();
         }
 
         /// <summary>
