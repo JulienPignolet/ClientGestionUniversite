@@ -509,6 +509,34 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
+        public static void updateTypeCours(long idTypeCours, long idCours)
+        {
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+
+            try
+            {
+                sql = "UPDATE cours set type_id = @idTypeCours WHERE id = @idCours";
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@idCours", idCours);
+                _cmd.Parameters.AddWithValue("@idTypeCours", idTypeCours);
+                _cmd.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+
+            _cmd.Dispose();
+
+        }
+
         public static void delete(Cours obj)
         {
             MySqlCommand _cmd = new MySqlCommand();
