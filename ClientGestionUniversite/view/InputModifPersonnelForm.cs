@@ -13,6 +13,7 @@ namespace ClientGestionUniversite.view
     {
         private bool input; // true = input / false = modif
         private long modifId;// id du personnel actuellement modifié
+        private long modifCat; // categorie modifiée
 
         /// <summary>
         /// Constructeur de création
@@ -33,11 +34,11 @@ namespace ClientGestionUniversite.view
         public InputModifPersonnelForm(string name, Personnel p)
         {
             input = false;
+            this.modifCat = p.categoriePersonnel.id;
             this.Text = name;
             InitializeComponent();
             this.nomBox.Text = p.nom;
             this.prenomBox.Text = p.prenom;
-            this.categorieComboBox.SelectedValue = p.categoriePersonnel.id;
             this.modifId = p.id;
         }
 

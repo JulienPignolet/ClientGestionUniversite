@@ -152,9 +152,7 @@ namespace ClientGestionUniversite.view
             CoursParPersonnelViewModel cppvm = getCurrentAffectation();
             if (cppvm != null)
             {
-                Cours c = new Cours();
-                c.id = cppvm.id;
-                c.intervenant = null;
+                CoursDAO.updateIntervenant(null, cppvm.id);
                 personnelDetailsGridViewLoad();
             }
         }
@@ -180,9 +178,10 @@ namespace ClientGestionUniversite.view
         private void modifierAffectation(object sender, EventArgs e)
         {
             CoursParPersonnelViewModel cppvm = getCurrentAffectation();
-            if (cppvm != null)
+            Personnel p = getCurrentPersonnel();
+            if (cppvm != null && p != null)
             {
-                var formPopup = new InputModifCoursParPersonnelForm("Modifier Affectation", cppvm);
+                var formPopup = new InputModifCoursParPersonnelForm("Modifier Affectation", cppvm, p);
                 formPopup.ShowDialog(this);
                 personnelDetailsGridViewLoad();
             }
@@ -203,9 +202,17 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterAffectation(object sender, EventArgs e)
         {
-            var formPopup = new InputModifCoursParPersonnelForm("Ajouter Affectation");
-            formPopup.ShowDialog(this);
-            personnelDetailsGridViewLoad();
+            Personnel p = getCurrentPersonnel();
+            if (p != null)
+            {
+                var formPopup = new InputModifCoursParPersonnelForm("Ajouter Affectation", p);
+                try
+                {
+                    formPopup.ShowDialog(this);
+                }
+                catch (Exception ignored) { }
+                personnelDetailsGridViewLoad();
+            }
         }
     }
 }

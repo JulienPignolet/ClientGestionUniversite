@@ -453,7 +453,7 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
-        public static void updateIntervenant(long idPersonnel, long idCours)
+        public static void updateIntervenant(long? idPersonnel, long idCours)
         {
             MySqlCommand _cmd = new MySqlCommand();
 

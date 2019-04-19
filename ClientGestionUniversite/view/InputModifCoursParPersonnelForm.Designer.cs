@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ClientGestionUniversite.view
 {
@@ -67,6 +68,7 @@ namespace ClientGestionUniversite.view
             this.coursBox.TabIndex = 4;
             this.coursBox.DisplayMember = "Cours";
             this.coursBox.ValueMember = "id";
+            bool noCours = true;
             if (input)
             {
                 List<Cours> cours = CoursDAO.findAllCours();
@@ -74,9 +76,19 @@ namespace ClientGestionUniversite.view
                 {
                     if (c.intervenant == null)
                     {
+                        noCours = false;
                         CoursParPersonnelViewModel cppvm = new CoursParPersonnelViewModel(c.id, c.elementConstitutif.libelle, c.typeCours.libelle, c.volumeHoraire);
                         this.coursBox.Items.Add(cppvm);
                     }
+                }
+                if (noCours)
+                {
+                    MessageBox.Show("Tous les cours son déjà affectés");
+                    this.Close();
+                }
+                else
+                {
+                    this.coursBox.SelectedIndex = 0;
                 }
             }
             // 
@@ -94,8 +106,15 @@ namespace ClientGestionUniversite.view
             foreach (TypeCours tc in typeCours)
             {
                 this.typeBox.Items.Add(tc);
+                if (tc.libelle == modifCat)
+                {
+                    this.typeBox.SelectedItem = tc;
+                }
             }
-            this.typeBox.SelectedIndex = 0;
+            if (input)
+            {
+                this.typeBox.SelectedIndex = 0;
+            }
             // 
             // validerButton
             // 

@@ -98,8 +98,15 @@ namespace ClientGestionUniversite.view
             foreach (CategoriePersonnel cp in categories)
             {
                 this.categorieComboBox.Items.Add(cp);
+                if (cp.id == modifCat)
+                {
+                    this.categorieComboBox.SelectedItem = cp;
+                }
             }
-            this.categorieComboBox.SelectedIndex = 0;
+            if (input)
+            {
+                this.categorieComboBox.SelectedIndex = 0;
+            }
             // 
             // InputModifPersonnelForm
             // 
