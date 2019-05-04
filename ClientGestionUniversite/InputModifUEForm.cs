@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClientGestionUniversite.businessLogic;
+using ClientGestionUniversite.modele;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +15,28 @@ namespace ClientGestionUniversite.view
     public partial class InputModifUEForm : Form
     {
         private bool input; // true = input / false = modif
-        private long modifId;// id du personnel actuellement modifié
+        private long modifId;// id du ue actuellement modifié
+        private long periodeID;
+        private long anneeID;
 
         public InputModifUEForm(string name)
         {
             input = true;
             this.Text = name;
             InitializeComponent();
+        }
+
+        public InputModifUEForm(string name, UniteEnseignement ue)
+        {
+            input = false;
+            this.Text = name;
+            InitializeComponent();
+            modifId = ue.id;
+            periodeID = ue.periode.id;
+            anneeID = ue.periode.annee.id;
+            this.nomBox.Text = ue.libelle;
+            this.periodeComboBox.Text = ue.periode.libelle.ToString();
+            this.anneeComboBox.Text = ue.periode.annee.libelle.ToString();
         }
 
         /// <summary>
@@ -35,17 +52,27 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            /*Personnel p = new Personnel(this.nomBox.Text, this.prenomBox.Text, new CategoriePersonnel(Convert.ToInt64(((CategoriePersonnel)categorieComboBox.SelectedItem).id)));
+            Diplome d = new Diplome(nomBox.Text);
+            Annee a = new Annee(nomBox.Text, d);
+            
+            //a.libelle = anneeComboBox.SelectedItem.ToString();
+            Periode p = new Periode(nomBox.Text, a);
+            //p.libelle = periodeComboBox.Text;
+
+            UniteEnseignement ue = new UniteEnseignement(nomBox.Text, p);
             if (input)
             {
-                PersonnelDAO.create(p);
+                UniteEnseignementDAO.create(ue);
             }
             else
             {
-                p.id = modifId;
-                PersonnelDAO.update(p);
+                ue.id = modifId;
+                p.id = periodeID;
+                a.id = anneeID;
+                
+                UniteEnseignementDAO.update(ue);
             }
-            this.Close();*/
+            this.Close();
         }
     }
 }

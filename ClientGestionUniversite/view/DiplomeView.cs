@@ -99,6 +99,14 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void modifierUE(object sender, EventArgs e)
         {
+            UniteEnseignement ue = getCurrentUE();
+            if (ue != null)
+            {
+                var formPopup = new InputModifUEForm("Modifier UE", ue);
+                formPopup.ShowDialog(this);
+                ueGridViewLoad();
+            }
+            
             /*Personnel p = getCurrentPersonnel();
             if (p != null)
             {
@@ -114,7 +122,7 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterUE(object sender, EventArgs e)
         {
-            var formPopup = new InputModifUEForm("Nouveau Personnel");
+            var formPopup = new InputModifUEForm("Nouvel UE");
             formPopup.ShowDialog(this);
             ueGridViewLoad();
         }
