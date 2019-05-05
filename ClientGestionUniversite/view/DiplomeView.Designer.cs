@@ -21,9 +21,12 @@ namespace ClientGestionUniversite.view
             this.supprimerUEButton = new System.Windows.Forms.Button();
             this.modifierUEButton = new System.Windows.Forms.Button();
             this.ajouterUEButton = new System.Windows.Forms.Button();
-            this.supprimerAffectationButton = new System.Windows.Forms.Button();
-            this.modifierAffectationButton = new System.Windows.Forms.Button();
-            this.ajouterAffectationButton = new System.Windows.Forms.Button();
+            this.supprimerEcButton = new System.Windows.Forms.Button();
+            this.modifierEcButton = new System.Windows.Forms.Button();
+            this.ajouterEcButton = new System.Windows.Forms.Button();
+            this.supprimerCoursButton = new System.Windows.Forms.Button();
+            this.modifierCoursButton = new System.Windows.Forms.Button();
+            this.ajouterCoursButton = new System.Windows.Forms.Button();
             this.filterPanel.SuspendLayout();
             this.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -131,9 +134,12 @@ namespace ClientGestionUniversite.view
             this.editPanel.Controls.Add(this.supprimerUEButton);
             this.editPanel.Controls.Add(this.modifierUEButton);
             this.editPanel.Controls.Add(this.ajouterUEButton);
-            this.editPanel.Controls.Add(this.supprimerAffectationButton);
-            this.editPanel.Controls.Add(this.modifierAffectationButton);
-            this.editPanel.Controls.Add(this.ajouterAffectationButton);
+            this.editPanel.Controls.Add(this.supprimerEcButton);
+            this.editPanel.Controls.Add(this.modifierEcButton);
+            this.editPanel.Controls.Add(this.ajouterEcButton);
+            this.editPanel.Controls.Add(this.supprimerCoursButton);
+            this.editPanel.Controls.Add(this.modifierCoursButton);
+            this.editPanel.Controls.Add(this.ajouterCoursButton);
             this.editPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.editPanel.Location = new System.Drawing.Point(3, 62);
             this.editPanel.MaximumSize = new System.Drawing.Size(0, 35);
@@ -141,65 +147,95 @@ namespace ClientGestionUniversite.view
             this.editPanel.Size = new System.Drawing.Size(194, 35);
             this.editPanel.TabIndex = 0;
             // 
-            // supprimerPersonnelButton
+            // supprimerUEButton
             // 
             this.supprimerUEButton.AutoSize = true;
             this.supprimerUEButton.Location = new System.Drawing.Point(5, 5);
             this.supprimerUEButton.Name = "supprimerUEButton";
-            this.supprimerUEButton.Size = new System.Drawing.Size(128, 23);
+            this.supprimerUEButton.Size = new System.Drawing.Size(95, 23);
             this.supprimerUEButton.TabIndex = 0;
-            this.supprimerUEButton.Text = "Supprimer cette UE";
+            this.supprimerUEButton.Text = "Supprimer UE";
             this.supprimerUEButton.Click += new System.EventHandler(this.supprimerUE);
             // 
-            // modifierPersonnelButton
+            // modifierUEButton
             // 
             this.modifierUEButton.AutoSize = true;
-            this.modifierUEButton.Location = new System.Drawing.Point(135, 5);
+            this.modifierUEButton.Location = new System.Drawing.Point(101, 5);
             this.modifierUEButton.Name = "modifierUEButton";
-            this.modifierUEButton.Size = new System.Drawing.Size(118, 23);
+            this.modifierUEButton.Size = new System.Drawing.Size(95, 23);
             this.modifierUEButton.TabIndex = 1;
-            this.modifierUEButton.Text = "Modifier cette UE";
+            this.modifierUEButton.Text = "Modifier UE";
             this.modifierUEButton.Click += new System.EventHandler(this.modifierUE);
             // 
-            // ajouterPersonnelButton
+            // ajouterUEButton
             // 
             this.ajouterUEButton.AutoSize = true;
-            this.ajouterUEButton.Location = new System.Drawing.Point(255, 5);
+            this.ajouterUEButton.Location = new System.Drawing.Point(197, 5);
             this.ajouterUEButton.Name = "ajouterUEButton";
-            this.ajouterUEButton.Size = new System.Drawing.Size(114, 23);
+            this.ajouterUEButton.Size = new System.Drawing.Size(95, 23);
             this.ajouterUEButton.TabIndex = 2;
-            this.ajouterUEButton.Text = "Ajouter une UE";
+            this.ajouterUEButton.Text = "Ajouter UE";
             this.ajouterUEButton.Click += new System.EventHandler(this.ajouterUE);
             // 
-            // supprimerAffectationButton
+            // supprimerEcButton
             // 
-            this.supprimerAffectationButton.AutoSize = true;
-            this.supprimerAffectationButton.Location = new System.Drawing.Point(370, 5);
-            this.supprimerAffectationButton.Name = "supprimerAffectationButton";
-            this.supprimerAffectationButton.Size = new System.Drawing.Size(144, 23);
-            this.supprimerAffectationButton.TabIndex = 3;
-            this.supprimerAffectationButton.Text = "Supprimer cette affectation";
-            this.supprimerAffectationButton.Click += new System.EventHandler(this.supprimerAffectation);
+            this.supprimerEcButton.AutoSize = true;
+            this.supprimerEcButton.Location = new System.Drawing.Point(293, 5);
+            this.supprimerEcButton.Name = "supprimerECButton";
+            this.supprimerEcButton.Size = new System.Drawing.Size(95, 23);
+            this.supprimerEcButton.TabIndex = 3;
+            this.supprimerEcButton.Text = "Supprimer EC";
+            this.supprimerEcButton.Click += new System.EventHandler(this.supprimerEc);
             // 
-            // modifierAffectationButton
+            // modifierEcButton
             // 
-            this.modifierAffectationButton.AutoSize = true;
-            this.modifierAffectationButton.Location = new System.Drawing.Point(515, 5);
-            this.modifierAffectationButton.Name = "modifierAffectationButton";
-            this.modifierAffectationButton.Size = new System.Drawing.Size(134, 23);
-            this.modifierAffectationButton.TabIndex = 4;
-            this.modifierAffectationButton.Text = "Modifier cette affectation";
-            this.modifierAffectationButton.Click += new System.EventHandler(this.modifierAffectation);
+            this.modifierEcButton.AutoSize = true;
+            this.modifierEcButton.Location = new System.Drawing.Point(389, 5);
+            this.modifierEcButton.Name = "modifierEcButton";
+            this.modifierEcButton.Size = new System.Drawing.Size(95, 23);
+            this.modifierEcButton.TabIndex = 4;
+            this.modifierEcButton.Text = "Modifier EC";
+            this.modifierEcButton.Click += new System.EventHandler(this.modifierEc);
             // 
-            // ajouterAffectationButton
+            // ajouterEcButton
             // 
-            this.ajouterAffectationButton.AutoSize = true;
-            this.ajouterAffectationButton.Location = new System.Drawing.Point(650, 5);
-            this.ajouterAffectationButton.Name = "ajouterAffectationButton";
-            this.ajouterAffectationButton.Size = new System.Drawing.Size(124, 23);
-            this.ajouterAffectationButton.TabIndex = 5;
-            this.ajouterAffectationButton.Text = "Ajouter une affectation";
-            this.ajouterAffectationButton.Click += new System.EventHandler(this.ajouterAffectation);
+            this.ajouterEcButton.AutoSize = true;
+            this.ajouterEcButton.Location = new System.Drawing.Point(485, 5);
+            this.ajouterEcButton.Name = "ajouterEcButton";
+            this.ajouterEcButton.Size = new System.Drawing.Size(95, 23);
+            this.ajouterEcButton.TabIndex = 5;
+            this.ajouterEcButton.Text = "Ajouter EC";
+            this.ajouterEcButton.Click += new System.EventHandler(this.ajouterEc);
+            // 
+            // supprimerCoursButton
+            // 
+            this.supprimerCoursButton.AutoSize = true;
+            this.supprimerCoursButton.Location = new System.Drawing.Point(581, 5);
+            this.supprimerCoursButton.Name = "supprimerCoursButton";
+            this.supprimerCoursButton.Size = new System.Drawing.Size(95, 23);
+            this.supprimerCoursButton.TabIndex = 6;
+            this.supprimerCoursButton.Text = "Supprimer Cours";
+            this.supprimerCoursButton.Click += new System.EventHandler(this.supprimerCours);
+            // 
+            // modifierCoursButton
+            // 
+            this.modifierCoursButton.AutoSize = true;
+            this.modifierCoursButton.Location = new System.Drawing.Point(677, 5);
+            this.modifierCoursButton.Name = "modifierCoursButton";
+            this.modifierCoursButton.Size = new System.Drawing.Size(95, 23);
+            this.modifierCoursButton.TabIndex = 7;
+            this.modifierCoursButton.Text = "Modifier Cours";
+            this.modifierCoursButton.Click += new System.EventHandler(this.modifierCours);
+            // 
+            // ajouterCoursButton
+            // 
+            this.ajouterCoursButton.AutoSize = true;
+            this.ajouterCoursButton.Location = new System.Drawing.Point(773, 5);
+            this.ajouterCoursButton.Name = "ajouterCoursButton";
+            this.ajouterCoursButton.Size = new System.Drawing.Size(95, 23);
+            this.ajouterCoursButton.TabIndex = 8;
+            this.ajouterCoursButton.Text = "Ajouter Cours";
+            this.ajouterCoursButton.Click += new System.EventHandler(this.ajouterCours);
         }
 
         private System.Windows.Forms.DataGridView ueGridView;
@@ -220,8 +256,11 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.Button supprimerUEButton;
         private System.Windows.Forms.Button modifierUEButton;
         private System.Windows.Forms.Button ajouterUEButton;
-        private System.Windows.Forms.Button supprimerAffectationButton;
-        private System.Windows.Forms.Button modifierAffectationButton;
-        private System.Windows.Forms.Button ajouterAffectationButton; 
+        private System.Windows.Forms.Button supprimerEcButton;
+        private System.Windows.Forms.Button modifierEcButton;
+        private System.Windows.Forms.Button ajouterEcButton;
+        private System.Windows.Forms.Button supprimerCoursButton;
+        private System.Windows.Forms.Button modifierCoursButton;
+        private System.Windows.Forms.Button ajouterCoursButton; 
     }
 }
