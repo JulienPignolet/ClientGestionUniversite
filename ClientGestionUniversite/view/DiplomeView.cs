@@ -32,7 +32,7 @@ namespace ClientGestionUniversite.view
             List<UeViewModel> uevm = new List<UeViewModel>();
             foreach (UniteEnseignement ue in ues)
             {
-                //if(d != null && d.id == ue.periode.annee.diplome.id)
+                if(d != null && d.id == ue.periode.annee.diplome.id)
                     uevm.Add(new UeViewModel(ue.id, ue.libelle, ue.periode.annee.libelle, ue.periode.libelle));
             }
             BindingListView<UeViewModel> bindingSourceUe = new BindingListView<UeViewModel>(uevm);
@@ -49,7 +49,7 @@ namespace ClientGestionUniversite.view
             List<EcViewModel> ecvm = new List<EcViewModel>();
             foreach (ElementConstitutif ec in ecs)
             {
-                //if(ue != null && ue.id == ec.uniteEnseignement.id)
+                if(ue != null && ue.id == ec.uniteEnseignement.id)
                     ecvm.Add(new EcViewModel(ec.id, ec.libelle));
             }
             BindingListView<EcViewModel> bindingSourceEc = new BindingListView<EcViewModel>(ecvm);
@@ -66,7 +66,7 @@ namespace ClientGestionUniversite.view
             List<CoursViewModel> cvm = new List<CoursViewModel>();
             foreach (Cours c in cs)
             {
-                //if(ec!= null && ec.id == c.elementConstitutif.id)
+                if(ec!= null && ec.id == c.elementConstitutif.id)
                     cvm.Add(new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire));
             }
             BindingListView<CoursViewModel> bindingSourceCours = new BindingListView<CoursViewModel>(cvm);
@@ -81,7 +81,7 @@ namespace ClientGestionUniversite.view
             UeViewModel uevm = getCurrentUe();
             if (uevm != null)
             {
-                //ecGridViewLoad();
+                ecGridViewLoad();
             }
         }
 
@@ -93,7 +93,7 @@ namespace ClientGestionUniversite.view
             EcViewModel ecvm = getCurrentEc();
             if (ecvm != null)
             {
-                //ecDetailGridViewLoad();
+                ecDetailGridViewLoad();
             }
         }
 
