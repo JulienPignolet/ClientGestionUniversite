@@ -27,8 +27,10 @@ namespace BaseDeDonneesTests.modele
         public void TestFind()
         {
             // test du find simple
-            CategoriePersonnel resultatFind = CategoriePersonnelDAO.find(1);
-            Assert.AreEqual("MC", resultatFind.libelle);
+            CategoriePersonnel resultat = creerCategoriePersonnel("TEST_categ");
+            CategoriePersonnel resultatFind = CategoriePersonnelDAO.find(resultat.id);
+
+            Assert.AreEqual("TEST_categ", resultatFind.libelle);
             Assert.AreNotEqual(0, resultatFind.id);
         }
 

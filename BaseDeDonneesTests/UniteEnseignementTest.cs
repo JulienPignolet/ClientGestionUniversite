@@ -92,7 +92,9 @@ namespace BaseDeDonneesTests.modele
          public void TestFindByDiplomeUniteEnseignement()
          {
              // test du fin by libelle
-             List<UniteEnseignement> resultatFind = UniteEnseignementDAO.findByDiplome(3);    
+             UniteEnseignement resultat = creerUniteEnseignement("TEST_UniteEnseignement");
+
+             List<UniteEnseignement> resultatFind = UniteEnseignementDAO.findByDiplome(resultat.periode.annee.diplome.id);    
              Assert.IsTrue(resultatFind.Count > 0);
          }
 

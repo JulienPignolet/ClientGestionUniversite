@@ -26,8 +26,9 @@ namespace modele.BaseDeDonneesTests
         public void TestFind()
         {
             // test du find simple
-            Diplome resultatFind = DiplomeDAO.find(3);
-            Assert.AreEqual("Licence informatique", resultatFind.libelle);
+            Diplome resultat = creerDiplome("TEST_1");
+            Diplome resultatFind = DiplomeDAO.find(resultat.id);
+            Assert.AreEqual("TEST_1", resultatFind.libelle);
         }
 
         public void TestCreationDiplome()

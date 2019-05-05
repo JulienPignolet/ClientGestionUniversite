@@ -39,9 +39,10 @@ namespace BaseDeDonneesTests.modele
         public void TestFind()
         {
             // test du find simple
-            Periode resultatFind = PeriodeDAO.find(1);
-            Assert.AreEqual("S1", resultatFind.libelle);
-            Assert.AreEqual(1, resultatFind.annee.id);
+            Periode resultat = creerPeriode("TEST_PERIODE");
+            Periode resultatFind = PeriodeDAO.find(resultat.id);
+            Assert.AreEqual("TEST_PERIODE", resultatFind.libelle);
+            Assert.AreNotEqual(0, resultatFind.annee.id);
             Assert.AreNotEqual(0, resultatFind.annee.diplome.id);
         }
         public void TestCreationPeriode()

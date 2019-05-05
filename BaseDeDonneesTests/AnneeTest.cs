@@ -35,9 +35,11 @@ namespace BaseDeDonneesTests.modele
         public void TestFind()
         {
             // test du find simple
-            Annee resultatFind = AnneeDAO.find(1);
-            Assert.AreEqual("L1 informatique", resultatFind.libelle);
-            Assert.AreEqual(3, resultatFind.diplome.id);
+            Annee resultat = creerAnnee("TEST_ANNEE_FIND");
+
+            Annee resultatFind = AnneeDAO.find(resultat.id);
+            Assert.AreEqual("TEST_ANNEE_FIND", resultatFind.libelle);
+            Assert.AreNotEqual(0, resultatFind.diplome.id);
         }
 
         public void TestCreationAnnee()

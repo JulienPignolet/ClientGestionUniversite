@@ -117,6 +117,7 @@ namespace BaseDeDonneesTests
 
         public void TestDeleteCours()
         {
+
             // test du delete
             List<Cours> resultatFind = CoursDAO.findByGroupe(66);
 
@@ -158,10 +159,11 @@ namespace BaseDeDonneesTests
 
         public static void supprimerCours(Cours cours)
         {
+            CoursDAO.delete(cours);
             if (cours.typeCours != null) TypeCoursTest.supprimeTypeCours(cours.typeCours);
             if (cours.intervenant != null) PersonnelTest.supprimerPersonnel(cours.intervenant);
             if (cours.elementConstitutif != null) ElementConstitutifTest.supprimerElementConstitutif(cours.elementConstitutif);
-            CoursDAO.delete(cours);
+           
         }
     }
 }
