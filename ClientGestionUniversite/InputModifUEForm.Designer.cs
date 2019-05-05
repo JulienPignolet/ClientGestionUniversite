@@ -88,7 +88,8 @@ namespace ClientGestionUniversite.view
             {
                 this.periodeComboBox.Items.Add(p.id);
             }
-            this.periodeComboBox.SelectedIndex = 0;
+            if(this.periodeComboBox.Items.Count >0)
+                this.periodeComboBox.SelectedIndex = 0;
             // 
             // validerButton
             // 
@@ -125,7 +126,8 @@ namespace ClientGestionUniversite.view
             {
                 this.anneeComboBox.Items.Add(cp);
             }
-            this.anneeComboBox.SelectedIndex = 0;
+            if(this.anneeComboBox.Items.Count > 0)
+                this.anneeComboBox.SelectedIndex = 0;
             // 
             // InputModifPersonnelForm
             // 
