@@ -238,31 +238,67 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
-        /// Suppression d'une affectation
+        /// Suppression d'une Ec
         /// </summary>
-        private void supprimerAffectation(object sender, EventArgs e)
+        private void supprimerEc(object sender, EventArgs e)
+        {
+            ElementConstitutif ec = getCurrentEC();
+            if (ec != null)
+            {
+                ElementConstitutifDAO.delete(ec);
+                ecGridViewLoad();
+            }
+        }
+
+        /// <summary>
+        /// Modification d'une Ec
+        /// </summary>
+        private void modifierEc(object sender, EventArgs e)
+        {
+            UniteEnseignement ue = getCurrentUE();
+            ElementConstitutif ec = getCurrentEC();
+            var formPopup = new InputModifECForm("Nouvel Ec", ue, ec);
+            formPopup.ShowDialog(this);
+            ecGridViewLoad();
+        }
+
+        /// <summary>
+        /// Ajouter une Ec
+        /// </summary>
+        private void ajouterEc(object sender, EventArgs e)
+        {
+            UniteEnseignement ue = getCurrentUE();
+            var formPopup = new InputModifECForm("Nouvel Ec", ue);
+            formPopup.ShowDialog(this);
+            ecGridViewLoad();
+        }
+
+        /// <summary>
+        /// Suppression d'un Cours
+        /// </summary>
+        private void supprimerCours(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Modification d'une affectation
+        /// Modification d'un Cours
         /// </summary>
-        private void modifierAffectation(object sender, EventArgs e)
+        private void modifierCours(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Ajouter une affectation
+        /// Ajouter un Cours
         /// </summary>
-        private void ajouterAffectation(object sender, EventArgs e)
+        private void ajouterCours(object sender, EventArgs e)
         {
 
         }
 
         /// <summary>
-        /// Personnel sélectionné
+        /// UE sélectionné
         /// </summary>
         /// <returns>personnel</returns>
         private UniteEnseignement getCurrentUE()
@@ -274,6 +310,26 @@ namespace ClientGestionUniversite.view
                 UniteEnseignement ue = new UniteEnseignement(ueV.Nom, new Periode(ueV.Nom, new Annee(ueV.Nom, new Diplome(ueV.Nom))));
                 ue.id = ueV.id;
                 return ue;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// EC sélectionné
+        /// </summary>
+        /// <returns>personnel</returns>
+        private ElementConstitutif getCurrentEC()
+        {
+            if (ecGridView.SelectedCells.Count > 0)
+            {
+                int selectedRowIndex = ecGridView.SelectedCells[0].RowIndex;
+                EcViewModel ecV = ((ObjectView<EcViewModel>)ecGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                ElementConstitutif ec = new ElementConstitutif(ecV.Nom, getCurrentUE());
+                ec.id = ecV.id;
+                return ec;
             }
             else
             {
