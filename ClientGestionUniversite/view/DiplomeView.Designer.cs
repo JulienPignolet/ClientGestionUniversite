@@ -87,6 +87,7 @@ namespace ClientGestionUniversite.view
             this.ueGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.ueGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ueGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ueGridView_DataBindingComplete);
+            this.ueGridView.SelectionChanged += new EventHandler(this.ueGridView_SelectionChanged);
             ///
             /// ecGridView
             ///
@@ -100,6 +101,7 @@ namespace ClientGestionUniversite.view
             this.ecGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             //this.ecGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ecGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ecGridView_DataBindingComplete);
+            this.ecGridView.SelectionChanged += new EventHandler(this.ecGridView_SelectionChanged);
             ///
             /// ecDetailsGridView
             ///
@@ -243,7 +245,7 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.DataGridView ecDetailsGridView;
         private System.Windows.Forms.TextBox filterBox;
         private System.Windows.Forms.Label filterLabel;
-        private System.Windows.Forms.Panel filterPanel; 
+        private System.Windows.Forms.Panel filterPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
 
         public System.Windows.Forms.Panel editPanel;
@@ -261,6 +263,6 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.Button ajouterEcButton;
         private System.Windows.Forms.Button supprimerCoursButton;
         private System.Windows.Forms.Button modifierCoursButton;
-        private System.Windows.Forms.Button ajouterCoursButton; 
+        private System.Windows.Forms.Button ajouterCoursButton;
     }
 }

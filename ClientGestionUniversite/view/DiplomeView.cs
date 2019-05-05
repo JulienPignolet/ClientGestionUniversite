@@ -13,8 +13,10 @@ namespace ClientGestionUniversite.view
 {
     public partial class DiplomeView : TabPage
     {
-        public DiplomeView()
+        Diplome d;
+        public DiplomeView(Diplome d)
         {
+            this.d = d;
             InitializeComponent();
             ueGridViewLoad();
             ecGridViewLoad();
@@ -30,7 +32,8 @@ namespace ClientGestionUniversite.view
             List<UeViewModel> uevm = new List<UeViewModel>();
             foreach (UniteEnseignement ue in ues)
             {
-                uevm.Add(new UeViewModel(ue.id, ue.libelle, ue.periode.annee.libelle, ue.periode.libelle));
+                //if(d != null && d.id == ue.periode.annee.diplome.id)
+                    uevm.Add(new UeViewModel(ue.id, ue.libelle, ue.periode.annee.libelle, ue.periode.libelle));
             }
             BindingListView<UeViewModel> bindingSourceUe = new BindingListView<UeViewModel>(uevm);
             ueGridView.DataSource = bindingSourceUe;
@@ -41,11 +44,13 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ecGridViewLoad()
         {
+            UniteEnseignement ue = getCurrentUE();
             List<ElementConstitutif> ecs = ElementConstitutifDAO.findAll();
             List<EcViewModel> ecvm = new List<EcViewModel>();
             foreach (ElementConstitutif ec in ecs)
             {
-                ecvm.Add(new EcViewModel(ec.id, ec.libelle));
+                //if(ue != null && ue.id == ec.uniteEnseignement.id)
+                    ecvm.Add(new EcViewModel(ec.id, ec.libelle));
             }
             BindingListView<EcViewModel> bindingSourceEc = new BindingListView<EcViewModel>(ecvm);
             ecGridView.DataSource = bindingSourceEc;
@@ -56,11 +61,13 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ecDetailGridViewLoad()
         {
+            ElementConstitutif ec = getCurrentEC();
             List<Cours> cs = CoursDAO.findAllCours();
             List<CoursViewModel> cvm = new List<CoursViewModel>();
             foreach (Cours c in cs)
             {
-                cvm.Add(new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire));
+                //if(ec!= null && ec.id == c.elementConstitutif.id)
+                    cvm.Add(new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire));
             }
             BindingListView<CoursViewModel> bindingSourceCours = new BindingListView<CoursViewModel>(cvm);
             ecDetailsGridView.DataSource = bindingSourceCours;
@@ -74,7 +81,7 @@ namespace ClientGestionUniversite.view
             UeViewModel uevm = getCurrentUe();
             if (uevm != null)
             {
-
+                //ecGridViewLoad();
             }
         }
 
@@ -86,7 +93,7 @@ namespace ClientGestionUniversite.view
             EcViewModel ecvm = getCurrentEc();
             if (ecvm != null)
             {
-
+                //ecDetailGridViewLoad();
             }
         }
 
@@ -186,9 +193,12 @@ namespace ClientGestionUniversite.view
         private void filterBox_TextChanged(object sender, EventArgs e)
         {
             ((BindingListView<UeViewModel>)ueGridView.DataSource).ApplyFilter(
-                delegate(UeViewModel uevm) { return uevm.Nom.ToLower().Contains(filterBox.Text) 
-                    || uevm.Annee.ToLower().Contains(filterBox.Text) 
-                    || uevm.Periode.ToLower().Contains(filterBox.Text); });
+                delegate(UeViewModel uevm)
+                {
+                    return uevm.Nom.ToLower().Contains(filterBox.Text)
+                        || uevm.Annee.ToLower().Contains(filterBox.Text)
+                        || uevm.Periode.ToLower().Contains(filterBox.Text);
+                });
         }
 
         /// <summary>
@@ -216,7 +226,7 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 ueGridViewLoad();
             }
-            
+
             /*Personnel p = getCurrentPersonnel();
             if (p != null)
             {

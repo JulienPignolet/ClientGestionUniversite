@@ -56,7 +56,7 @@ namespace ClientGestionUniversite
             int i = 1;
             foreach (Diplome d in DiplomeDAO.findAll())
             {
-                DiplomeView dv = new DiplomeView();
+                DiplomeView dv = new DiplomeView(d);
                 dv.Name = "diplomeView" + i;
                 dv.Text = d.libelle;
                 dv.Tag = d;
