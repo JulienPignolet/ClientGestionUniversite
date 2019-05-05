@@ -69,6 +69,8 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoursViewModel.cs" />
+    <Compile Include="EcViewModel.cs" />
     <Compile Include="InputModifUEForm.cs">
       <SubType>Form</SubType>
     </Compile>

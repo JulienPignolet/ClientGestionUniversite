@@ -17,6 +17,8 @@ namespace ClientGestionUniversite.view
         {
             InitializeComponent();
             ueGridViewLoad();
+            ecGridViewLoad();
+            ecDetailGridViewLoad();
         }
 
         /// <summary>
@@ -35,12 +37,66 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
+        /// Charge les données de la grille ec
+        /// </summary>
+        private void ecGridViewLoad()
+        {
+            List<ElementConstitutif> ecs = ElementConstitutifDAO.findAll();
+            List<EcViewModel> ecvm = new List<EcViewModel>();
+            foreach (ElementConstitutif ec in ecs)
+            {
+                ecvm.Add(new EcViewModel(ec.id, ec.libelle));
+            }
+            BindingListView<EcViewModel> bindingSourceEc = new BindingListView<EcViewModel>(ecvm);
+            ecGridView.DataSource = bindingSourceEc;
+        }
+
+        /// <summary>
+        /// Charge les données de la grille ec
+        /// </summary>
+        private void ecDetailGridViewLoad()
+        {
+            List<Cours> cs = CoursDAO.findAllCours();
+            List<CoursViewModel> cvm = new List<CoursViewModel>();
+            foreach (Cours c in cs)
+            {
+                cvm.Add(new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire));
+            }
+            BindingListView<CoursViewModel> bindingSourceCours = new BindingListView<CoursViewModel>(cvm);
+            ecDetailsGridView.DataSource = bindingSourceCours;
+        }
+
+        /// <summary>
         /// Évènement changement de sélection
         /// </summary>
         private void ueGridView_SelectionChanged(object sender, EventArgs e)
         {
             UeViewModel uevm = getCurrentUe();
             if (uevm != null)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Évènement changement de sélection
+        /// </summary>
+        private void ecGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            EcViewModel ecvm = getCurrentEc();
+            if (ecvm != null)
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// Évènement changement de sélection
+        /// </summary>
+        private void ecDetailsGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            CoursViewModel cvm = getCurrentCours();
+            if (cvm != null)
             {
 
             }
@@ -65,12 +121,66 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
+        /// EC sélectionnée
+        /// </summary>
+        /// <returns>ue</returns>
+        private EcViewModel getCurrentEc()
+        {
+            if (ecGridView.SelectedCells.Count > 0)
+            {
+                int selectedRowIndex = ecGridView.SelectedCells[0].RowIndex;
+                EcViewModel ecvm = ((ObjectView<EcViewModel>)ecGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                return ecvm;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Cours sélectionnée
+        /// </summary>
+        /// <returns>ue</returns>
+        private CoursViewModel getCurrentCours()
+        {
+            if (ecDetailsGridView.SelectedCells.Count > 0)
+            {
+                int selectedRowIndex = ecDetailsGridView.SelectedCells[0].RowIndex;
+                CoursViewModel cvm = ((ObjectView<CoursViewModel>)ecDetailsGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                return cvm;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Évènement fin de remplissage de la grille ue
         /// </summary>
         private void ueGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ueGridView.Columns["id"].Visible = false;
             ueGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        /// <summary>
+        /// Évènement fin de remplissage de la grille ec
+        /// </summary>
+        private void ecGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ecGridView.Columns["id"].Visible = false;
+            ecGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        /// <summary>
+        /// Évènement fin de remplissage de la grille ecDetails
+        /// </summary>
+        private void ecDetailsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            ecDetailsGridView.Columns["id"].Visible = false;
+            ecDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void filterBox_TextChanged(object sender, EventArgs e)

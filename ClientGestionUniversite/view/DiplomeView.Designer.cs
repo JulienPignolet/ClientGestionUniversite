@@ -88,10 +88,29 @@ namespace ClientGestionUniversite.view
             /// ecGridView
             ///
             this.ecGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ecGridView.AllowUserToAddRows = false;
+            this.ecGridView.AllowUserToDeleteRows = false;
+            this.ecGridView.AllowUserToResizeColumns = false;
+            this.ecGridView.AllowUserToResizeRows = false;
+            this.ecGridView.MultiSelect = false;
+            this.ecGridView.ReadOnly = true;
+            this.ecGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            //this.ecGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ecGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ecGridView_DataBindingComplete);
             ///
             /// ecDetailsGridView
             ///
             this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            //this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ecDetailsGridView.AllowUserToAddRows = false;
+            this.ecDetailsGridView.AllowUserToDeleteRows = false;
+            this.ecDetailsGridView.AllowUserToResizeColumns = false;
+            this.ecDetailsGridView.AllowUserToResizeRows = false;
+            this.ecDetailsGridView.MultiSelect = false;
+            this.ecDetailsGridView.ReadOnly = true;
+            this.ecDetailsGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            //this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ecDetailsGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ecDetailsGridView_DataBindingComplete);
             ///
             /// DiplomeView
             ///
