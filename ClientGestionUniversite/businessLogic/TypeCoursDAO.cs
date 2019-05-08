@@ -10,10 +10,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class TypeCoursDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static TypeCours find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -52,6 +52,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<TypeCours> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -87,6 +89,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<TypeCours> findByLibelle(String libelle)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -125,6 +129,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static TypeCours create(TypeCours obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -158,6 +163,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static TypeCours update(TypeCours obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -189,6 +196,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(TypeCours obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

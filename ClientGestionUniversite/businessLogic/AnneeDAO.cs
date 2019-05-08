@@ -10,10 +10,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class AnneeDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static Annee find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -56,6 +56,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Annee> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -95,6 +97,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Annee> findByLibelle(String libelle)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -138,6 +142,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Annee create(Annee obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -172,6 +177,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Annee update(Annee obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -204,6 +211,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(Annee obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 

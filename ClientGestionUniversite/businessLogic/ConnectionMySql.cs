@@ -21,8 +21,23 @@ namespace ClientGestionUniversite.businessLogic
         {
             String connectionString = "server=" + server + ";user id=" + userId + ";password=" + password + ";database=" + database;
 
-            if (_connection == null)
+            if (_connection == null
+                || _connection.State == System.Data.ConnectionState.Broken
+                || _connection.State == System.Data.ConnectionState.Closed
+                )
             {
+
+                if (_connection != null)
+                {
+                    if (_connection.State != System.Data.ConnectionState.Broken
+                && _connection.State != System.Data.ConnectionState.Closed)
+                    {
+                        _connection.Close();
+                    }
+
+                    _connection.Dispose();
+                }
+
                 try
                 {
                     _connection = new MySqlConnection(connectionString);
@@ -34,7 +49,7 @@ namespace ClientGestionUniversite.businessLogic
                     throw e;
                 }
             }
-
+            
             return _connection;
 
         }

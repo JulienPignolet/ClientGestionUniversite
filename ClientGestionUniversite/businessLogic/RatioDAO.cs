@@ -10,10 +10,11 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class RatioDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-        // TODO CLASSE DE TEST
+        
         public static Ratio find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -62,6 +63,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Ratio> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -107,6 +110,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Ratio create(Ratio obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -139,6 +143,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Ratio update(Ratio obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -172,6 +177,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(Ratio obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

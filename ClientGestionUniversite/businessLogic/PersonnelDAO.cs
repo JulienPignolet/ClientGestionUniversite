@@ -14,10 +14,11 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class PersonnelDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
 
         public static Personnel find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -62,6 +63,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Personnel> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -103,6 +106,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Personnel> findByNom(String nom)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -146,6 +151,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Personnel> findByPrenom(String prenom)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -189,6 +196,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Personnel create(Personnel obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -224,6 +232,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Personnel update(Personnel obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -257,6 +267,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(Personnel obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

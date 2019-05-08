@@ -10,10 +10,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class PeriodeDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static Periode find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -62,6 +62,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Periode> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -110,6 +112,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Periode> findByLibelle(String libelle)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -160,6 +164,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Periode create(Periode obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -194,6 +199,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Periode update(Periode obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -225,6 +232,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(Periode obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

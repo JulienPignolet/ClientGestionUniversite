@@ -10,10 +10,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class UniteEnseignementDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static UniteEnseignement find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -67,6 +67,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<UniteEnseignement> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -120,6 +122,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<UniteEnseignement> findByLibelle(String libelle)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -173,9 +177,10 @@ namespace ClientGestionUniversite.businessLogic
             return resultats;
         }
 
-        
         public static List<UniteEnseignement> findByDiplome(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -231,6 +236,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static UniteEnseignement create(UniteEnseignement obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -265,6 +271,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static UniteEnseignement update(UniteEnseignement obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -296,6 +304,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(UniteEnseignement obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

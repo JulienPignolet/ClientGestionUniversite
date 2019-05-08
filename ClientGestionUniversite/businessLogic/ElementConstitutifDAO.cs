@@ -10,10 +10,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class ElementConstitutifDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static ElementConstitutif find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -71,6 +71,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<ElementConstitutif> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -128,6 +130,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<ElementConstitutif> findByLibelle(String libelle)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -187,6 +191,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<ElementConstitutif> findByUniteEnseignement(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -246,6 +252,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static ElementConstitutif create(ElementConstitutif obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -280,6 +287,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static ElementConstitutif update(ElementConstitutif obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -312,6 +321,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(ElementConstitutif obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

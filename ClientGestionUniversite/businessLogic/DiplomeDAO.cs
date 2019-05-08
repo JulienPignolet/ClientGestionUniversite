@@ -10,10 +10,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class DiplomeDAO
     {
-        public static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static Diplome find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -56,6 +56,8 @@ namespace ClientGestionUniversite.businessLogic
         /// <returns>diplomes</returns>
         public static List<Diplome> findAll()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
             _cmd.Connection = _connection;
             String sql = "";
@@ -84,6 +86,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Diplome> findByLibelle(String libelle)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -122,6 +126,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Diplome> findBy(String attribute, String value)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -160,6 +166,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Diplome create(Diplome obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -193,6 +200,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Diplome update(Diplome obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -224,6 +233,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(Diplome obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;

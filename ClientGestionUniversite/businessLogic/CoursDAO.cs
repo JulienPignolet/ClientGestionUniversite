@@ -11,10 +11,10 @@ namespace ClientGestionUniversite.businessLogic
 {
     public static class CoursDAO
     {
-        private static MySqlConnection _connection = ConnectionMySql.getInstance();
-
         public static Cours find(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -94,6 +94,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Cours> findAllCours()
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -174,6 +176,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Cours> findByGroupe(int groupe)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -255,6 +259,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Cours> findByElementConstitutif(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -336,6 +342,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static List<Cours> findByPersonnel(long id)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -417,6 +425,7 @@ namespace ClientGestionUniversite.businessLogic
 
         public static Cours create(Cours obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
 
             MySqlCommand _cmd = new MySqlCommand();
 
@@ -455,6 +464,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void updateIntervenant(long? idPersonnel, long idCours)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -483,6 +494,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void updateVolumeHoraire(int volumeHoraire, long idCours)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -511,6 +524,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void updateTypeCours(long idTypeCours, long idCours)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
@@ -539,6 +554,8 @@ namespace ClientGestionUniversite.businessLogic
 
         public static void delete(Cours obj)
         {
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
             MySqlCommand _cmd = new MySqlCommand();
 
             _cmd.Connection = _connection;
