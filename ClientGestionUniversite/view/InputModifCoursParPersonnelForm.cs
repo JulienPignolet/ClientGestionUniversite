@@ -27,6 +27,7 @@ namespace ClientGestionUniversite.view
             personnelId = p.id;
             this.Text = name;
             InitializeComponent();
+            loadCours();
         }
 
         /// <summary>
@@ -42,10 +43,11 @@ namespace ClientGestionUniversite.view
             this.modifCat = cppvm.Type;
             this.Text = name;
             InitializeComponent();
+            loadCours();
             this.coursBox.Enabled = false;
             this.coursBox.Items.Add(cppvm);
             this.coursBox.SelectedValue = cppvm.id;
-            this.heureBox.Text = cppvm.Heure + "" ;
+            //this.heureBox.Text = cppvm.Heure + "" ;
             this.coursBox.SelectedIndex = 0;
         }
 
@@ -62,11 +64,35 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            modifId = ((CoursParPersonnelViewModel)this.coursBox.SelectedItem).id;
+            modifId = ((Cours)this.coursBox.SelectedItem).id;
             CoursDAO.updateIntervenant(personnelId, modifId);
-            CoursDAO.updateTypeCours(((TypeCours)this.typeBox.SelectedItem).id, modifId);
-            CoursDAO.updateVolumeHoraire(Convert.ToInt16(this.heureBox.Text), modifId);
+            //CoursDAO.updateTypeCours(((TypeCours)this.typeBox.SelectedItem).id, modifId);
+            //CoursDAO.updateVolumeHoraire(Convert.ToInt16(this.heureBox.Text), modifId);
             this.Close();
+        }
+
+        private void loadCours()
+        {
+            bool noCours = true;
+            List<Cours> cours = CoursDAO.findAllCours();
+            foreach (Cours c in cours)
+            {
+                if (c.intervenant == null)
+                {
+                    noCours = false;
+                    CoursParPersonnelViewModel cppvm = new CoursParPersonnelViewModel(c.id, c.elementConstitutif.libelle, c.typeCours.libelle, c.volumeHoraire);
+                    this.coursBox.Items.Add(c);
+                }
+            }
+            if (noCours)
+            {
+                MessageBox.Show("Tous les cours son déjà affectés");
+                this.Close();
+            }
+            else
+            {
+                this.coursBox.SelectedIndex = 0;
+            }
         }
     }
 }

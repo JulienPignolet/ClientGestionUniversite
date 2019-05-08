@@ -20,6 +20,11 @@ namespace ClientGestionUniversite.modele
 
         public int volumeHoraire { get; set; }
 
+        public String text
+        {
+            get { return elementConstitutif.libelle + " : " + numeroGroupe + " " + volumeHoraire + " heures (" + typeCours.libelle + ")"; }
+        }
+
         public Cours()
         {
 

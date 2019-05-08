@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace ClientGestionUniversite.businessLogic
                 }
                 catch (NullReferenceException e)
                 {
-                    Console.WriteLine("Error: {0}", e.ToString());
+                    Debug.WriteLine("Error MySQL: ", e.ToString());
                     throw e;
                 }
             }

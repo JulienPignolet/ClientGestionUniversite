@@ -94,19 +94,6 @@ namespace ClientGestionUniversite.view
             this.categorieComboBox.TabIndex = 5;
             this.categorieComboBox.DisplayMember = "libelle";
             this.categorieComboBox.ValueMember = "id";
-            List<CategoriePersonnel> categories = CategoriePersonnelDAO.findAll();
-            foreach (CategoriePersonnel cp in categories)
-            {
-                this.categorieComboBox.Items.Add(cp);
-                if (cp.id == modifCat)
-                {
-                    this.categorieComboBox.SelectedItem = cp;
-                }
-            }
-            if (input)
-            {
-                this.categorieComboBox.SelectedIndex = 0;
-            }
             // 
             // InputModifPersonnelForm
             // 

@@ -222,7 +222,7 @@ namespace ClientGestionUniversite.view
             UniteEnseignement ue = getCurrentUE();
             if (ue != null)
             {
-                var formPopup = new InputModifUEForm("Modifier UE", ue);
+                var formPopup = new InputModifUEForm("Modifier UE", ue, d);
                 formPopup.ShowDialog(this);
                 ueGridViewLoad();
             }
@@ -242,7 +242,7 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterUE(object sender, EventArgs e)
         {
-            var formPopup = new InputModifUEForm("Nouvel UE");
+            var formPopup = new InputModifUEForm("Nouvel UE", d);
             formPopup.ShowDialog(this);
             ueGridViewLoad();
         }

@@ -24,6 +24,7 @@ namespace ClientGestionUniversite.view
             input = true;
             this.Text = name;
             InitializeComponent();
+            loadCategories();
         }
 
         /// <summary>
@@ -40,6 +41,20 @@ namespace ClientGestionUniversite.view
             this.nomBox.Text = p.nom;
             this.prenomBox.Text = p.prenom;
             this.modifId = p.id;
+            loadCategories();
+        }
+
+        private void loadCategories()
+        {
+            List<CategoriePersonnel> categories = CategoriePersonnelDAO.findAll();
+            foreach (CategoriePersonnel cp in categories)
+            {
+                this.categorieComboBox.Items.Add(cp);
+                if (cp.id == modifCat)
+                {
+                    this.categorieComboBox.SelectedItem = cp;
+                }
+            }
         }
 
         /// <summary>

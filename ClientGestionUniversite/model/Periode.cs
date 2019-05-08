@@ -14,6 +14,11 @@ namespace ClientGestionUniversite.modele
 
         public Annee annee { get; set; }
 
+        public String text
+        {
+            get { return annee.libelle + " - " + libelle; }
+        }
+
         public Periode()
         {
 

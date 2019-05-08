@@ -2,9 +2,11 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ClientGestionUniversite.businessLogic
 {
@@ -211,7 +213,7 @@ namespace ClientGestionUniversite.businessLogic
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception : " + e);
+                Debug.WriteLine("Exception : " + e);
             }
             _cmd.Dispose();
         }

@@ -35,12 +35,10 @@ namespace ClientGestionUniversite.view
         {
             this.nomLabel = new System.Windows.Forms.Label();
             this.periodeLabel = new System.Windows.Forms.Label();
-            this.categorieLabel = new System.Windows.Forms.Label();
             this.nomBox = new System.Windows.Forms.TextBox();
             this.periodeComboBox = new System.Windows.Forms.ComboBox();
             this.validerButton = new System.Windows.Forms.Button();
             this.annulerButton = new System.Windows.Forms.Button();
-            this.anneeComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // nomLabel
@@ -48,48 +46,35 @@ namespace ClientGestionUniversite.view
             this.nomLabel.AutoSize = true;
             this.nomLabel.Location = new System.Drawing.Point(15, 15);
             this.nomLabel.Name = "nomLabel";
-            this.nomLabel.Size = new System.Drawing.Size(35, 13);
+            this.nomLabel.Size = new System.Drawing.Size(45, 17);
             this.nomLabel.TabIndex = 0;
             this.nomLabel.Text = "Nom :";
             // 
-            // prenomLabel
+            // periodeLabel
             // 
             this.periodeLabel.AutoSize = true;
             this.periodeLabel.Location = new System.Drawing.Point(15, 45);
             this.periodeLabel.Name = "periodeLabel";
-            this.periodeLabel.Size = new System.Drawing.Size(49, 13);
+            this.periodeLabel.Size = new System.Drawing.Size(65, 17);
             this.periodeLabel.TabIndex = 1;
             this.periodeLabel.Text = "Période :";
-            // 
-            // categorieLabel
-            // 
-            this.categorieLabel.AutoSize = true;
-            this.categorieLabel.Location = new System.Drawing.Point(15, 75);
-            this.categorieLabel.Name = "categorieLabel";
-            this.categorieLabel.Size = new System.Drawing.Size(58, 13);
-            this.categorieLabel.TabIndex = 2;
-            this.categorieLabel.Text = "Catégorie :";
             // 
             // nomBox
             // 
             this.nomBox.Location = new System.Drawing.Point(79, 15);
             this.nomBox.Name = "nomBox";
-            this.nomBox.Size = new System.Drawing.Size(329, 20);
+            this.nomBox.Size = new System.Drawing.Size(329, 22);
             this.nomBox.TabIndex = 3;
             // 
             // periodeComboBox
             // 
             this.periodeComboBox.Location = new System.Drawing.Point(79, 45);
-            this.periodeComboBox.Name = "prenomBox";
-            this.periodeComboBox.Size = new System.Drawing.Size(329, 20);
+            this.periodeComboBox.Name = "periodeComboBox";
+            this.periodeComboBox.Size = new System.Drawing.Size(329, 24);
             this.periodeComboBox.TabIndex = 4;
-            List<Periode> periode = PeriodeDAO.findAll();
-            foreach (Periode p in periode)
-            {
-                this.periodeComboBox.Items.Add(p.id);
-            }
-            if(this.periodeComboBox.Items.Count >0)
-                this.periodeComboBox.SelectedIndex = 0;
+            this.periodeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.periodeComboBox.DisplayMember = "text";
+            this.periodeComboBox.ValueMember = "id";
             // 
             // validerButton
             // 
@@ -99,7 +84,7 @@ namespace ClientGestionUniversite.view
             this.validerButton.TabIndex = 6;
             this.validerButton.Text = "Valider";
             this.validerButton.UseVisualStyleBackColor = true;
-            this.validerButton.Click += new EventHandler(valider);
+            this.validerButton.Click += new System.EventHandler(this.valider);
             // 
             // annulerButton
             // 
@@ -111,49 +96,27 @@ namespace ClientGestionUniversite.view
             this.annulerButton.UseVisualStyleBackColor = true;
             this.annulerButton.Click += new System.EventHandler(this.annuler);
             // 
-            // anneeComboBox
-            // 
-            this.anneeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.anneeComboBox.FormattingEnabled = true;
-            this.anneeComboBox.Location = new System.Drawing.Point(79, 71);
-            this.anneeComboBox.Name = "anneeComboBox";
-            this.anneeComboBox.Size = new System.Drawing.Size(329, 21);
-            this.anneeComboBox.TabIndex = 5;
-            this.anneeComboBox.DisplayMember = "libelle";
-            this.anneeComboBox.ValueMember = "id";
-            List<Annee> annee = AnneeDAO.findAll();
-            foreach (Annee cp in annee)
-            {
-                this.anneeComboBox.Items.Add(cp);
-            }
-            if(this.anneeComboBox.Items.Count > 0)
-                this.anneeComboBox.SelectedIndex = 0;
-            // 
-            // InputModifPersonnelForm
+            // InputModifUEForm
             // 
             this.ClientSize = new System.Drawing.Size(421, 142);
             this.Controls.Add(this.annulerButton);
             this.Controls.Add(this.validerButton);
             this.Controls.Add(this.periodeComboBox);
-            this.Controls.Add(this.anneeComboBox);
             this.Controls.Add(this.nomBox);
-            this.Controls.Add(this.categorieLabel);
             this.Controls.Add(this.periodeLabel);
             this.Controls.Add(this.nomLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "InputModifPersonnelForm";
+            this.Name = "InputModifUEForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         private Label periodeLabel;
-        private Label categorieLabel;
         private TextBox nomBox;      
         private Button validerButton;
         private Button annulerButton;
         private Label nomLabel;
-        private ComboBox anneeComboBox;
         private ComboBox periodeComboBox;
 
         #endregion
