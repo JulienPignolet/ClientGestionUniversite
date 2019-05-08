@@ -52,7 +52,7 @@ namespace ClientGestionUniversite.view
             this.nomLabel.TabIndex = 0;
             this.nomLabel.Text = "Nom :";
             // 
-            // prenomLabel
+            // periodeLabel
             // 
             this.periodeLabel.AutoSize = true;
             this.periodeLabel.Location = new System.Drawing.Point(15, 45);
@@ -68,7 +68,7 @@ namespace ClientGestionUniversite.view
             this.categorieLabel.Name = "categorieLabel";
             this.categorieLabel.Size = new System.Drawing.Size(58, 13);
             this.categorieLabel.TabIndex = 2;
-            this.categorieLabel.Text = "Catégorie :";
+            this.categorieLabel.Text = "Année :";
             // 
             // nomBox
             // 
@@ -86,7 +86,7 @@ namespace ClientGestionUniversite.view
             List<Periode> periode = PeriodeDAO.findAll();
             foreach (Periode p in periode)
             {
-                this.periodeComboBox.Items.Add(p.id);
+                this.periodeComboBox.Items.Add(p.libelle + " de l'année : " + p.annee.libelle);
             }
             if(this.periodeComboBox.Items.Count >0)
                 this.periodeComboBox.SelectedIndex = 0;
