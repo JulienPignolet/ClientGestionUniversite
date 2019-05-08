@@ -86,7 +86,7 @@ namespace ClientGestionUniversite.view
             }
             if (noCours)
             {
-                MessageBox.Show("Tous les cours son déjà affectés");
+                MessageBox.Show("Tous les cours sont déjà affectés");
                 this.Close();
             }
             else

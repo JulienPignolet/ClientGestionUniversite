@@ -242,7 +242,7 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterUE(object sender, EventArgs e)
         {
-            var formPopup = new InputModifUEForm("Nouvel UE", d);
+            var formPopup = new InputModifUEForm("Nouvelle UE", d);
             formPopup.ShowDialog(this);
             ueGridViewLoad();
         }

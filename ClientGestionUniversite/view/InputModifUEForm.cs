@@ -31,6 +31,7 @@ namespace ClientGestionUniversite.view
 
         public InputModifUEForm(string name, UniteEnseignement ue, Diplome diplome) : this(name, diplome)
         {
+            input = false;
             modifId = ue.id;
             periodeID = ue.periode.id;
             anneeID = ue.periode.annee.id;
@@ -53,13 +54,7 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            //Diplome d = new Diplome(nomBox.Text);
-            //Annee a = new Annee(nomBox.Text, d);
-            
-            //a.libelle = anneeComboBox.SelectedItem.ToString();
-            //Periode p = new Periode(nomBox.Text, a);
-            //p.libelle = periodeComboBox.Text;
-
+         
             Periode p = (Periode)periodeComboBox.SelectedItem;
 
             UniteEnseignement ue = new UniteEnseignement(nomBox.Text, p);
