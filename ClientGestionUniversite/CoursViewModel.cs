@@ -17,11 +17,11 @@ namespace ClientGestionUniversite.viewModel
 
         public TypeCours typeCours { get; set; }
 
-        public int numeroGroupe { get; set; }
+        public String numeroGroupe { get; set; }
 
         public int volumeHoraire { get; set; }
 
-        public CoursViewModel(ElementConstitutif elementConstitutif, Personnel intervenant, TypeCours typeCours, int numeroGroupe, int volumeHoraire)
+        public CoursViewModel(ElementConstitutif elementConstitutif, Personnel intervenant, TypeCours typeCours, String numeroGroupe, int volumeHoraire)
         {
             this.elementConstitutif = elementConstitutif;
             this.intervenant = intervenant;

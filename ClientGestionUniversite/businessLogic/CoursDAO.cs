@@ -572,7 +572,7 @@ namespace ClientGestionUniversite.businessLogic
             resultat.volumeHoraire = Convert.ToInt32(reader["coursVolume"]);
             if (!reader.IsDBNull(reader.GetOrdinal("coursGroupe")))
             {
-                resultat.numeroGroupe = Convert.ToInt32(reader["coursGroupe"]);
+                resultat.numeroGroupe = (String)reader["coursGroupe"];
             }
             return resultat;
         }

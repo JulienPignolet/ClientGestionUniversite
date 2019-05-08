@@ -16,7 +16,7 @@ namespace ClientGestionUniversite.modele
 
         public TypeCours typeCours { get; set; }
 
-        public int numeroGroupe { get; set; }
+        public String numeroGroupe { get; set; }
 
         public int volumeHoraire { get; set; }
 
@@ -25,7 +25,7 @@ namespace ClientGestionUniversite.modele
 
         }
 
-        public Cours(Periode periode, ElementConstitutif elementConstitutif, Personnel intervenant, TypeCours typeCours, int numeroGroupe, int volumeHoraire)
+        public Cours(Periode periode, ElementConstitutif elementConstitutif, Personnel intervenant, TypeCours typeCours, String numeroGroupe, int volumeHoraire)
         {
             this.elementConstitutif = elementConstitutif;
             this.intervenant = intervenant;
