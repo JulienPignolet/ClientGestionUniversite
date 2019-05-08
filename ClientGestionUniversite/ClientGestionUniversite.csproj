@@ -70,18 +70,18 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
-    <Compile Include="CoursViewModel.cs" />
-    <Compile Include="EcViewModel.cs" />
-    <Compile Include="InputModifECForm.cs">
+    <Compile Include="viewModel\CoursViewModel.cs" />
+    <Compile Include="viewModel\EcViewModel.cs" />
+    <Compile Include="view\InputModifECForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InputModifECForm.Designer.cs">
+    <Compile Include="view\InputModifECForm.Designer.cs">
       <DependentUpon>InputModifECForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputModifUEForm.cs">
+    <Compile Include="view\InputModifUEForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InputModifUEForm.Designer.cs">
+    <Compile Include="view\InputModifUEForm.Designer.cs">
       <DependentUpon>InputModifUEForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Annee.cs" />
@@ -144,7 +144,7 @@
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InputModifUEForm.resx">
+    <EmbeddedResource Include="view\InputModifUEForm.resx">
       <DependentUpon>InputModifUEForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
