@@ -443,7 +443,14 @@ namespace ClientGestionUniversite.businessLogic
                 _cmd.Parameters.AddWithValue("@ec_id", obj.elementConstitutif.id);
                 _cmd.Parameters.AddWithValue("@volume", obj.volumeHoraire);
                 _cmd.Parameters.AddWithValue("@type_id", obj.typeCours.id);
-                _cmd.Parameters.AddWithValue("@personnel_id", obj.intervenant.id);
+                if (obj.intervenant != null) {
+                    _cmd.Parameters.AddWithValue("@personnel_id", obj.intervenant.id);
+                }
+                else
+                {
+                    _cmd.Parameters.AddWithValue("@personnel_id", DBNull.Value);
+                }
+               
                 _cmd.Parameters.AddWithValue("@groupe", obj.numeroGroupe);
 
                 _cmd.ExecuteNonQuery();
@@ -492,7 +499,7 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
-        public static void updateVolumeHoraire(int volumeHoraire, long idCours)
+        public static void update(Cours Cours)
         {
             MySqlConnection _connection = ConnectionMySql.getInstance();
 
@@ -504,11 +511,14 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE cours set volume = @volume WHERE id = @idCours";
+                sql = "UPDATE cours set ec_id = @ecId, volume = @volume, type_id = @idTypeCours, groupe = @groupe WHERE id = @idCours";
                 _cmd.CommandText = sql;
 
-                _cmd.Parameters.AddWithValue("@idCours", idCours);
-                _cmd.Parameters.AddWithValue("@volume", volumeHoraire);
+                _cmd.Parameters.AddWithValue("@idCours", Cours.id);
+                _cmd.Parameters.AddWithValue("@ecId", Cours.elementConstitutif.id);
+                _cmd.Parameters.AddWithValue("@volume", Cours.volumeHoraire);
+                _cmd.Parameters.AddWithValue("@idTypeCours", Cours.typeCours.id);
+                _cmd.Parameters.AddWithValue("@groupe", Cours.numeroGroupe);
                 _cmd.ExecuteNonQuery();
 
 
@@ -521,36 +531,7 @@ namespace ClientGestionUniversite.businessLogic
             _cmd.Dispose();
 
         }
-
-        public static void updateTypeCours(long idTypeCours, long idCours)
-        {
-            MySqlConnection _connection = ConnectionMySql.getInstance();
-
-            MySqlCommand _cmd = new MySqlCommand();
-
-            _cmd.Connection = _connection;
-
-            String sql = "";
-
-            try
-            {
-                sql = "UPDATE cours set type_id = @idTypeCours WHERE id = @idCours";
-                _cmd.CommandText = sql;
-
-                _cmd.Parameters.AddWithValue("@idCours", idCours);
-                _cmd.Parameters.AddWithValue("@idTypeCours", idTypeCours);
-                _cmd.ExecuteNonQuery();
-
-
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception : " + e);
-            }
-
-            _cmd.Dispose();
-
-        }
+   
 
         public static void delete(Cours obj)
         {

@@ -30,7 +30,7 @@ namespace ClientGestionUniversite.modele
 
         }
 
-        public Cours(Periode periode, ElementConstitutif elementConstitutif, Personnel intervenant, TypeCours typeCours, String numeroGroupe, int volumeHoraire)
+        public Cours(ElementConstitutif elementConstitutif, Personnel intervenant, TypeCours typeCours, String numeroGroupe, int volumeHoraire)
         {
             this.elementConstitutif = elementConstitutif;
             this.intervenant = intervenant;

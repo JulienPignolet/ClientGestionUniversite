@@ -66,8 +66,11 @@ namespace ClientGestionUniversite.view
             List<CoursViewModel> cvm = new List<CoursViewModel>();
             foreach (Cours c in cs)
             {
-                if(ec!= null && ec.id == c.elementConstitutif.id)
-                    cvm.Add(new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire));
+                if (ec != null && ec.id == c.elementConstitutif.id) { 
+                    CoursViewModel temp = new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire);
+                    temp.id = c.id;
+                    cvm.Add(temp);
+                }
             }
             BindingListView<CoursViewModel> bindingSourceCours = new BindingListView<CoursViewModel>(cvm);
             ecDetailsGridView.DataSource = bindingSourceCours;
@@ -102,8 +105,8 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ecDetailsGridView_SelectionChanged(object sender, EventArgs e)
         {
-            CoursViewModel cvm = getCurrentCours();
-            if (cvm != null)
+            Cours c = getCurrentCours();
+            if (c != null)
             {
 
             }
@@ -149,13 +152,15 @@ namespace ClientGestionUniversite.view
         /// Cours sélectionnée
         /// </summary>
         /// <returns>ue</returns>
-        private CoursViewModel getCurrentCours()
+        private Cours getCurrentCours()
         {
             if (ecDetailsGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ecDetailsGridView.SelectedCells[0].RowIndex;
                 CoursViewModel cvm = ((ObjectView<CoursViewModel>)ecDetailsGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                return cvm;
+                Cours c = new Cours(cvm.elementConstitutif, cvm.intervenant, cvm.typeCours,cvm.numeroGroupe, cvm.volumeHoraire);
+                c.id = cvm.id;
+                return c;
             }
             else
             {
@@ -288,7 +293,12 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void supprimerCours(object sender, EventArgs e)
         {
-
+            Cours cours = getCurrentCours();
+            if (cours != null)
+            {
+                CoursDAO.delete(cours);
+                ecGridViewLoad();
+            }
         }
 
         /// <summary>
@@ -296,7 +306,13 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void modifierCours(object sender, EventArgs e)
         {
-
+            Cours cours = getCurrentCours();
+            if (cours != null)
+            {
+                var formPopup = new InputModifCoursForm("Modifier cours", cours, d);
+                formPopup.ShowDialog(this);
+                ueGridViewLoad();
+            }
         }
 
         /// <summary>
@@ -304,7 +320,9 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterCours(object sender, EventArgs e)
         {
-
+            var formPopup = new InputModifCoursForm("Nouveau cours", d);
+            formPopup.ShowDialog(this);
+            ueGridViewLoad();
         }
 
         /// <summary>

@@ -16,6 +16,11 @@ namespace ClientGestionUniversite.modele
 
         public CategoriePersonnel categoriePersonnel { get; set; }
 
+        public String text
+        {
+            get { return prenom + " - " + nom + " - " + categoriePersonnel.libelle; }
+        }
+
         public Personnel()
         {
 

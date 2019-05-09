@@ -281,11 +281,12 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE unite_enseignement set libelle = @libelle WHERE id = @id";
+                sql = "UPDATE unite_enseignement set libelle = @libelle, periode_id = @periodeId WHERE id = @id";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@id", obj.id);
                 _cmd.Parameters.AddWithValue("@libelle", obj.libelle);
+                _cmd.Parameters.AddWithValue("@periodeId", obj.periode.id);
 
                 _cmd.ExecuteNonQuery();
 

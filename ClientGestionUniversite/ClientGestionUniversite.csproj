@@ -72,6 +72,12 @@
     </Compile>
     <Compile Include="viewModel\CoursViewModel.cs" />
     <Compile Include="viewModel\EcViewModel.cs" />
+    <Compile Include="view\InputModifCoursForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\InputModifCoursForm.Designer.cs">
+      <DependentUpon>InputModifCoursForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\InputModifECForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
     </Compile>
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifCoursForm.resx">
+      <DependentUpon>InputModifCoursForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifUEForm.resx">
       <DependentUpon>InputModifUEForm.cs</DependentUpon>
