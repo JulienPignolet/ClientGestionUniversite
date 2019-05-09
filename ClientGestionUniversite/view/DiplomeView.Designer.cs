@@ -14,6 +14,7 @@ namespace ClientGestionUniversite.view
             this.ecGridView = new System.Windows.Forms.DataGridView();
             this.ecDetailsGridView = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelCours = new System.Windows.Forms.TableLayoutPanel();
             this.filterPanel = new System.Windows.Forms.Panel();
             this.filterBox = new System.Windows.Forms.TextBox();
             this.filterLabel = new System.Windows.Forms.Label();
@@ -30,6 +31,7 @@ namespace ClientGestionUniversite.view
             this.filterPanel.SuspendLayout();
             this.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
+            this.tableLayoutPanelCours.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ecGridView)).BeginInit();
             this.editPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ueGridView)).BeginInit();
@@ -48,6 +50,18 @@ namespace ClientGestionUniversite.view
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(200, 387);
             this.tableLayoutPanel.TabIndex = 0;
+            ///
+            /// tableLayoutPanelCours
+            ///
+            this.tableLayoutPanelCours.ColumnCount = 2;
+            this.tableLayoutPanelCours.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanelCours.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanelCours.Controls.Add(this.ecGridView, 0, 0);
+            this.tableLayoutPanelCours.Controls.Add(this.ecDetailsGridView, 1, 0);
+            this.tableLayoutPanelCours.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelCours.Location = new System.Drawing.Point(tableLayoutPanel.Location.X + tableLayoutPanel.Size.Width, 3);
+            this.tableLayoutPanelCours.Name = "tableLayoutPanelCours1";
+            this.tableLayoutPanelCours.TabIndex = 0;
             // 
             // filterPanel
             // 
@@ -91,7 +105,7 @@ namespace ClientGestionUniversite.view
             ///
             /// ecGridView
             ///
-            this.ecGridView.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ecGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ecGridView.AllowUserToAddRows = false;
             this.ecGridView.AllowUserToDeleteRows = false;
             this.ecGridView.AllowUserToResizeColumns = false;
@@ -99,14 +113,12 @@ namespace ClientGestionUniversite.view
             this.ecGridView.MultiSelect = false;
             this.ecGridView.ReadOnly = true;
             this.ecGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            //this.ecGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ecGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ecGridView_DataBindingComplete);
             this.ecGridView.SelectionChanged += new EventHandler(this.ecGridView_SelectionChanged);
             ///
             /// ecDetailsGridView
             ///
             this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            //this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Left;
             this.ecDetailsGridView.AllowUserToAddRows = false;
             this.ecDetailsGridView.AllowUserToDeleteRows = false;
             this.ecDetailsGridView.AllowUserToResizeColumns = false;
@@ -114,16 +126,17 @@ namespace ClientGestionUniversite.view
             this.ecDetailsGridView.MultiSelect = false;
             this.ecDetailsGridView.ReadOnly = true;
             this.ecDetailsGridView.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            //this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ecDetailsGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.ecDetailsGridView_DataBindingComplete);
             ///
             /// DiplomeView
             ///
-            this.Controls.Add(this.ecGridView);
-            this.Controls.Add(this.ecDetailsGridView);
+            //this.Controls.Add(this.ecGridView);
+            //this.Controls.Add(this.ecDetailsGridView);
+            this.Controls.Add(tableLayoutPanelCours);
             this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.editPanel);
             this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanelCours.ResumeLayout(false);
             this.filterPanel.ResumeLayout(false);
             this.filterPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ecGridView)).EndInit();
@@ -247,6 +260,7 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.Panel filterPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelCours;
 
         public System.Windows.Forms.Panel editPanel;
         /* System.Windows.Forms.Label nbHeureEffValue;

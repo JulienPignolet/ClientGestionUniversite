@@ -23,6 +23,7 @@ namespace ClientGestionUniversite
             diplomeViewLoad();
             edit = false;
             switchEdition(null, null);
+            this.MinimumSize = new Size(900, 500);
         }
 
         /// <summary>
