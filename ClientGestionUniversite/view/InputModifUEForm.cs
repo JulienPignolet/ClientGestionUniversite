@@ -65,7 +65,7 @@ namespace ClientGestionUniversite.view
             else
             {
                 ue.id = modifId;
-                p.id = periodeID;
+                //p.id = periodeID;
                 
                 UniteEnseignementDAO.update(ue);
             }
