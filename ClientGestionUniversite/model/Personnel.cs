@@ -37,6 +37,17 @@ namespace ClientGestionUniversite.modele
         {
             return "Personnel (id : " + id + " nom : " + nom + " prenom : " + prenom + ")";
         }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Annee);
+        }
+
+
+        public bool Equals(Annee other)
+        {
+            return other != null && id == other.id;
+        }
     }
 }
 

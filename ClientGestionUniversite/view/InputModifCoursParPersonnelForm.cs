@@ -47,7 +47,7 @@ namespace ClientGestionUniversite.view
             this.coursBox.Enabled = false;
             this.coursBox.Items.Add(cppvm);
             this.coursBox.SelectedValue = cppvm.id;
-            //this.heureBox.Text = cppvm.Heure + "" ;
+            this.heureBox.Text = cppvm.Heure + "" ;
             this.coursBox.SelectedIndex = 0;
         }
 
@@ -89,9 +89,9 @@ namespace ClientGestionUniversite.view
                 MessageBox.Show("Tous les cours sont déjà affectés");
                 this.Close();
             }
-            else
+           else          
             {
-                this.coursBox.SelectedIndex = 0;
+               this.coursBox.SelectedIndex = 0;
             }
         }
     }

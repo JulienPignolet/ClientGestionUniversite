@@ -30,5 +30,17 @@ namespace ClientGestionUniversite.modele
         {
             return "Annee (id : " + id + " libelle : " + libelle + " du diplome : "+ diplome.libelle + ")";
         }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Annee);
+        }
+
+
+        public bool Equals(Annee other)
+        {
+            return other != null && id == other.id;
+        }
+        
     }
 }
