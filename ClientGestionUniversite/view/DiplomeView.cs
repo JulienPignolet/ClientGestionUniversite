@@ -62,17 +62,15 @@ namespace ClientGestionUniversite.view
         private void ecDetailGridViewLoad()
         {
             ElementConstitutif ec = getCurrentEC();
-            List<Cours> cs = CoursDAO.findAllCours();
-            List<CoursViewModel> cvm = new List<CoursViewModel>();
-            foreach (Cours c in cs)
+            List<Cours> allCours = CoursDAO.findAllCours();
+            List<Cours> cours = new List<Cours>();
+            foreach (Cours c in allCours)
             {
                 if (ec != null && ec.id == c.elementConstitutif.id) { 
-                    CoursViewModel temp = new CoursViewModel(c.elementConstitutif, c.intervenant, c.typeCours, c.numeroGroupe, c.volumeHoraire);
-                    temp.id = c.id;
-                    cvm.Add(temp);
+                    cours.Add(c);
                 }
             }
-            BindingListView<CoursViewModel> bindingSourceCours = new BindingListView<CoursViewModel>(cvm);
+            BindingListView<Cours> bindingSourceCours = new BindingListView<Cours>(cours);
             ecDetailsGridView.DataSource = bindingSourceCours;
         }
 
@@ -157,10 +155,9 @@ namespace ClientGestionUniversite.view
             if (ecDetailsGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ecDetailsGridView.SelectedCells[0].RowIndex;
-                CoursViewModel cvm = ((ObjectView<CoursViewModel>)ecDetailsGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                Cours c = new Cours(cvm.elementConstitutif, cvm.intervenant, cvm.typeCours,cvm.numeroGroupe, cvm.volumeHoraire);
-                c.id = cvm.id;
-                return c;
+                Cours selectedCours = ((ObjectView<Cours>)ecDetailsGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+
+                return selectedCours;
             }
             else
             {

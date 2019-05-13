@@ -70,7 +70,6 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
-    <Compile Include="viewModel\CoursViewModel.cs" />
     <Compile Include="viewModel\EcViewModel.cs" />
     <Compile Include="view\InputModifCoursForm.cs">
       <SubType>Form</SubType>
