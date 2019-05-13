@@ -66,6 +66,7 @@ namespace ClientGestionUniversite.view
         private void personnelDetailsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             personnelDetailsGridView.Columns["id"].Visible = false;
+            personnelDetailsGridView.Columns["text"].Visible = false;
             personnelDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

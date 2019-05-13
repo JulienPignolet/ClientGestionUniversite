@@ -189,6 +189,7 @@ namespace ClientGestionUniversite.view
         private void ecDetailsGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ecDetailsGridView.Columns["id"].Visible = false;
+            ecDetailsGridView.Columns["text"].Visible = false;
             ecDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
