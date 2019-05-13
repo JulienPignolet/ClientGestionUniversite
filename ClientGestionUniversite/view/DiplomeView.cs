@@ -45,14 +45,14 @@ namespace ClientGestionUniversite.view
         private void ecGridViewLoad()
         {
             UniteEnseignement ue = getCurrentUE();
-            List<ElementConstitutif> ecs = ElementConstitutifDAO.findAll();
-            List<EcViewModel> ecvm = new List<EcViewModel>();
-            foreach (ElementConstitutif ec in ecs)
+            List<ElementConstitutif> elemConstitutifAll = ElementConstitutifDAO.findAll();
+            List<ElementConstitutif> elements = new List<ElementConstitutif>();
+            foreach (ElementConstitutif ec in elemConstitutifAll)
             {
                 if(ue != null && ue.id == ec.uniteEnseignement.id)
-                    ecvm.Add(new EcViewModel(ec.id, ec.libelle));
+                    elements.Add(ec);
             }
-            BindingListView<EcViewModel> bindingSourceEc = new BindingListView<EcViewModel>(ecvm);
+            BindingListView<ElementConstitutif> bindingSourceEc = new BindingListView<ElementConstitutif>(elements);
             ecGridView.DataSource = bindingSourceEc;
         }
 
@@ -91,8 +91,8 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ecGridView_SelectionChanged(object sender, EventArgs e)
         {
-            EcViewModel ecvm = getCurrentEc();
-            if (ecvm != null)
+            ElementConstitutif elem = getCurrentEc();
+            if (elem != null)
             {
                 ecDetailGridViewLoad();
             }
@@ -132,13 +132,13 @@ namespace ClientGestionUniversite.view
         /// EC sélectionnée
         /// </summary>
         /// <returns>ue</returns>
-        private EcViewModel getCurrentEc()
+        private ElementConstitutif getCurrentEc()
         {
             if (ecGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ecGridView.SelectedCells[0].RowIndex;
-                EcViewModel ecvm = ((ObjectView<EcViewModel>)ecGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                return ecvm;
+                ElementConstitutif elem = ((ObjectView<ElementConstitutif>)ecGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                return elem;
             }
             else
             {
@@ -349,9 +349,7 @@ namespace ClientGestionUniversite.view
             if (ecGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ecGridView.SelectedCells[0].RowIndex;
-                EcViewModel ecV = ((ObjectView<EcViewModel>)ecGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                ElementConstitutif ec = new ElementConstitutif(ecV.Nom, getCurrentUE());
-                ec.id = ecV.id;
+                ElementConstitutif ec = ((ObjectView<ElementConstitutif>)ecGridView.Rows[selectedRowIndex].DataBoundItem).Object;
                 return ec;
             }
             else
