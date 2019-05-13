@@ -35,19 +35,19 @@ namespace ClientGestionUniversite.view
         /// </summary>
         /// <param name="name">nom de la fenetre</param>
         /// <param name="cppvm">affectation</param>
-        public InputModifCoursParPersonnelForm(string name, CoursParPersonnelViewModel cppvm, Personnel p)
+        public InputModifCoursParPersonnelForm(string name, Cours cours, Personnel p)
         {
             input = false;
             personnelId = p.id;
-            this.modifId = cppvm.id;
-            this.modifCat = cppvm.Type;
+            this.modifId = cours.id;
+            this.modifCat = cours.typeCours.ToString();
             this.Text = name;
             InitializeComponent();
             loadCours();
             this.coursBox.Enabled = false;
-            this.coursBox.Items.Add(cppvm);
-            this.coursBox.SelectedValue = cppvm.id;
-            this.heureBox.Text = cppvm.Heure + "" ;
+            this.coursBox.Items.Add(cours);
+            this.coursBox.SelectedValue = cours.id;
+            this.heureBox.Text = cours.volumeHoraire.ToString();
             this.coursBox.SelectedIndex = 0;
         }
 
@@ -80,7 +80,7 @@ namespace ClientGestionUniversite.view
                 if (c.intervenant == null)
                 {
                     noCours = false;
-                    CoursParPersonnelViewModel cppvm = new CoursParPersonnelViewModel(c.id, c.elementConstitutif.libelle, c.typeCours.libelle, c.volumeHoraire);
+                    Cours cppvm = c;
                     this.coursBox.Items.Add(c);
                 }
             }
