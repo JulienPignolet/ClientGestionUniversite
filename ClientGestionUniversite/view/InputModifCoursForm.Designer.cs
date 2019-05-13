@@ -64,7 +64,6 @@
             // 
             // elemConstitutifComboBox
             // 
-            this.elemConstitutifComboBox.DisplayMember = "text";
             this.elemConstitutifComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.elemConstitutifComboBox.Location = new System.Drawing.Point(151, 42);
             this.elemConstitutifComboBox.Name = "elemConstitutifComboBox";

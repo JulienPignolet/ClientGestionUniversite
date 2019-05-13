@@ -27,7 +27,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "ElementConstitutif (id : " + id + " libelle : " + libelle + ")";
+            return  libelle ;
         }
     }
 }

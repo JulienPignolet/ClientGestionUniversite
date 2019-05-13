@@ -25,7 +25,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "Diplome (id : " + id + " libelle : " + libelle + ")";
+            return libelle;
         }
     }
 }

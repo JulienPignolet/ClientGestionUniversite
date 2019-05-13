@@ -16,11 +16,6 @@ namespace ClientGestionUniversite.modele
 
         public CategoriePersonnel categoriePersonnel { get; set; }
 
-        public String text
-        {
-            get { return prenom + " - " + nom + " - " + categoriePersonnel.libelle; }
-        }
-
         public Personnel()
         {
 
@@ -35,7 +30,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "Personnel (id : " + id + " nom : " + nom + " prenom : " + prenom + ")";
+            return prenom + " - " + nom + " - " + categoriePersonnel.libelle; 
         }
 
         public override bool Equals(object obj)

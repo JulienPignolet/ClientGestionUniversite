@@ -32,7 +32,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "Periode (id : " + id + " libelle : " + libelle + " de l'année : " +  annee.libelle +")";
+            return libelle;
         }
     }
 }

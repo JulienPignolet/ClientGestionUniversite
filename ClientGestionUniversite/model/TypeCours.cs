@@ -24,7 +24,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "TypeCours (id : " + id + " libelle : " + libelle + ")";
+            return libelle;
         }
     
     }

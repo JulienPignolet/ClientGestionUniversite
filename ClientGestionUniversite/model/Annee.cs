@@ -28,7 +28,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "Annee (id : " + id + " libelle : " + libelle + " du diplome : "+ diplome.libelle + ")";
+            return libelle;
         }
 
         public override bool Equals(object obj)

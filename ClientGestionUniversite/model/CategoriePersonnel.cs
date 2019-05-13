@@ -32,7 +32,7 @@ namespace ClientGestionUniversite.modele
 
         public override String ToString()
         {
-            return "CategoriePersonnel (id : " + id + " libelle : " + libelle + " volumeHoraire : " + volumeHoraire + ")";
+            return libelle;
         }
     }
     
