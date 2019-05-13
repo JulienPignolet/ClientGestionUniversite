@@ -100,7 +100,6 @@
     <Compile Include="model\TypeCours.cs" />
     <Compile Include="model\UniteEnseignement.cs" />
     <Compile Include="viewModel\CoursParPersonnelViewModel.cs" />
-    <Compile Include="viewModel\UeViewModel.cs" />
     <Compile Include="view\DiplomeView.cs">
       <SubType>Component</SubType>
     </Compile>

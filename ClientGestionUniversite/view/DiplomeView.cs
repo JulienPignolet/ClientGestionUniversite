@@ -28,14 +28,14 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ueGridViewLoad()
         {
-            List<UniteEnseignement> ues = UniteEnseignementDAO.findAll();
-            List<UeViewModel> uevm = new List<UeViewModel>();
-            foreach (UniteEnseignement ue in ues)
+            List<UniteEnseignement> allUE = UniteEnseignementDAO.findAll();
+            List<UniteEnseignement> ue = new List<UniteEnseignement>();
+            foreach (UniteEnseignement tempUe in allUE)
             {
-                if(d != null && d.id == ue.periode.annee.diplome.id)
-                    uevm.Add(new UeViewModel(ue.id, ue.libelle, ue.periode.annee.libelle, ue.periode.libelle));
+                if (d != null && d.id == tempUe.periode.annee.diplome.id)
+                    ue.Add(tempUe);
             }
-            BindingListView<UeViewModel> bindingSourceUe = new BindingListView<UeViewModel>(uevm);
+            BindingListView<UniteEnseignement> bindingSourceUe = new BindingListView<UniteEnseignement>(ue);
             ueGridView.DataSource = bindingSourceUe;
         }
 
@@ -79,7 +79,7 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ueGridView_SelectionChanged(object sender, EventArgs e)
         {
-            UeViewModel uevm = getCurrentUe();
+            UniteEnseignement uevm = getCurrentUe();
             if (uevm != null)
             {
                 ecGridViewLoad();
@@ -114,13 +114,13 @@ namespace ClientGestionUniversite.view
         /// UE sélectionnée
         /// </summary>
         /// <returns>ue</returns>
-        private UeViewModel getCurrentUe()
+        private UniteEnseignement getCurrentUe()
         {
             if (ueGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ueGridView.SelectedCells[0].RowIndex;
-                UeViewModel uevm = ((ObjectView<UeViewModel>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                return uevm;
+                UniteEnseignement ue = ((ObjectView<UniteEnseignement>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
+                return ue;
             }
             else
             {
@@ -194,12 +194,12 @@ namespace ClientGestionUniversite.view
 
         private void filterBox_TextChanged(object sender, EventArgs e)
         {
-            ((BindingListView<UeViewModel>)ueGridView.DataSource).ApplyFilter(
-                delegate(UeViewModel uevm)
+            ((BindingListView<UniteEnseignement>)ueGridView.DataSource).ApplyFilter(
+                delegate(UniteEnseignement uevm)
                 {
-                    return uevm.Nom.ToLower().Contains(filterBox.Text)
-                        || uevm.Annee.ToLower().Contains(filterBox.Text)
-                        || uevm.Periode.ToLower().Contains(filterBox.Text);
+                    return uevm.libelle.ToLower().Contains(filterBox.Text)
+                        || uevm.periode.annee.ToString().ToLower().Contains(filterBox.Text)
+                        || uevm.periode.ToString().ToLower().Contains(filterBox.Text);
                 });
         }
 
@@ -331,9 +331,7 @@ namespace ClientGestionUniversite.view
             if (ueGridView.SelectedCells.Count > 0)
             {
                 int selectedRowIndex = ueGridView.SelectedCells[0].RowIndex;
-                UeViewModel ueV = ((ObjectView<UeViewModel>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
-                UniteEnseignement ue = new UniteEnseignement(ueV.Nom, new Periode(ueV.Nom, new Annee(ueV.Nom, new Diplome(ueV.Nom))));
-                ue.id = ueV.id;
+                UniteEnseignement ue = ((ObjectView<UniteEnseignement>)ueGridView.Rows[selectedRowIndex].DataBoundItem).Object;
                 return ue;
             }
             else
