@@ -150,6 +150,16 @@ namespace ClientGestionUniversite.view
                 PersonnelDAO.delete(p);
                 personnelGridViewLoad();
             }
+            else
+            {
+                string message = "Aucun personnel sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);            
+            }
         }
 
         /// <summary>
@@ -163,8 +173,19 @@ namespace ClientGestionUniversite.view
             {
                 CoursDAO.updateIntervenant(null, cppvm.id);
                 personnelDetailsGridViewLoad();
+                personnelViewModel.update(p);
             }
-            personnelViewModel.update(p);
+            else
+            {
+                string message = "Aucun personnel sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);      
+            }
+
         }
 
         /// <summary>
@@ -179,6 +200,16 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 personnelGridViewLoad();
 
+            }
+            else
+            {
+                string message = "Aucun personnel sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);                 
             }
         }
 
@@ -195,6 +226,16 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
+            }
+            else
+            {
+                string message = "Aucun personnel ou aucun cours sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);              
             }
         }
 
