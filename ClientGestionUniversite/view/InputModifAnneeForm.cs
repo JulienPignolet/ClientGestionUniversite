@@ -49,6 +49,9 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(this.nomBox.Text)){
+                DiplomeView.afficherPopup("L'année est vide");
+            }else{           
             Annee a = new Annee(this.nomBox.Text, d);
             if (input)
             {
@@ -60,6 +63,7 @@ namespace ClientGestionUniversite.view
                 AnneeDAO.update(a);
             }
             this.Close();
+            }
         }
     }
 }

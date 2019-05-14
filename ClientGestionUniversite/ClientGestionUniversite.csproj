@@ -162,8 +162,17 @@
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifAnneeForm.resx">
+      <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifCoursForm.resx">
       <DependentUpon>InputModifCoursForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifDiplomeForm.resx">
+      <DependentUpon>InputModifDiplomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifPeriodeForm.resx">
+      <DependentUpon>InputModifPeriodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifUEForm.resx">
       <DependentUpon>InputModifUEForm.cs</DependentUpon>

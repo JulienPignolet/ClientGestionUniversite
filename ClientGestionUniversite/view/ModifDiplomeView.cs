@@ -27,12 +27,7 @@ namespace ClientGestionUniversite.view
         private void diplomeGridViewLoad()
         {
             List<Diplome> allDip = DiplomeDAO.findAll();
-            List<Diplome> Dip = new List<Diplome>();
-            foreach (Diplome tempD in allDip)
-            {
-                    Dip.Add(tempD);
-            }
-            BindingListView<Diplome> bindingSourceUe = new BindingListView<Diplome>(Dip);
+            BindingListView<Diplome> bindingSourceUe = new BindingListView<Diplome>(allDip);
             diplomeGridView.DataSource = bindingSourceUe;
             anneeGridViewLoad();
             periodeGridViewLoad();
@@ -223,6 +218,10 @@ namespace ClientGestionUniversite.view
                 DiplomeDAO.delete(d);
                 diplomeGridViewLoad();
             }
+            else
+            {
+                DiplomeView.afficherPopup("Aucun diplome selectionnée");
+            }
         }
 
 
@@ -237,6 +236,10 @@ namespace ClientGestionUniversite.view
                 var formPopup = new InputModifDiplomeForm("Modifier Diplome", d);
                 formPopup.ShowDialog(this);
                 diplomeGridViewLoad();
+            }
+            else
+            {
+                DiplomeView.afficherPopup("Aucun diplome selectionnée");
             }
         }
 
@@ -262,6 +265,10 @@ namespace ClientGestionUniversite.view
                 AnneeDAO.delete(a);
                 anneeGridViewLoad();
             }
+            else
+            {
+                DiplomeView.afficherPopup("Aucune année selectionnée");
+            }
         }
 
 
@@ -278,6 +285,10 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 anneeGridViewLoad();
             }
+            else
+            {
+                DiplomeView.afficherPopup("Aucune année selectionnée");
+            }
         }
 
         /// <summary>
@@ -291,6 +302,10 @@ namespace ClientGestionUniversite.view
                 var formPopup = new InputModifAnneeForm("Ajouter Annee", d);
                 formPopup.ShowDialog(this);
                 anneeGridViewLoad();
+            }
+            else
+            {
+                DiplomeView.afficherPopup("Aucun diplome selectionnée");
             }
             
 
@@ -308,6 +323,10 @@ namespace ClientGestionUniversite.view
                 PeriodeDAO.delete(p);
                 periodeGridViewLoad();
             }
+            else
+            {
+                DiplomeView.afficherPopup("Aucune période selectionnée");
+            }
         }
 
 
@@ -324,6 +343,10 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 periodeGridViewLoad();
             }
+            else
+            {
+                DiplomeView.afficherPopup("Aucune période selectionnée");
+            }
         }
 
         /// <summary>
@@ -337,6 +360,10 @@ namespace ClientGestionUniversite.view
                 var formPopup = new InputModifPeriodeForm("Ajouter Periode", a);
                 formPopup.ShowDialog(this);
                 periodeGridViewLoad();
+            }
+            else
+            {
+                DiplomeView.afficherPopup("Aucune année selectionnée");
             }
             
 

@@ -52,17 +52,24 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            Diplome d = new Diplome(this.nomBox.Text);
-            if (input)
+            if (string.IsNullOrWhiteSpace(this.nomBox.Text))
             {
-                DiplomeDAO.create(d);
+                DiplomeView.afficherPopup("Le nom du diplome est vide");
             }
             else
             {
-                d.id = modifId;
-                DiplomeDAO.update(d);
+                Diplome d = new Diplome(this.nomBox.Text);
+                if (input)
+                {
+                    DiplomeDAO.create(d);
+                }
+                else
+                {
+                    d.id = modifId;
+                    DiplomeDAO.update(d);
+                }
+                this.Close();
             }
-            this.Close();
         }
     }
 }

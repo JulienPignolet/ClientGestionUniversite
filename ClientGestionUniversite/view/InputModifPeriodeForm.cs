@@ -49,17 +49,24 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            Periode p = new Periode(this.nomBox.Text, a);
-            if (input)
+            if (string.IsNullOrWhiteSpace(this.nomBox.Text))
             {
-                PeriodeDAO.create(p);
+                DiplomeView.afficherPopup("Le nom de la période est vide");
             }
             else
             {
-                p.id = modifId;
-                PeriodeDAO.update(p);
+                Periode p = new Periode(this.nomBox.Text, a);
+                if (input)
+                {
+                    PeriodeDAO.create(p);
+                }
+                else
+                {
+                    p.id = modifId;
+                    PeriodeDAO.update(p);
+                }
+                this.Close();
             }
-            this.Close();
         }
     }
 }
