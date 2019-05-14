@@ -24,6 +24,8 @@ namespace ClientGestionUniversite
             edit = true;
             switchEdition(null, null);
             this.MinimumSize = new Size(900, 500);
+            //On charge une fois les statistiques car on arrive sur cette page
+            this.statistiquesView.updateCharts();
         }
 
         /// <summary>
@@ -127,5 +129,14 @@ namespace ClientGestionUniversite
                 return null;
             }
         }
+
+        private void updateStat(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedIndex == 0)
+            {
+                this.statistiquesView.updateCharts();
+            }
+        }
+
     }
 }

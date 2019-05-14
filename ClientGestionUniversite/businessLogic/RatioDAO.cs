@@ -77,7 +77,7 @@ namespace ClientGestionUniversite.businessLogic
             try
             {
                 sql = "SELECT ratio.ratio AS ratio, "
-                + "type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle "
+                + "type_cours.id AS typeCoursID, type_cours.libelle AS typeCoursLibelle, "
                 + "categorie_personnel.id AS categID, categorie_personnel.libelle AS categLibelle, categorie_personnel.volume_horaire as categVolume "
                 + "FROM ratio "
                 + "JOIN categorie_personnel ON ratio.categorie_id = categorie_personnel.id "
@@ -207,7 +207,7 @@ namespace ClientGestionUniversite.businessLogic
         {
             Ratio resultat = new Ratio();
 
-            resultat.ratio = Convert.ToInt32(reader["ratio"]);
+            resultat.ratio = Convert.ToDouble(reader["ratio"]);
 
             return resultat;
         }

@@ -74,7 +74,7 @@ namespace ClientGestionUniversite.viewModel
         {
             nomPrenom = p.nom.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.prenom.ToLower()) 
                 + " ( " + p.id + " )";
-            int volumeEff = CoursDAO.getVolumeCoursByPersonnel(p.id);
+            double volumeEff = p.getSommeHorraire();
             heureEff = volumeEff + " / " + p.categoriePersonnel.volumeHoraire;
             if (volumeEff > p.categoriePersonnel.volumeHoraire)
             {
