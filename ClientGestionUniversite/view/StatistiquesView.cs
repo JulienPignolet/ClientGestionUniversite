@@ -89,15 +89,15 @@ namespace ClientGestionUniversite.view
 
                 string libelle = personne.prenom + " " + personne.nom;
 
-                chartT.Series["Series1"].Points.AddXY(libelle, somme);
                 if (somme > total)
                 {
+                    chartT.Series["Series1"].Points.AddXY(libelle, total);
                     chartT.Series["Series2"].Points.AddXY(libelle, somme - total);
                     chartT.Series["Series2"].Points.Last().Color = System.Drawing.Color.FromArgb(255, 40, 40);
                 }
                 else
                 {
-
+                    chartT.Series["Series1"].Points.AddXY(libelle, somme);
                     chartT.Series["Series2"].Points.AddXY(libelle, total - somme);
                 }
             }
