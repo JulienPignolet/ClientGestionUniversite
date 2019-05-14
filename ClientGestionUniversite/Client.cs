@@ -41,12 +41,13 @@ namespace ClientGestionUniversite
                 this.mdv = new DiplomeManageView(this);
                 this.tabControl1.Controls.Add(mdv);
                 this.tabControl1.SelectedTab = mdv;
+                this.mdvIndex = this.mdv.TabIndex;
             }
             else
             {
                 this.tabControl1.Controls.Remove(mdv);
             }
-            foreach(DiplomeView dv in diplomesView)
+            foreach (DiplomeView dv in diplomesView)
                 dv.editPanel.Visible = edit;
         }
 
@@ -82,7 +83,8 @@ namespace ClientGestionUniversite
         /// <summary>
         /// Ajouter un diplome
         /// </summary>
-        private void addDiplome(object sender, EventArgs e) {
+        private void addDiplome(object sender, EventArgs e)
+        {
             var formPopup = new InputModifDiplomeForm("Ajouter Diplome");
             formPopup.ShowDialog(this);
             diplomeViewLoad();
@@ -108,7 +110,8 @@ namespace ClientGestionUniversite
         private void supDiplome(object sender, EventArgs e)
         {
             Diplome d = getCurrentDiplome();
-            if (d != null) {
+            if (d != null)
+            {
                 DiplomeDAO.delete(d);
                 diplomeViewLoad();
             }
@@ -128,6 +131,32 @@ namespace ClientGestionUniversite
             {
                 return null;
             }
+        }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            Brush br;
+            if (e.Index == 0)
+            {
+                br = new SolidBrush(Color.FromArgb(255, 255, 234, 167));
+            }
+            else if (e.Index == 1)
+            {
+                br = new SolidBrush(Color.FromArgb(255, 129, 236, 236));
+            } else if (e.Index == this.mdvIndex) {
+                br = new SolidBrush(Color.FromArgb(255, 253, 121, 168));
+            } else {
+                br = new SolidBrush(Color.FromArgb(255, 162, 155, 254));
+            }
+            e.Graphics.FillRectangle(br, e.Bounds);
+            SizeF sz = e.Graphics.MeasureString(tabControl1.TabPages[e.Index].Text, e.Font);
+            e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + (e.Bounds.Width - sz.Width) / 2, e.Bounds.Top + (e.Bounds.Height - sz.Height) / 2 + 1);
+
+            Rectangle rect = e.Bounds;
+            rect.Offset(0, 1);
+            rect.Inflate(0, -1);
+            e.Graphics.DrawRectangle(Pens.DarkGray, rect);
+            e.DrawFocusRectangle();
         }
 
         private void updateStat(object sender, EventArgs e)

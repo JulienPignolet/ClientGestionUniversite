@@ -78,11 +78,13 @@ namespace ClientGestionUniversite
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.statistiquesView);
-            this.tabControl1.Controls.Add(this.personnelView);
+            this.tabControl1.TabPages.Add(this.personnelView);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Size = new System.Drawing.Size(790, 434);
+            this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl1.DrawItem += this.tabControl1_DrawItem;
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(updateStat);
             // 
@@ -113,6 +115,7 @@ namespace ClientGestionUniversite
         private ClientGestionUniversite.view.StatistiquesView statistiquesView;
         private System.Collections.Generic.List<ClientGestionUniversite.view.DiplomeView> diplomesView;
         private System.Windows.Forms.TabControl tabControl1;
+        private int mdvIndex;
     }
 }
 
