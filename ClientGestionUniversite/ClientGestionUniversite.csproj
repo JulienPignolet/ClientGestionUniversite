@@ -76,12 +76,6 @@
     <Compile Include="InputModifAnneeForm.Designer.cs">
       <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputModifDiplomeFom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputModifDiplomeFom.Designer.cs">
-      <DependentUpon>InputModifDiplomeFom.cs</DependentUpon>
-    </Compile>
     <Compile Include="InputModifPeriodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
