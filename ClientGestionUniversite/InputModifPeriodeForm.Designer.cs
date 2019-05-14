@@ -90,7 +90,7 @@ namespace ClientGestionUniversite.view
         private Button validerButton;
         private Button annulerButton;
         private Label nomLabel;
-
+        
         #endregion
     }
 }
