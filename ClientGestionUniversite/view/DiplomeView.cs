@@ -37,6 +37,8 @@ namespace ClientGestionUniversite.view
             }
             BindingListView<UniteEnseignement> bindingSourceUe = new BindingListView<UniteEnseignement>(ue);
             ueGridView.DataSource = bindingSourceUe;
+            ecGridViewLoad();
+            ecDetailGridViewLoad();
         }
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace ClientGestionUniversite.view
             }
             BindingListView<ElementConstitutif> bindingSourceEc = new BindingListView<ElementConstitutif>(elements);
             ecGridView.DataSource = bindingSourceEc;
+            ecDetailGridViewLoad();
         }
 
         /// <summary>

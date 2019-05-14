@@ -32,6 +32,8 @@ namespace ClientGestionUniversite.view
             }
             BindingListView<Diplome> bindingSourceUe = new BindingListView<Diplome>(Dip);
             diplomeGridView.DataSource = bindingSourceUe;
+            anneeGridViewLoad();
+            periodeGridViewLoad();
         }
 
         /// <summary>
@@ -92,6 +94,7 @@ namespace ClientGestionUniversite.view
             }
             BindingListView<Annee> bindingSourceUe = new BindingListView<Annee>(annee);
             anneeGridView.DataSource = bindingSourceUe;
+            periodeGridViewLoad();
         }
 
         /// <summary>

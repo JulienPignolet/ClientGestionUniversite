@@ -39,6 +39,7 @@ namespace ClientGestionUniversite.view
             this.periodeComboBox = new System.Windows.Forms.ComboBox();
             this.validerButton = new System.Windows.Forms.Button();
             this.annulerButton = new System.Windows.Forms.Button();
+            this.obligatoire = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // nomLabel
@@ -46,18 +47,18 @@ namespace ClientGestionUniversite.view
             this.nomLabel.AutoSize = true;
             this.nomLabel.Location = new System.Drawing.Point(15, 15);
             this.nomLabel.Name = "nomLabel";
-            this.nomLabel.Size = new System.Drawing.Size(45, 17);
+            this.nomLabel.Size = new System.Drawing.Size(50, 17);
             this.nomLabel.TabIndex = 0;
-            this.nomLabel.Text = "Nom :";
+            this.nomLabel.Text = "Nom :*";
             // 
             // periodeLabel
             // 
             this.periodeLabel.AutoSize = true;
-            this.periodeLabel.Location = new System.Drawing.Point(15, 45);
+            this.periodeLabel.Location = new System.Drawing.Point(3, 48);
             this.periodeLabel.Name = "periodeLabel";
-            this.periodeLabel.Size = new System.Drawing.Size(65, 17);
+            this.periodeLabel.Size = new System.Drawing.Size(70, 17);
             this.periodeLabel.TabIndex = 1;
-            this.periodeLabel.Text = "Période :";
+            this.periodeLabel.Text = "Période :*";
             // 
             // nomBox
             // 
@@ -68,12 +69,12 @@ namespace ClientGestionUniversite.view
             // 
             // periodeComboBox
             // 
+            this.periodeComboBox.DisplayMember = "text";
+            this.periodeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.periodeComboBox.Location = new System.Drawing.Point(79, 45);
             this.periodeComboBox.Name = "periodeComboBox";
             this.periodeComboBox.Size = new System.Drawing.Size(329, 24);
             this.periodeComboBox.TabIndex = 4;
-            this.periodeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.periodeComboBox.DisplayMember = "text";
             this.periodeComboBox.ValueMember = "id";
             // 
             // validerButton
@@ -96,9 +97,21 @@ namespace ClientGestionUniversite.view
             this.annulerButton.UseVisualStyleBackColor = true;
             this.annulerButton.Click += new System.EventHandler(this.annuler);
             // 
+            // obligatoire
+            // 
+            this.obligatoire.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.obligatoire.Location = new System.Drawing.Point(80, 81);
+            this.obligatoire.Multiline = true;
+            this.obligatoire.Name = "obligatoire";
+            this.obligatoire.ReadOnly = true;
+            this.obligatoire.Size = new System.Drawing.Size(329, 20);
+            this.obligatoire.TabIndex = 22;
+            this.obligatoire.Text = "* : Les champs marqués d\'une étoile sont obligatoire.";
+            // 
             // InputModifUEForm
             // 
             this.ClientSize = new System.Drawing.Size(421, 142);
+            this.Controls.Add(this.obligatoire);
             this.Controls.Add(this.annulerButton);
             this.Controls.Add(this.validerButton);
             this.Controls.Add(this.periodeComboBox);
@@ -120,5 +133,6 @@ namespace ClientGestionUniversite.view
         private ComboBox periodeComboBox;
 
         #endregion
+        private TextBox obligatoire;
     }
 }

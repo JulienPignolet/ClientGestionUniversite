@@ -15,9 +15,7 @@ namespace ClientGestionUniversite.view
     public partial class InputModifUEForm : Form
     {
         private bool input; // true = input / false = modif
-        private long modifId;// id du ue actuellement modifié
-        private long periodeID;
-        private long anneeID;
+        private UniteEnseignement ueModifie;// ue actuellement modifié
         private Diplome diplome;
 
         public InputModifUEForm(string name, Diplome diplome)
@@ -32,13 +30,11 @@ namespace ClientGestionUniversite.view
         public InputModifUEForm(string name, UniteEnseignement ue, Diplome diplome) : this(name, diplome)
         {
             input = false;
-            modifId = ue.id;
-            periodeID = ue.periode.id;
-            anneeID = ue.periode.annee.id;
+            ueModifie = ue;
             this.nomBox.Text = ue.libelle;
             this.periodeComboBox.SelectedValue = ue.periode;
-
-            //this.periodeComboBox.Text = ue.periode.libelle.ToString();
+            load();
+           
         }
 
         /// <summary>
@@ -57,41 +53,62 @@ namespace ClientGestionUniversite.view
          
             Periode p = (Periode)periodeComboBox.SelectedItem;
 
-            UniteEnseignement ue = new UniteEnseignement(nomBox.Text, p);
-            if (input)
+            Boolean nomVide = string.IsNullOrWhiteSpace(nomBox.Text);
+            Boolean periodeIncorrect = p == null;
+            if (nomVide || periodeIncorrect)
             {
-                UniteEnseignementDAO.create(ue);
+
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Erreur lors de la saisie des données \n";
+                message += nomVide ? " le nom est vide" : "";
+                message += periodeIncorrect ? " la période est incorrecte" : "";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+
             }
             else
             {
-                ue.id = modifId;
-                //p.id = periodeID;
-                
-                UniteEnseignementDAO.update(ue);
+                UniteEnseignement ue = new UniteEnseignement(nomBox.Text, p);
+                if (input)
+                {
+                    UniteEnseignementDAO.create(ue);
+                }
+                else
+                {
+                    ue.id = ueModifie.id;
+                    UniteEnseignementDAO.update(ue);
+                }
+                this.Close();
             }
-            this.Close();
         }
 
         private void load()
         {
+            this.periodeComboBox.Items.Clear();
             List<Periode> periode = PeriodeDAO.findAll();
             foreach (Periode p in periode)
             {
                 if(p.annee.diplome.id == diplome.id)
                     this.periodeComboBox.Items.Add(p);
             }
-            if (this.periodeComboBox.Items.Count > 0)
-                this.periodeComboBox.SelectedIndex = 0;
-
-            /*
-            List<Annee> annee = AnneeDAO.findAll();
-            foreach (Annee cp in annee)
+           // si modification on remet la bonne periode
+            if (ueModifie != null && ueModifie.periode != null)
             {
-                this.anneeComboBox.Items.Add(cp);
+                int indice=0;
+
+                for(int i =0; i < periodeComboBox.Items.Count; i++ ){
+                    if (((Periode)periodeComboBox.Items[i]).id == ueModifie.periode.id)
+                    {
+                        indice = i;
+                    }            
+                }
+                this.periodeComboBox.SelectedIndex = indice;
             }
-            if(this.anneeComboBox.Items.Count > 0)
-                this.anneeComboBox.SelectedIndex = 0;
-             */
+
         }
     }
 }
