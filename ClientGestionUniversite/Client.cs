@@ -36,7 +36,7 @@ namespace ClientGestionUniversite
             personnelView.editPanel.Visible = edit;
             if (edit)
             {
-                this.mdv = new ModifDiplomeView();
+                this.mdv = new ModifDiplomeView(this);
                 this.tabControl1.Controls.Add(mdv);
                 this.tabControl1.SelectedTab = mdv;
             }
@@ -51,7 +51,7 @@ namespace ClientGestionUniversite
         /// <summary>
         /// Charge les diplomes
         /// </summary>
-        private void diplomeViewLoad()
+        public void diplomeViewLoad()
         {
             if (diplomesView != null)
             {
