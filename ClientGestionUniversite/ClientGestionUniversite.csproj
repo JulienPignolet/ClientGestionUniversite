@@ -192,6 +192,9 @@
     <EmbeddedResource Include="view\PersonnelView.resx">
       <DependentUpon>PersonnelView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="view\StatistiquesView.resx">
+      <DependentUpon>StatistiquesView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

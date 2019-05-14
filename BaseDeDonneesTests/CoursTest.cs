@@ -24,11 +24,11 @@ namespace BaseDeDonneesTests
         public void TestFind()
         {
             // test du find simple
-            Cours res = creerCours(66,66);
+            Cours res = creerCours(66,"66");
             Cours resultatFind = CoursDAO.find(res.id);
             // cours
             Assert.AreEqual(66, resultatFind.volumeHoraire);
-            Assert.AreEqual(66, resultatFind.numeroGroupe);
+            Assert.AreEqual("66", resultatFind.numeroGroupe);
             // autres entites
             Assert.AreNotEqual(0, resultatFind.elementConstitutif.id);
             Assert.AreNotEqual(0, resultatFind.elementConstitutif.uniteEnseignement.id);
@@ -50,7 +50,7 @@ namespace BaseDeDonneesTests
             {
 
                 Assert.AreNotEqual(0, resultat.id);
-                Assert.AreNotEqual(0, resultat.numeroGroupe);
+                Assert.AreNotEqual("0", resultat.numeroGroupe);
                 Assert.AreNotEqual(0, resultat.volumeHoraire);
 
                 Assert.AreNotEqual(0, resultat.elementConstitutif.id);
@@ -73,7 +73,7 @@ namespace BaseDeDonneesTests
             {
 
                 Assert.AreNotEqual(0, resultat.id);
-                Assert.AreNotEqual(0, resultat.numeroGroupe);
+                Assert.AreNotEqual("0", resultat.numeroGroupe);
                 Assert.AreNotEqual(0, resultat.volumeHoraire);
 
                 Assert.AreNotEqual(0, resultat.elementConstitutif.id);
@@ -96,7 +96,7 @@ namespace BaseDeDonneesTests
             foreach (Cours resultat in resultatFind)
             {
                 Assert.AreNotEqual(0, resultat.id);
-                Assert.AreNotEqual(0, resultat.numeroGroupe);
+                Assert.AreNotEqual("0", resultat.numeroGroupe);
                 Assert.AreNotEqual(0, resultat.volumeHoraire);
 
               
@@ -107,9 +107,9 @@ namespace BaseDeDonneesTests
         public void TestCreationCours()
         {
             // test la création d'un cours 
-            Cours resultat = creerCours(66,66);
+            Cours resultat = creerCours(66,"66");
 
-            Assert.AreEqual(66, resultat.numeroGroupe);
+            Assert.AreEqual("66", resultat.numeroGroupe);
             Assert.AreEqual(66, resultat.volumeHoraire);
             Assert.IsTrue(resultat.id > 0);
 
@@ -143,7 +143,7 @@ namespace BaseDeDonneesTests
         /** 
          * Methodes pour aider aux tests
          * **/
-        public static Cours creerCours(int volume, int groupe)
+        public static Cours creerCours(int volume, String groupe)
         {
             Cours cours = new Cours();
             cours.volumeHoraire = volume;

@@ -24,6 +24,8 @@ namespace ClientGestionUniversite
             edit = true;
             switchEdition(null, null);
             this.MinimumSize = new Size(900, 500);
+            //On charge une fois les statistiques car on arrive sur cette page
+            this.statistiquesView.updateCharts();
         }
 
         /// <summary>
@@ -36,7 +38,7 @@ namespace ClientGestionUniversite
             personnelView.editPanel.Visible = edit;
             if (edit)
             {
-                this.mdv = new ModifDiplomeView();
+                this.mdv = new ModifDiplomeView(this);
                 this.tabControl1.Controls.Add(mdv);
                 this.tabControl1.SelectedTab = mdv;
                 this.mdvIndex = this.mdv.TabIndex;
@@ -52,7 +54,7 @@ namespace ClientGestionUniversite
         /// <summary>
         /// Charge les diplomes
         /// </summary>
-        private void diplomeViewLoad()
+        public void diplomeViewLoad()
         {
             if (diplomesView != null)
             {
@@ -156,5 +158,14 @@ namespace ClientGestionUniversite
             e.Graphics.DrawRectangle(Pens.DarkGray, rect);
             e.DrawFocusRectangle();
         }
+
+        private void updateStat(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedIndex == 0)
+            {
+                this.statistiquesView.updateCharts();
+            }
+        }
+
     }
 }

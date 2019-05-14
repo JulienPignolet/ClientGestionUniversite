@@ -85,6 +85,8 @@ namespace ClientGestionUniversite
             this.tabControl1.Size = new System.Drawing.Size(790, 434);
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.DrawItem += this.tabControl1_DrawItem;
+            this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(updateStat);
             // 
             // Client
             // 

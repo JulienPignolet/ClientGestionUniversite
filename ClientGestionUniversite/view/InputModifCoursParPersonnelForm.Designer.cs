@@ -25,6 +25,7 @@ namespace ClientGestionUniversite.view
             this.heureBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.typeBox = new System.Windows.Forms.ComboBox();
+            this.obligatoire = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,24 +41,24 @@ namespace ClientGestionUniversite.view
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(8, 74);
+            this.typeLabel.Location = new System.Drawing.Point(75, 74);
             this.typeLabel.Name = "typeLabel";
-            this.typeLabel.Size = new System.Drawing.Size(48, 17);
+            this.typeLabel.Size = new System.Drawing.Size(53, 17);
             this.typeLabel.TabIndex = 1;
-            this.typeLabel.Text = "Type :";
+            this.typeLabel.Text = "Type :*";
             // 
             // heureLabel
             // 
             this.heureLabel.AutoSize = true;
-            this.heureLabel.Location = new System.Drawing.Point(6, 39);
+            this.heureLabel.Location = new System.Drawing.Point(0, 39);
             this.heureLabel.Name = "heureLabel";
-            this.heureLabel.Size = new System.Drawing.Size(125, 17);
+            this.heureLabel.Size = new System.Drawing.Size(130, 17);
             this.heureLabel.TabIndex = 2;
-            this.heureLabel.Text = "Nombre d\'heures :";
+            this.heureLabel.Text = "Nombre d\'heures :*";
             // 
             // validerButton
             // 
-            this.validerButton.Location = new System.Drawing.Point(44, 216);
+            this.validerButton.Location = new System.Drawing.Point(79, 259);
             this.validerButton.Name = "validerButton";
             this.validerButton.Size = new System.Drawing.Size(133, 23);
             this.validerButton.TabIndex = 6;
@@ -67,7 +68,7 @@ namespace ClientGestionUniversite.view
             // 
             // annulerButton
             // 
-            this.annulerButton.Location = new System.Drawing.Point(216, 216);
+            this.annulerButton.Location = new System.Drawing.Point(251, 259);
             this.annulerButton.Name = "annulerButton";
             this.annulerButton.Size = new System.Drawing.Size(133, 23);
             this.annulerButton.TabIndex = 7;
@@ -118,7 +119,7 @@ namespace ClientGestionUniversite.view
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 112);
+            this.label1.Location = new System.Drawing.Point(64, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 17);
             this.label1.TabIndex = 12;
@@ -135,9 +136,21 @@ namespace ClientGestionUniversite.view
             this.typeBox.TabIndex = 11;
             this.typeBox.ValueMember = "id";
             // 
+            // obligatoire
+            // 
+            this.obligatoire.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.obligatoire.Location = new System.Drawing.Point(55, 216);
+            this.obligatoire.Multiline = true;
+            this.obligatoire.Name = "obligatoire";
+            this.obligatoire.ReadOnly = true;
+            this.obligatoire.Size = new System.Drawing.Size(329, 20);
+            this.obligatoire.TabIndex = 23;
+            this.obligatoire.Text = "* : Les champs marqués d\'une étoile sont obligatoire.";
+            // 
             // InputModifCoursParPersonnelForm
             // 
-            this.ClientSize = new System.Drawing.Size(402, 254);
+            this.ClientSize = new System.Drawing.Size(433, 300);
+            this.Controls.Add(this.obligatoire);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.annulerButton);
             this.Controls.Add(this.validerButton);
@@ -163,5 +176,6 @@ namespace ClientGestionUniversite.view
         private Label label1;
         private TextBox groupBox;
         private TextBox heureBox;
+        private TextBox obligatoire;
     }
 }

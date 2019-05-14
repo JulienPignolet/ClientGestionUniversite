@@ -12,7 +12,7 @@ namespace ClientGestionUniversite.modele
 
         public CategoriePersonnel categoriePersonnel{ get; set; }
 
-        public int ratio { get; set; }
+        public double ratio { get; set; }
 
         public Ratio(TypeCours type, CategoriePersonnel categorie)
         {

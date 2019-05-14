@@ -40,7 +40,13 @@ namespace ClientGestionUniversite.view
 
         private void updateCharts()
         {
+            //Requête des cours
             cours = CoursDAO.findAllCours();
+            //Vide les graphs
+            column.Series["Series1"].Points.Clear();
+            chartT.Series["Series1"].Points.Clear();
+            chartT.Series["Series2"].Points.Clear();
+
             updateTauxAffectationAnnee();
             update2();
         }
@@ -54,7 +60,15 @@ namespace ClientGestionUniversite.view
             foreach (Cours c in cours)
             {
                 Annee annee = c.elementConstitutif.uniteEnseignement.periode.annee;
-                int index = tabAnnee.IndexOf(annee);
+                int index = -1;
+                for (int i = 0; i < tabAnnee.Count; i++)
+                {
+                    Annee tmp = (Annee)(tabAnnee[i]);
+                    if (tmp.id == annee.id)
+                    {
+                        index = i;
+                    }
+                }
                 if (index < 0)
                 {
                     tabAnnee.Add(annee);
@@ -90,7 +104,15 @@ namespace ClientGestionUniversite.view
                 Personnel perso = c.intervenant;
                 if (perso != null)
                 {
-                    int index = tabPerso.IndexOf(perso);
+                    int index = -1;
+                    for (int i = 0; i < tabPerso.Count; i++)
+                    {
+                        Personnel tmp = (Personnel)(tabPerso[i]);
+                        if (tmp.id == perso.id)
+                        {
+                            index = i;
+                        }
+                    }
                     if (index < 0)
                     {
                         tabPerso.Add(perso);
@@ -106,16 +128,32 @@ namespace ClientGestionUniversite.view
             for (int i = 0; i < tabPerso.Count; i++)
             {
                 int restant = tabHeuresregime[i] - tabSumHeures[i];
-
                 Personnel perso = ((Personnel)tabPerso[i]);
                 string libelle = perso.prenom + " " + perso.nom;
 
-                chartT.Series["Series1"].Points.AddXY(libelle, tabSumHeures[i]);
-                chartT.Series["Series2"].Points.AddXY(libelle, restant);
+
+                if (restant < 0)
+                {
+                    //chartT.Series["Series1"].Color = Color.Red;
+                    chartT.Series["Series2"].Points.AddXY(libelle, tabSumHeures[i] - tabHeuresregime[i]);
+                    chartT.Series["Series1"].Points.AddXY(libelle, tabHeuresregime[i]);
+                    chartT.Series["Series2"].Points.Last().Color = System.Drawing.Color.FromArgb(255, 40, 40);
+                }
+                else
+                {
+                    chartT.Series["Series1"].Points.AddXY(libelle, tabSumHeures[i]);
+                    chartT.Series["Series2"].Points.AddXY(libelle, tabHeuresregime[i]);
+                }
+
                 //Met la couleur en fonction du pourcentage
                 //int c = (int)(percentage * 2.55);
                 //serie.Points[i].Color = Color.FromArgb(c-80, c-80, c);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            updateCharts();
         }
 
 

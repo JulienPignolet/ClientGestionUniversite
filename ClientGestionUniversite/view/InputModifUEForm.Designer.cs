@@ -45,7 +45,7 @@ namespace ClientGestionUniversite.view
             // nomLabel
             // 
             this.nomLabel.AutoSize = true;
-            this.nomLabel.Location = new System.Drawing.Point(15, 15);
+            this.nomLabel.Location = new System.Drawing.Point(23, 15);
             this.nomLabel.Name = "nomLabel";
             this.nomLabel.Size = new System.Drawing.Size(50, 17);
             this.nomLabel.TabIndex = 0;
@@ -64,7 +64,7 @@ namespace ClientGestionUniversite.view
             // 
             this.nomBox.Location = new System.Drawing.Point(79, 15);
             this.nomBox.Name = "nomBox";
-            this.nomBox.Size = new System.Drawing.Size(329, 22);
+            this.nomBox.Size = new System.Drawing.Size(295, 22);
             this.nomBox.TabIndex = 3;
             // 
             // periodeComboBox
@@ -73,7 +73,7 @@ namespace ClientGestionUniversite.view
             this.periodeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.periodeComboBox.Location = new System.Drawing.Point(79, 45);
             this.periodeComboBox.Name = "periodeComboBox";
-            this.periodeComboBox.Size = new System.Drawing.Size(329, 24);
+            this.periodeComboBox.Size = new System.Drawing.Size(295, 24);
             this.periodeComboBox.TabIndex = 4;
             this.periodeComboBox.ValueMember = "id";
             // 
@@ -100,7 +100,7 @@ namespace ClientGestionUniversite.view
             // obligatoire
             // 
             this.obligatoire.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.obligatoire.Location = new System.Drawing.Point(80, 81);
+            this.obligatoire.Location = new System.Drawing.Point(45, 81);
             this.obligatoire.Multiline = true;
             this.obligatoire.Name = "obligatoire";
             this.obligatoire.ReadOnly = true;

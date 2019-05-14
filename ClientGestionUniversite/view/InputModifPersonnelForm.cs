@@ -70,17 +70,44 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            Personnel p = new Personnel(this.nomBox.Text, this.prenomBox.Text, new CategoriePersonnel(Convert.ToInt64(((CategoriePersonnel)categorieComboBox.SelectedItem).id)));
-            if (input)
+            CategoriePersonnel categorie = (CategoriePersonnel)categorieComboBox.SelectedItem;
+            
+            Boolean nomIncorrect = string.IsNullOrWhiteSpace(nomBox.Text);
+            Boolean prenomIncorrect = string.IsNullOrWhiteSpace(prenomBox.Text);
+            Boolean categorieIncorrecte = categorie == null;
+
+            if (nomIncorrect || prenomIncorrect || categorieIncorrecte)
             {
-                PersonnelDAO.create(p);
+
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Erreur lors de la saisie des données \n";
+                message += nomIncorrect ? " le nom est vide" : "";
+                message += prenomIncorrect ? " le prenom est vide" : "";
+                message += categorieIncorrecte ? " la categorie est incorrecte" : "";
+
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+
             }
             else
             {
-                p.id = modifId;
-                PersonnelDAO.update(p);
+                Personnel p = new Personnel(this.nomBox.Text, this.prenomBox.Text,categorie);
+
+                if (input)
+                {
+                    PersonnelDAO.create(p);
+                }
+                else
+                {
+                    p.id = modifId;
+                    PersonnelDAO.update(p);
+                }
+                this.Close();
             }
-            this.Close();
         }
     }
 }
