@@ -515,7 +515,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "select sum(volume) from cours where personnel_id = @idPersonnel";
+                sql = "select sum(volume) as volume from cours where personnel_id = @idPersonnel";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@idPersonnel", idPersonnel);
@@ -524,7 +524,7 @@ namespace ClientGestionUniversite.businessLogic
 
                 while (reader.Read())
                 {
-                    res = Convert.ToInt32(reader["personnelId"]);
+                    res = Convert.ToInt32(reader["volume"]);
                 }
 
             }
