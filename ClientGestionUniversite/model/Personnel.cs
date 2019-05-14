@@ -32,17 +32,6 @@ namespace ClientGestionUniversite.modele
         {
             return prenom + " - " + nom + " - " + categoriePersonnel.libelle; 
         }
-
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as Annee);
-        }
-
-
-        public bool Equals(Annee other)
-        {
-            return other != null && id == other.id;
-        }
     }
 }
 
