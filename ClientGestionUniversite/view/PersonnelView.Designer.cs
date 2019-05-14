@@ -11,7 +11,7 @@ namespace ClientGestionUniversite.view
     {
         private void InitializeComponent()
         {
-            this.personnelViewModel = new PersonnelViewModel();
+            this.personnelViewModel = new PersonnelViewModel(this);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.detailsPanel = new System.Windows.Forms.Panel();
             this.nbHeureEffValue = new System.Windows.Forms.Label();
@@ -304,7 +304,7 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel detailsPanel;
         public System.Windows.Forms.Panel editPanel;
-        private System.Windows.Forms.Label nbHeureEffValue;
+        public System.Windows.Forms.Label nbHeureEffValue;
         private System.Windows.Forms.Label nbHeureEffLabel;
         private System.Windows.Forms.Label titreValue;
         private System.Windows.Forms.Label titreLabel;

@@ -13,8 +13,7 @@ namespace ClientGestionUniversite.view
     public partial class InputModifCoursParPersonnelForm : Form
     {
         private long personnelId; // personnel to add affectation
-        private long modifId; // cours modifié
-        private string modifCat; // catégorie modifiée
+        private Cours modifCours; // cours modifié
         private bool input;
 
         /// <summary>
@@ -28,6 +27,7 @@ namespace ClientGestionUniversite.view
             this.Text = name;
             InitializeComponent();
             loadCours();
+            this.groupBox1.Enabled = false;
         }
 
         /// <summary>
@@ -37,17 +37,18 @@ namespace ClientGestionUniversite.view
         /// <param name="cppvm">affectation</param>
         public InputModifCoursParPersonnelForm(string name, Cours cours, Personnel p)
         {
+            modifCours = cours;
             input = false;
             personnelId = p.id;
-            this.modifId = cours.id;
-            this.modifCat = cours.typeCours.ToString();
             this.Text = name;
             InitializeComponent();
             loadCours();
+            loadType();
             this.coursBox.Enabled = false;
             this.coursBox.Items.Add(cours);
             this.coursBox.SelectedValue = cours.id;
             this.heureBox.Text = cours.volumeHoraire.ToString();
+            this.groupBox.Text = cours.numeroGroupe;
             this.coursBox.SelectedIndex = 0;
         }
 
@@ -64,11 +65,31 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            modifId = ((Cours)this.coursBox.SelectedItem).id;
-            CoursDAO.updateIntervenant(personnelId, modifId);
-            //CoursDAO.updateTypeCours(((TypeCours)this.typeBox.SelectedItem).id, modifId);
-            //CoursDAO.updateVolumeHoraire(Convert.ToInt16(this.heureBox.Text), modifId);
+            if (input)
+            {
+                CoursDAO.updateIntervenant(personnelId, ((Cours)this.coursBox.SelectedItem).id);
+            }
+            else
+            {
+                modifCours.volumeHoraire = Int32.Parse(this.heureBox.Text);
+                modifCours.numeroGroupe = this.groupBox.Text;
+                modifCours.typeCours.id = ((TypeCours)this.typeBox.SelectedItem).id;
+                CoursDAO.update(modifCours);
+            }
             this.Close();
+        }
+
+        private void loadType()
+        {
+            List<TypeCours> typeCours = TypeCoursDAO.findAll();
+            foreach (TypeCours tc in typeCours)
+            {
+                this.typeBox.Items.Add(tc);
+                if (tc.id == modifCours.typeCours.id)
+                {
+                    this.typeBox.SelectedItem = tc;
+                }
+            }
         }
 
         private void loadCours()

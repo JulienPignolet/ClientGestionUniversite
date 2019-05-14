@@ -1,7 +1,10 @@
-﻿using ClientGestionUniversite.modele;
+﻿using ClientGestionUniversite.businessLogic;
+using ClientGestionUniversite.modele;
+using ClientGestionUniversite.view;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -10,6 +13,8 @@ namespace ClientGestionUniversite.viewModel
 {
     public class PersonnelViewModel : INotifyPropertyChanged
     {
+        private PersonnelView view;
+
         private string _nomPrenom;
 
         public string nomPrenom
@@ -46,6 +51,11 @@ namespace ClientGestionUniversite.viewModel
             }
         }
 
+        public PersonnelViewModel(PersonnelView view)
+        {
+            this.view = view;
+        }
+
         private void OnPropertyChanged(string p)
         {
             if (PropertyChanged != null)
@@ -64,7 +74,16 @@ namespace ClientGestionUniversite.viewModel
         {
             nomPrenom = p.nom.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(p.prenom.ToLower()) 
                 + " ( " + p.id + " )";
-            heureEff = "100 / " + p.categoriePersonnel.volumeHoraire;
+            int volumeEff = CoursDAO.getVolumeCoursByPersonnel(p.id);
+            heureEff = volumeEff + " / " + p.categoriePersonnel.volumeHoraire;
+            if (volumeEff > p.categoriePersonnel.volumeHoraire)
+            {
+                view.nbHeureEffValue.ForeColor = Color.Red;
+            }
+            else
+            {
+                view.nbHeureEffValue.ForeColor = Color.Green;
+            }
             titre = p.categoriePersonnel.libelle;
         }
     }

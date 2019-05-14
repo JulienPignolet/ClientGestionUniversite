@@ -55,6 +55,8 @@ namespace ClientGestionUniversite.view
         {
             personnelGridView.Columns["id"].Visible = false;
             personnelGridView.Columns["categoriePersonnel"].Visible = false;
+            personnelGridView.Columns["nom"].HeaderText = "Nom";
+            personnelGridView.Columns["prenom"].HeaderText = "Prenom";
             personnelGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -67,6 +69,11 @@ namespace ClientGestionUniversite.view
         {
             personnelDetailsGridView.Columns["id"].Visible = false;
             personnelDetailsGridView.Columns["text"].Visible = false;
+            personnelDetailsGridView.Columns["elementConstitutif"].HeaderText = "EC";
+            personnelDetailsGridView.Columns["intervenant"].HeaderText = "Intervenant";
+            personnelDetailsGridView.Columns["typeCours"].HeaderText = "Type de cours";
+            personnelDetailsGridView.Columns["numeroGroupe"].HeaderText = "Groupe";
+            personnelDetailsGridView.Columns["volumeHoraire"].HeaderText = "Volume Horaire";
             personnelDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -151,11 +158,13 @@ namespace ClientGestionUniversite.view
         private void supprimerAffectation(object sender, EventArgs e)
         {
             Cours cppvm = getCurrentAffectation();
-            if (cppvm != null)
+            Personnel p = getCurrentPersonnel();
+            if (cppvm != null && p != null)
             {
                 CoursDAO.updateIntervenant(null, cppvm.id);
                 personnelDetailsGridViewLoad();
             }
+            personnelViewModel.update(p);
         }
 
         /// <summary>
@@ -185,6 +194,7 @@ namespace ClientGestionUniversite.view
                 var formPopup = new InputModifCoursParPersonnelForm("Modifier Affectation", cours, p);
                 formPopup.ShowDialog(this);
                 personnelDetailsGridViewLoad();
+                personnelViewModel.update(p);
             }
         }
 
@@ -213,6 +223,7 @@ namespace ClientGestionUniversite.view
                 }
                 catch (Exception ignored) { }
                 personnelDetailsGridViewLoad();
+                personnelViewModel.update(p);
             }
         }
     }
