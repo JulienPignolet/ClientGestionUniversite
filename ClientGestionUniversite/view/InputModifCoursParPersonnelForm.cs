@@ -65,18 +65,40 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            if (input)
+            int volumeHoraire = 0;
+            TypeCours typeCours = (TypeCours)this.typeBox.SelectedItem;
+
+            Boolean typeCoursIncorrect = typeCours == null;
+            Boolean volumeHoraireIncorrect = !Int32.TryParse(this.heureBox.Text, out volumeHoraire);
+
+            if (typeCoursIncorrect || volumeHoraireIncorrect)
             {
-                CoursDAO.updateIntervenant(personnelId, ((Cours)this.coursBox.SelectedItem).id);
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Erreur lors de la saisie des données \n";
+                message += volumeHoraireIncorrect ? " le volume horaire est incorrect" : "";
+                message += typeCoursIncorrect ? " le type de cours est incorrect" : "";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+
             }
             else
             {
-                modifCours.volumeHoraire = Int32.Parse(this.heureBox.Text);
                 modifCours.numeroGroupe = this.groupBox.Text;
-                modifCours.typeCours.id = ((TypeCours)this.typeBox.SelectedItem).id;
-                CoursDAO.update(modifCours);
+                modifCours.typeCours.id = typeCours.id;
+                if (input)
+                {
+                    CoursDAO.updateIntervenant(personnelId, ((Cours)this.coursBox.SelectedItem).id);
+                }
+                else
+                {
+                    CoursDAO.update(modifCours);
+                }
+                this.Close();
             }
-            this.Close();
         }
 
         private void loadType()
@@ -110,9 +132,9 @@ namespace ClientGestionUniversite.view
                 MessageBox.Show("Tous les cours sont déjà affectés");
                 this.Close();
             }
-           else          
+            else
             {
-               this.coursBox.SelectedIndex = 0;
+                this.coursBox.SelectedIndex = 0;
             }
         }
     }

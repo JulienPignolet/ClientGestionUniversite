@@ -41,7 +41,7 @@ namespace ClientGestionUniversite.view
             this.nomLabel.AutoSize = true;
             this.nomLabel.Location = new System.Drawing.Point(15, 15);
             this.nomLabel.Name = "nomLabel";
-            this.nomLabel.Size = new System.Drawing.Size(35, 13);
+            this.nomLabel.Size = new System.Drawing.Size(45, 17);
             this.nomLabel.TabIndex = 0;
             this.nomLabel.Text = "Nom :";
             // 
@@ -49,7 +49,7 @@ namespace ClientGestionUniversite.view
             // 
             this.nomBox.Location = new System.Drawing.Point(79, 15);
             this.nomBox.Name = "nomBox";
-            this.nomBox.Size = new System.Drawing.Size(329, 20);
+            this.nomBox.Size = new System.Drawing.Size(295, 22);
             this.nomBox.TabIndex = 3;
             // 
             // validerButton
@@ -60,7 +60,7 @@ namespace ClientGestionUniversite.view
             this.validerButton.TabIndex = 6;
             this.validerButton.Text = "Valider";
             this.validerButton.UseVisualStyleBackColor = true;
-            this.validerButton.Click += new EventHandler(valider);
+            this.validerButton.Click += new System.EventHandler(this.valider);
             // 
             // annulerButton
             // 
@@ -72,7 +72,7 @@ namespace ClientGestionUniversite.view
             this.annulerButton.UseVisualStyleBackColor = true;
             this.annulerButton.Click += new System.EventHandler(this.annuler);
             // 
-            // InputModifPersonnelForm
+            // InputModifPeriodeForm
             // 
             this.ClientSize = new System.Drawing.Size(421, 70);
             this.Controls.Add(this.annulerButton);
@@ -80,7 +80,7 @@ namespace ClientGestionUniversite.view
             this.Controls.Add(this.nomBox);
             this.Controls.Add(this.nomLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "InputModifPersonnelForm";
+            this.Name = "InputModifPeriodeForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
