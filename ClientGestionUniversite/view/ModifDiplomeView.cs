@@ -12,7 +12,9 @@ namespace ClientGestionUniversite.view
 {
     public partial class ModifDiplomeView : TabPage
     {
-        public ModifDiplomeView(){
+        private Client client;
+        public ModifDiplomeView(Client c){
+            client = c;
             InitializeComponent();
             diplomeGridViewLoad();
             anneeGridViewLoad();
@@ -34,6 +36,7 @@ namespace ClientGestionUniversite.view
             diplomeGridView.DataSource = bindingSourceUe;
             anneeGridViewLoad();
             periodeGridViewLoad();
+            client.diplomeViewLoad();
         }
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace ClientGestionUniversite.view
         private void diplomeGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             diplomeGridView.Columns["id"].Visible = false;
+            diplomeGridView.Columns["libelle"].HeaderText = "Diplome";
             diplomeGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -102,6 +106,8 @@ namespace ClientGestionUniversite.view
         private void anneeGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             anneeGridView.Columns["id"].Visible = false;
+            anneeGridView.Columns["diplome"].Visible = false;
+            anneeGridView.Columns["libelle"].HeaderText = "Année";
             anneeGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -161,6 +167,9 @@ namespace ClientGestionUniversite.view
         private void periodeGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             periodeGridView.Columns["id"].Visible = false;
+            periodeGridView.Columns["text"].Visible = false;
+            periodeGridView.Columns["annee"].Visible = false;
+            periodeGridView.Columns["libelle"].HeaderText = "Période";
             periodeGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

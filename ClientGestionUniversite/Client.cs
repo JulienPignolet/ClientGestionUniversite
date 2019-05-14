@@ -16,17 +16,16 @@ namespace ClientGestionUniversite
     public partial class Client : Form
     {
         private bool edit;
-        private ModifDiplomeView mdv;
 
         public Client()
         {
             InitializeComponent();
             diplomeViewLoad();
-            edit = false;
+            edit = true;
             switchEdition(null, null);
-            mdv = new ModifDiplomeView();
-            tabControl1.Controls.Add(mdv);
             this.MinimumSize = new Size(900, 500);
+            //On charge une fois les statistiques car on arrive sur cette page
+            this.statistiquesView.updateCharts();
         }
 
         /// <summary>
@@ -36,10 +35,17 @@ namespace ClientGestionUniversite
         {
             edit = !edit;
             editionMode.Text = (edit) ? ("Désactiver l'édition") : ("Activer l'édition");
-            ajouterDiplome.Visible = edit;
-            modifierDiplome.Visible = edit;
-            supprimerDiplome.Visible = edit;
             personnelView.editPanel.Visible = edit;
+            if (edit)
+            {
+                this.mdv = new ModifDiplomeView(this);
+                this.tabControl1.Controls.Add(mdv);
+                this.tabControl1.SelectedTab = mdv;
+            }
+            else
+            {
+                this.tabControl1.Controls.Remove(mdv);
+            }
             foreach(DiplomeView dv in diplomesView)
                 dv.editPanel.Visible = edit;
         }
@@ -47,7 +53,7 @@ namespace ClientGestionUniversite
         /// <summary>
         /// Charge les diplomes
         /// </summary>
-        private void diplomeViewLoad()
+        public void diplomeViewLoad()
         {
             if (diplomesView != null)
             {
@@ -126,7 +132,7 @@ namespace ClientGestionUniversite
 
         private void updateStat(object sender, EventArgs e)
         {
-            if (this.tabControl1.SelectedIndex == 1)
+            if (this.tabControl1.SelectedIndex == 0)
             {
                 this.statistiquesView.updateCharts();
             }

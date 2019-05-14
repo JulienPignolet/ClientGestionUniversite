@@ -37,6 +37,8 @@ namespace ClientGestionUniversite.view
             }
             BindingListView<UniteEnseignement> bindingSourceUe = new BindingListView<UniteEnseignement>(ue);
             ueGridView.DataSource = bindingSourceUe;
+            ecGridViewLoad();
+            ecDetailGridViewLoad();
         }
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace ClientGestionUniversite.view
             }
             BindingListView<ElementConstitutif> bindingSourceEc = new BindingListView<ElementConstitutif>(elements);
             ecGridView.DataSource = bindingSourceEc;
+            ecDetailGridViewLoad();
         }
 
         /// <summary>
@@ -171,6 +174,8 @@ namespace ClientGestionUniversite.view
         private void ueGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ueGridView.Columns["id"].Visible = false;
+            ueGridView.Columns["libelle"].HeaderText = "UE";
+            ueGridView.Columns["periode"].HeaderText = "Periode";
             ueGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -180,6 +185,8 @@ namespace ClientGestionUniversite.view
         private void ecGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ecGridView.Columns["id"].Visible = false;
+            ecGridView.Columns["uniteEnseignement"].Visible = false;
+            ecGridView.Columns["libelle"].HeaderText = "EC";
             ecGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -190,6 +197,11 @@ namespace ClientGestionUniversite.view
         {
             ecDetailsGridView.Columns["id"].Visible = false;
             ecDetailsGridView.Columns["text"].Visible = false;
+            ecDetailsGridView.Columns["elementConstitutif"].HeaderText = "Cours";
+            ecDetailsGridView.Columns["intervenant"].HeaderText = "Intervenant";
+            ecDetailsGridView.Columns["typeCours"].HeaderText = "Type de cours";
+            ecDetailsGridView.Columns["numeroGroupe"].HeaderText = "Groupe";
+            ecDetailsGridView.Columns["volumeHoraire"].HeaderText = "Volume Horaire";
             ecDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -214,6 +226,16 @@ namespace ClientGestionUniversite.view
             {
                 UniteEnseignementDAO.delete(p);
                 ueGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucune unité d'enseignement sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -261,6 +283,16 @@ namespace ClientGestionUniversite.view
                 ElementConstitutifDAO.delete(ec);
                 ecGridViewLoad();
             }
+            else
+            {
+                string message = "Aucun élément constitutif sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);          
+            }
         }
 
         /// <summary>
@@ -270,9 +302,23 @@ namespace ClientGestionUniversite.view
         {
             UniteEnseignement ue = getCurrentUE();
             ElementConstitutif ec = getCurrentEC();
-            var formPopup = new InputModifECForm("Nouvel Ec", ue, ec);
-            formPopup.ShowDialog(this);
-            ecGridViewLoad();
+            if (ue != null && ec != null)
+            {
+                var formPopup = new InputModifECForm("Nouvel Ec", ue, ec);
+                formPopup.ShowDialog(this);
+                ecGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucune unité d'enseignement sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+           
+            }
         }
 
         /// <summary>
@@ -281,9 +327,24 @@ namespace ClientGestionUniversite.view
         private void ajouterEc(object sender, EventArgs e)
         {
             UniteEnseignement ue = getCurrentUE();
-            var formPopup = new InputModifECForm("Nouvel Ec", ue);
-            formPopup.ShowDialog(this);
-            ecGridViewLoad();
+            if (ue != null)
+            {
+                var formPopup = new InputModifECForm("Nouvel Ec", ue);
+                formPopup.ShowDialog(this);
+                ecGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucune unité d'enseignement sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+           
+            }
+            
         }
 
         /// <summary>
@@ -296,6 +357,16 @@ namespace ClientGestionUniversite.view
             {
                 CoursDAO.delete(cours);
                 ecGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucun cours sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);           
             }
         }
 
@@ -310,6 +381,16 @@ namespace ClientGestionUniversite.view
                 var formPopup = new InputModifCoursForm("Modifier cours", cours, d);
                 formPopup.ShowDialog(this);
                 ueGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucun cours sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
             }
         }
 
