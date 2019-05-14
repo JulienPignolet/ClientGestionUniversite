@@ -70,6 +70,28 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputModifAnneeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputModifAnneeForm.Designer.cs">
+      <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputModifDiplomeFom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputModifDiplomeFom.Designer.cs">
+      <DependentUpon>InputModifDiplomeFom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputModifPeriodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputModifPeriodeForm.Designer.cs">
+      <DependentUpon>InputModifPeriodeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifDiplomeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ModifDiplomeView.Designer.cs" />
     <Compile Include="view\InputModifCoursForm.cs">
       <SubType>Form</SubType>
     </Compile>

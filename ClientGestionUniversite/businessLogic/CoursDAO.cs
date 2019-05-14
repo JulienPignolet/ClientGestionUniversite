@@ -524,9 +524,11 @@ namespace ClientGestionUniversite.businessLogic
 
                 while (reader.Read())
                 {
-                    res = Convert.ToInt32(reader["volume"]);
+                    if(!reader.IsDBNull(reader.GetOrdinal("volume"))){
+                        res = Convert.ToInt32(reader["volume"]);
+                    }
                 }
-
+                reader.Close();
             }
             catch (Exception e)
             {

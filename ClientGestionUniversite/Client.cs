@@ -16,6 +16,7 @@ namespace ClientGestionUniversite
     public partial class Client : Form
     {
         private bool edit;
+        private ModifDiplomeView mdv;
 
         public Client()
         {
@@ -23,6 +24,8 @@ namespace ClientGestionUniversite
             diplomeViewLoad();
             edit = false;
             switchEdition(null, null);
+            mdv = new ModifDiplomeView();
+            tabControl1.Controls.Add(mdv);
             this.MinimumSize = new Size(900, 500);
         }
 
