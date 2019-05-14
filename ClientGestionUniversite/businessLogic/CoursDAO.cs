@@ -511,14 +511,21 @@ namespace ClientGestionUniversite.businessLogic
 
             String sql = "";
 
+            MySqlDataReader reader = null;
+
             try
             {
                 sql = "select sum(volume) from cours where personnel_id = @idPersonnel";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@idPersonnel", idPersonnel);
-                _cmd.ExecuteNonQuery();
+                
+                reader = _cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    res = Convert.ToInt32(reader["personnelId"]);
+                }
 
             }
             catch (Exception e)
@@ -530,6 +537,7 @@ namespace ClientGestionUniversite.businessLogic
 
             return res;
         }
+
         public static void update(Cours Cours)
         {
             MySqlConnection _connection = ConnectionMySql.getInstance();
@@ -563,7 +571,6 @@ namespace ClientGestionUniversite.businessLogic
 
         }
    
-
         public static void delete(Cours obj)
         {
             MySqlConnection _connection = ConnectionMySql.getInstance();
