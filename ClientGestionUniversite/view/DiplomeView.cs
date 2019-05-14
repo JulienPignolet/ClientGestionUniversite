@@ -218,6 +218,16 @@ namespace ClientGestionUniversite.view
                 UniteEnseignementDAO.delete(p);
                 ueGridViewLoad();
             }
+            else
+            {
+                string message = "Aucune unité d'enseignement sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+            }
         }
 
         /// <summary>
@@ -264,6 +274,16 @@ namespace ClientGestionUniversite.view
                 ElementConstitutifDAO.delete(ec);
                 ecGridViewLoad();
             }
+            else
+            {
+                string message = "Aucun élément constitutif sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);          
+            }
         }
 
         /// <summary>
@@ -272,9 +292,9 @@ namespace ClientGestionUniversite.view
         private void modifierEc(object sender, EventArgs e)
         {
             UniteEnseignement ue = getCurrentUE();
-            if (ue != null)
+            ElementConstitutif ec = getCurrentEC();
+            if (ue != null && ec != null)
             {
-                ElementConstitutif ec = getCurrentEC();
                 var formPopup = new InputModifECForm("Nouvel Ec", ue, ec);
                 formPopup.ShowDialog(this);
                 ecGridViewLoad();
@@ -328,6 +348,16 @@ namespace ClientGestionUniversite.view
             {
                 CoursDAO.delete(cours);
                 ecGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucun cours sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);           
             }
         }
 
