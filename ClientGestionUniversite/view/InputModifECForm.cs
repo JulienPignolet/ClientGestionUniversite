@@ -15,7 +15,7 @@ namespace ClientGestionUniversite
     public partial class InputModifECForm : Form
     {
         private bool input; // true = input / false = modif
-        private long modifId; // id du diplome actuellement modifié
+        private ElementConstitutif elementModifie; // id du diplome actuellement modifié
         private UniteEnseignement ue;
 
         public InputModifECForm(String name, UniteEnseignement ue)
@@ -29,7 +29,7 @@ namespace ClientGestionUniversite
         public InputModifECForm(String name, UniteEnseignement ue, ElementConstitutif e)
         {
             input = false;
-            modifId = e.id;
+            elementModifie = e;
             this.Text = name;
             this.ue = ue;
             InitializeComponent();
@@ -50,16 +50,36 @@ namespace ClientGestionUniversite
         private void valider(object sender, EventArgs e)
         {
             ElementConstitutif ec = new ElementConstitutif(this.nomBox.Text, ue);
-            if (input)
+
+            Boolean elementConstitutifIncorrect = string.IsNullOrWhiteSpace(nomBox.Text);
+
+            if (elementConstitutifIncorrect)
             {
-                ElementConstitutifDAO.create(ec);
+
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Erreur lors de la saisie des données \n";
+                message += " le nom de l'élément constitutif est vide !";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+
             }
             else
             {
-                ec.id = modifId;
-                ElementConstitutifDAO.update(ec);
+                if (input)
+                {
+                    ElementConstitutifDAO.create(ec);
+                }
+                else
+                {
+                    ec.id = elementModifie.id;
+                    ElementConstitutifDAO.update(ec);
+                }
+                this.Close();
             }
-            this.Close();
         }
     }
 }

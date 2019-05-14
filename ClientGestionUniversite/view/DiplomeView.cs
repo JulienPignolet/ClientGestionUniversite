@@ -272,10 +272,24 @@ namespace ClientGestionUniversite.view
         private void modifierEc(object sender, EventArgs e)
         {
             UniteEnseignement ue = getCurrentUE();
-            ElementConstitutif ec = getCurrentEC();
-            var formPopup = new InputModifECForm("Nouvel Ec", ue, ec);
-            formPopup.ShowDialog(this);
-            ecGridViewLoad();
+            if (ue != null)
+            {
+                ElementConstitutif ec = getCurrentEC();
+                var formPopup = new InputModifECForm("Nouvel Ec", ue, ec);
+                formPopup.ShowDialog(this);
+                ecGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucune unité d'enseignement sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+           
+            }
         }
 
         /// <summary>
@@ -284,9 +298,24 @@ namespace ClientGestionUniversite.view
         private void ajouterEc(object sender, EventArgs e)
         {
             UniteEnseignement ue = getCurrentUE();
-            var formPopup = new InputModifECForm("Nouvel Ec", ue);
-            formPopup.ShowDialog(this);
-            ecGridViewLoad();
+            if (ue != null)
+            {
+                var formPopup = new InputModifECForm("Nouvel Ec", ue);
+                formPopup.ShowDialog(this);
+                ecGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucune unité d'enseignement sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+           
+            }
+            
         }
 
         /// <summary>
@@ -313,6 +342,16 @@ namespace ClientGestionUniversite.view
                 var formPopup = new InputModifCoursForm("Modifier cours", cours, d);
                 formPopup.ShowDialog(this);
                 ueGridViewLoad();
+            }
+            else
+            {
+                string message = "Aucun cours sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
             }
         }
 
