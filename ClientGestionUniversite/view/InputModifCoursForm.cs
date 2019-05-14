@@ -73,12 +73,8 @@ namespace ClientGestionUniversite.view
                 message += elementIncorrect ? " l'élément constitutif est incorrect" : "";
                 message += volumeHoraireIncorrect ? " le volume horaire est incorrect" : "";
                 message += typeCoursIncorrect ? " le type de cours est incorrect" : "";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
 
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);
                 
             }
             else

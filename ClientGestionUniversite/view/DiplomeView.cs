@@ -51,7 +51,7 @@ namespace ClientGestionUniversite.view
             List<ElementConstitutif> elements = new List<ElementConstitutif>();
             foreach (ElementConstitutif ec in elemConstitutifAll)
             {
-                if(ue != null && ue.id == ec.uniteEnseignement.id)
+                if (ue != null && ue.id == ec.uniteEnseignement.id)
                     elements.Add(ec);
             }
             BindingListView<ElementConstitutif> bindingSourceEc = new BindingListView<ElementConstitutif>(elements);
@@ -69,7 +69,8 @@ namespace ClientGestionUniversite.view
             List<Cours> cours = new List<Cours>();
             foreach (Cours c in allCours)
             {
-                if (ec != null && ec.id == c.elementConstitutif.id) { 
+                if (ec != null && ec.id == c.elementConstitutif.id)
+                {
                     cours.Add(c);
                 }
             }
@@ -229,14 +230,22 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                string message = "Aucune unité d'enseignement sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                afficherPopup("Aucune unité d'enseignement sélectionné \n");
             }
+        }
+
+        /**
+         * Methode qui prend un string et qui affiche un pop up avec ce string
+         * */
+        public static void afficherPopup(String message)
+        {
+            string caption = "Erreur";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            DialogResult result;
+
+            // Displays the MessageBox.
+            result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+
         }
 
         /// <summary>
@@ -251,15 +260,10 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 ueGridViewLoad();
             }
-
-            /*Personnel p = getCurrentPersonnel();
-            if (p != null)
+            else
             {
-                var formPopup = new InputModifPersonnelForm("Modifier Personnel", p);
-                formPopup.ShowDialog(this);
-                personnelGridViewLoad();
-
-            }*/
+                afficherPopup("Aucune unité d'enseignement sélectionné \n");
+            }
         }
 
         /// <summary>
@@ -285,13 +289,7 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                string message = "Aucun élément constitutif sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);          
+                afficherPopup("Aucun élément constitutif sélectionné \n");
             }
         }
 
@@ -310,14 +308,7 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                string message = "Aucune unité d'enseignement sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
-           
+                afficherPopup("Aucun élément constitutif sélectionné \n");
             }
         }
 
@@ -335,16 +326,9 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                string message = "Aucune unité d'enseignement sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
-           
+                afficherPopup("Aucun élément constitutif sélectionné \n");
             }
-            
+
         }
 
         /// <summary>
@@ -360,13 +344,7 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                string message = "Aucun cours sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);           
+                afficherPopup("Aucun cours sélectionné \n");
             }
         }
 
@@ -384,13 +362,7 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                string message = "Aucun cours sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                afficherPopup("Aucun cours sélectionné \n");
             }
         }
 

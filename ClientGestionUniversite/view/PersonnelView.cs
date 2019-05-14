@@ -153,12 +153,7 @@ namespace ClientGestionUniversite.view
             else
             {
                 string message = "Aucun personnel sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);            
+                DiplomeView.afficherPopup(message);      
             }
         }
 
@@ -178,12 +173,7 @@ namespace ClientGestionUniversite.view
             else
             {
                 string message = "Aucun personnel sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);      
+                DiplomeView.afficherPopup(message);  
             }
 
         }
@@ -204,12 +194,7 @@ namespace ClientGestionUniversite.view
             else
             {
                 string message = "Aucun personnel sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);                 
+                DiplomeView.afficherPopup(message);                
             }
         }
 
@@ -230,12 +215,7 @@ namespace ClientGestionUniversite.view
             else
             {
                 string message = "Aucun personnel ou aucun cours sélectionné \n";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);              
+                DiplomeView.afficherPopup(message);         
             }
         }
 

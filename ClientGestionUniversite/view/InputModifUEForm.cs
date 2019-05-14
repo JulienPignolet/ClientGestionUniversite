@@ -62,12 +62,7 @@ namespace ClientGestionUniversite.view
                 string message = "Erreur lors de la saisie des données \n";
                 message += nomVide ? " le nom est vide" : "";
                 message += periodeIncorrect ? " la période est incorrecte" : "";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);
 
             }
             else
