@@ -76,12 +76,6 @@
     <Compile Include="InputModifAnneeForm.Designer.cs">
       <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InputModifDiplomeFom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="InputModifDiplomeFom.Designer.cs">
-      <DependentUpon>InputModifDiplomeFom.cs</DependentUpon>
-    </Compile>
     <Compile Include="InputModifPeriodeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\PersonnelView.resx">
       <DependentUpon>PersonnelView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\StatistiquesView.resx">
+      <DependentUpon>StatistiquesView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

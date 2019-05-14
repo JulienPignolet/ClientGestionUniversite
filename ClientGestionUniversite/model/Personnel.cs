@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientGestionUniversite.businessLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,21 @@ namespace ClientGestionUniversite.modele
             this.nom = nom;
             this.prenom = prenom;
             this.categoriePersonnel = categoriePersonnel;
+        }
+
+        public double getSommeHorraire()
+        {
+            List<Ratio> ratio = RatioDAO.findAll();
+            List<Cours> cours = CoursDAO.findByPersonnel(this.id);
+
+            double somme = 0;
+
+            foreach(Cours c in cours)
+            {
+                Ratio r = ratio.Find(x => x.typeCours.id == c.typeCours.id);
+                somme += r.ratio * c.volumeHoraire;
+            }
+            return Math.Round(somme, 2);
         }
 
         public override String ToString()

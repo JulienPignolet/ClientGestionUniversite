@@ -123,5 +123,14 @@ namespace ClientGestionUniversite
                 return null;
             }
         }
+
+        private void updateStat(object sender, EventArgs e)
+        {
+            if (this.tabControl1.SelectedIndex == 1)
+            {
+                this.statistiquesView.updateCharts();
+            }
+        }
+
     }
 }
