@@ -354,15 +354,16 @@ namespace ClientGestionUniversite.view
         private void modifierCours(object sender, EventArgs e)
         {
             Cours cours = getCurrentCours();
-            if (cours != null)
+            ElementConstitutif ec = getCurrentEc();
+            if (cours != null && ec != null)
             {
-                var formPopup = new InputModifCoursForm("Modifier cours", cours, d);
+                var formPopup = new InputModifCoursForm("Modifier cours", cours, ec);
                 formPopup.ShowDialog(this);
                 ueGridViewLoad();
             }
             else
             {
-                afficherPopup("Aucun cours sélectionné \n");
+                afficherPopup("Aucun cours ou d'élément constitutif sélectionné \n");
             }
         }
 
@@ -371,9 +372,19 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void ajouterCours(object sender, EventArgs e)
         {
-            var formPopup = new InputModifCoursForm("Nouveau cours", d);
-            formPopup.ShowDialog(this);
-            ueGridViewLoad();
+            UniteEnseignement ue = getCurrentUE();
+            ElementConstitutif ec = getCurrentEc();
+            if (ue != null && ec != null)
+            {
+                var formPopup = new InputModifCoursForm("Nouveau cours", ec);
+                formPopup.ShowDialog(this);
+                ueGridViewLoad();
+            }
+            else
+            {
+                afficherPopup("Aucun élément constitutif ou d'unité d'enseignement sélectionné \n");
+            }
+            
         }
 
         /// <summary>

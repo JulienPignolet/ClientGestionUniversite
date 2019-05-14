@@ -17,18 +17,18 @@ namespace ClientGestionUniversite.view
         private bool input; // true = input / false = modif
 
         private Cours coursModifie;// id du cours actuellement modifié
-        private Diplome diplome;
+        private ElementConstitutif elementConstitutif;
 
-        public InputModifCoursForm(String name, Diplome diplome)
+        public InputModifCoursForm(String name, ElementConstitutif element)
         {
             input = true;
             this.Text = name;
-            this.diplome = diplome;
+            this.elementConstitutif = element;
             InitializeComponent();
             load();
         }
 
-        public InputModifCoursForm(String name,Cours cours, Diplome diplome) : this(name, diplome)
+        public InputModifCoursForm(String name, Cours cours, ElementConstitutif element): this(name, element)
         {
             input = false;
             coursModifie = cours;
@@ -55,22 +55,19 @@ namespace ClientGestionUniversite.view
         private void valider(object sender, EventArgs e)
         {
             
-            ElementConstitutif element = (ElementConstitutif)elemConstitutifComboBox.SelectedItem;
             Personnel intervenant = (Personnel)intervenantBox.SelectedItem;
             TypeCours typeCours = (TypeCours)typeCoursBox.SelectedItem;
 
             int volumeHoraire;
 
-            Boolean elementIncorrect = element == null;
             Boolean typeCoursIncorrect = typeCours == null;
             Boolean volumeHoraireIncorrect = !Int32.TryParse(volumeBox.Text, out volumeHoraire);
 
-            if (elementIncorrect || typeCoursIncorrect || volumeHoraireIncorrect)
+            if (typeCoursIncorrect || volumeHoraireIncorrect)
             {
 
                 // Initializes the variables to pass to the MessageBox.Show method.
                 string message = "Erreur lors de la saisie des données \n";
-                message += elementIncorrect ? " l'élément constitutif est incorrect" : "";
                 message += volumeHoraireIncorrect ? " le volume horaire est incorrect" : "";
                 message += typeCoursIncorrect ? " le type de cours est incorrect" : "";
 
@@ -79,7 +76,7 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                Cours cours = new Cours(element, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
+                Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
                 if (input)
                 {
                     CoursDAO.create(cours);
@@ -96,20 +93,6 @@ namespace ClientGestionUniversite.view
 
         private void load()
         {
-            // selecteur liste element constitutif
-            this.elemConstitutifComboBox.Items.Clear();
-            List<ElementConstitutif> elementConstitutifs = ElementConstitutifDAO.findAll();
-            foreach (ElementConstitutif e in elementConstitutifs)
-            {
-                if (e.uniteEnseignement.periode.annee.diplome.id == diplome.id)
-                    this.elemConstitutifComboBox.Items.Add(e);
-            }
-            // si modif on remet le bon element constitutif
-            if (coursModifie != null && coursModifie.elementConstitutif != null)
-            {
-                this.elemConstitutifComboBox.SelectedIndex = elemConstitutifComboBox.FindStringExact(coursModifie.elementConstitutif.ToString());
-            }
-
             this.typeCoursBox.Items.Clear();
             // selecteur liste type cours
             List<TypeCours> typeCours = TypeCoursDAO.findAll();

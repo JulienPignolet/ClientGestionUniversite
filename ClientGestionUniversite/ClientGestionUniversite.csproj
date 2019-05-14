@@ -71,7 +71,7 @@
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
     <Compile Include="view\DiplomeManageView.cs">
-      <SubType>Form</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="view\DiplomeManageView.Designer.cs">
       <DependentUpon>DiplomeManageView.cs</DependentUpon>
