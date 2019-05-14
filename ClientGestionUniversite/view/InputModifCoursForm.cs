@@ -101,6 +101,7 @@ namespace ClientGestionUniversite.view
         private void load()
         {
             // selecteur liste element constitutif
+            this.elemConstitutifComboBox.Items.Clear();
             List<ElementConstitutif> elementConstitutifs = ElementConstitutifDAO.findAll();
             foreach (ElementConstitutif e in elementConstitutifs)
             {
@@ -113,6 +114,7 @@ namespace ClientGestionUniversite.view
                 this.elemConstitutifComboBox.SelectedIndex = elemConstitutifComboBox.FindStringExact(coursModifie.elementConstitutif.ToString());
             }
 
+            this.typeCoursBox.Items.Clear();
             // selecteur liste type cours
             List<TypeCours> typeCours = TypeCoursDAO.findAll();
             foreach (TypeCours t in typeCours) // filtre
@@ -125,6 +127,7 @@ namespace ClientGestionUniversite.view
                 this.typeCoursBox.SelectedIndex = typeCoursBox.FindStringExact(coursModifie.typeCours.libelle);
             }
 
+            this.intervenantBox.Items.Clear();
             // selecteur liste personnel
             List<Personnel> personnels = PersonnelDAO.findAll();
             foreach (Personnel p in personnels)
