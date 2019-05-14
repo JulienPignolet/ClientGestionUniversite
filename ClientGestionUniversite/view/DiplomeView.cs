@@ -174,6 +174,8 @@ namespace ClientGestionUniversite.view
         private void ueGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ueGridView.Columns["id"].Visible = false;
+            ueGridView.Columns["libelle"].HeaderText = "UE";
+            ueGridView.Columns["periode"].HeaderText = "Periode";
             ueGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -183,6 +185,8 @@ namespace ClientGestionUniversite.view
         private void ecGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             ecGridView.Columns["id"].Visible = false;
+            ecGridView.Columns["uniteEnseignement"].Visible = false;
+            ecGridView.Columns["libelle"].HeaderText = "EC";
             ecGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -193,6 +197,11 @@ namespace ClientGestionUniversite.view
         {
             ecDetailsGridView.Columns["id"].Visible = false;
             ecDetailsGridView.Columns["text"].Visible = false;
+            ecDetailsGridView.Columns["elementConstitutif"].HeaderText = "Cours";
+            ecDetailsGridView.Columns["intervenant"].HeaderText = "Intervenant";
+            ecDetailsGridView.Columns["typeCours"].HeaderText = "Type de cours";
+            ecDetailsGridView.Columns["numeroGroupe"].HeaderText = "Groupe";
+            ecDetailsGridView.Columns["volumeHoraire"].HeaderText = "Volume Horaire";
             ecDetailsGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

@@ -1,4 +1,5 @@
-﻿namespace ClientGestionUniversite
+﻿using ClientGestionUniversite.view;
+namespace ClientGestionUniversite
 {
     partial class Client
     {
@@ -31,9 +32,6 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.editionMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editionMode = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajouterDiplome = new System.Windows.Forms.ToolStripMenuItem();
-            this.supprimerDiplome = new System.Windows.Forms.ToolStripMenuItem();
-            this.modifierDiplome = new System.Windows.Forms.ToolStripMenuItem();
             this.personnelView = new ClientGestionUniversite.view.PersonnelView();
             this.statistiquesView = new view.StatistiquesView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -54,12 +52,6 @@
             // 
             this.editionMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editionMode});
-            this.editionMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ajouterDiplome});
-            this.editionMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modifierDiplome});
-            this.editionMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.supprimerDiplome});
             this.editionMenu.Name = "editionMenu";
             this.editionMenu.Size = new System.Drawing.Size(56, 20);
             this.editionMenu.Text = "Edition";
@@ -71,31 +63,9 @@
             this.editionMode.Text = "Activer l\'édition";
             this.editionMode.Click += new System.EventHandler(switchEdition);
             // 
-            // ajouterDiplome
-            // 
-            this.ajouterDiplome.Name = "ajouterDiplome";
-            this.ajouterDiplome.Size = new System.Drawing.Size(32, 19);
-            this.ajouterDiplome.Text = "Ajouter un diplome";
-            this.ajouterDiplome.Click += new System.EventHandler(addDiplome);
-            // 
-            // modifierDiplome
-            // 
-            this.modifierDiplome.Name = "modifierDiplome";
-            this.modifierDiplome.Size = new System.Drawing.Size(32, 19);
-            this.modifierDiplome.Text = "Modifier ce diplome";
-            this.modifierDiplome.Click += new System.EventHandler(modDiplome);
-            // 
-            // supprimerDiplome
-            // 
-            this.supprimerDiplome.Name = "supprimerDiplome";
-            this.supprimerDiplome.Size = new System.Drawing.Size(32, 19);
-            this.supprimerDiplome.Text = "Supprimer ce diplome";
-            this.supprimerDiplome.Click += new System.EventHandler(supDiplome);
-            // 
             // personnelView
             // 
             this.personnelView.Name = "personnelView";
-            this.personnelView.TabIndex = 0;
             this.personnelView.Text = "Personnel";
             this.personnelView.UseVisualStyleBackColor = true;
             // 
@@ -107,14 +77,12 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.personnelView);
             this.tabControl1.Controls.Add(this.statistiquesView);
+            this.tabControl1.Controls.Add(this.personnelView);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(790, 434);
-            this.tabControl1.TabIndex = 1;
             // 
             // Client
             // 
@@ -138,10 +106,8 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem editionMenu;
         private System.Windows.Forms.ToolStripMenuItem editionMode;
-        private System.Windows.Forms.ToolStripMenuItem ajouterDiplome;
-        private System.Windows.Forms.ToolStripMenuItem modifierDiplome;
-        private System.Windows.Forms.ToolStripMenuItem supprimerDiplome;
         private ClientGestionUniversite.view.PersonnelView personnelView;
+        private ModifDiplomeView mdv;
         private ClientGestionUniversite.view.StatistiquesView statistiquesView;
         private System.Collections.Generic.List<ClientGestionUniversite.view.DiplomeView> diplomesView;
         private System.Windows.Forms.TabControl tabControl1;
