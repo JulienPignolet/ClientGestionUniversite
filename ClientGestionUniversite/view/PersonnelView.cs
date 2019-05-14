@@ -238,11 +238,8 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 var formPopup = new InputModifCoursParPersonnelForm("Ajouter Affectation", p);
-                try
-                {
-                    formPopup.ShowDialog(this);
-                }
-                catch (Exception ignored) { }
+                formPopup.ShowDialog(this);
+               
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
             }
