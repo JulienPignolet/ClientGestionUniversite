@@ -499,6 +499,45 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
+        public static int getVolumeCoursByPersonnel(long idPersonnel)
+        {
+            int res = 0;
+
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+
+            MySqlDataReader reader = null;
+
+            try
+            {
+                sql = "select sum(volume) as volume from cours where personnel_id = @idPersonnel";
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+                
+                reader = _cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    res = Convert.ToInt32(reader["volume"]);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+
+            _cmd.Dispose();
+
+            return res;
+        }
+
         public static void update(Cours Cours)
         {
             MySqlConnection _connection = ConnectionMySql.getInstance();
@@ -532,7 +571,6 @@ namespace ClientGestionUniversite.businessLogic
 
         }
    
-
         public static void delete(Cours obj)
         {
             MySqlConnection _connection = ConnectionMySql.getInstance();
