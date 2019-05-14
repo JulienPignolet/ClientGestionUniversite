@@ -3,6 +3,9 @@ using ClientGestionUniversite.modele;
 using Equin.ApplicationFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +13,11 @@ using System.Windows.Forms;
 
 namespace ClientGestionUniversite.view
 {
-    public partial class ModifDiplomeView : TabPage
+    public partial class DiplomeManageView : TabPage
     {
         private Client client;
-        public ModifDiplomeView(Client c){
+        public DiplomeManageView(Client c)
+        {
             client = c;
             InitializeComponent();
             diplomeGridViewLoad();
@@ -367,8 +371,6 @@ namespace ClientGestionUniversite.view
             }
             
 
-        }
-
-        
+        } 
     }
 }
