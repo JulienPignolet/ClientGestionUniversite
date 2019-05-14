@@ -499,6 +499,37 @@ namespace ClientGestionUniversite.businessLogic
 
         }
 
+        public static int getVolumeCoursByPersonnel(long idPersonnel)
+        {
+            int res = 0;
+
+            MySqlConnection _connection = ConnectionMySql.getInstance();
+
+            MySqlCommand _cmd = new MySqlCommand();
+
+            _cmd.Connection = _connection;
+
+            String sql = "";
+
+            try
+            {
+                sql = "select sum(volume) from cours where personnel_id = @idPersonnel";
+                _cmd.CommandText = sql;
+
+                _cmd.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+                _cmd.ExecuteNonQuery();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception : " + e);
+            }
+
+            _cmd.Dispose();
+
+            return res;
+        }
         public static void update(Cours Cours)
         {
             MySqlConnection _connection = ConnectionMySql.getInstance();
