@@ -69,7 +69,7 @@ namespace ClientGestionUniversite.view
         {
             personnelDetailsGridView.Columns["id"].Visible = false;
             personnelDetailsGridView.Columns["text"].Visible = false;
-            personnelDetailsGridView.Columns["elementConstitutif"].HeaderText = "EC";
+            personnelDetailsGridView.Columns["elementConstitutif"].HeaderText = "Cours";
             personnelDetailsGridView.Columns["intervenant"].HeaderText = "Intervenant";
             personnelDetailsGridView.Columns["typeCours"].HeaderText = "Type de cours";
             personnelDetailsGridView.Columns["numeroGroupe"].HeaderText = "Groupe";

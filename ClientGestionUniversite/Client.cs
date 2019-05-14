@@ -16,16 +16,13 @@ namespace ClientGestionUniversite
     public partial class Client : Form
     {
         private bool edit;
-        private ModifDiplomeView mdv;
 
         public Client()
         {
             InitializeComponent();
             diplomeViewLoad();
-            edit = false;
+            edit = true;
             switchEdition(null, null);
-            mdv = new ModifDiplomeView();
-            tabControl1.Controls.Add(mdv);
             this.MinimumSize = new Size(900, 500);
         }
 
@@ -36,10 +33,17 @@ namespace ClientGestionUniversite
         {
             edit = !edit;
             editionMode.Text = (edit) ? ("Désactiver l'édition") : ("Activer l'édition");
-            ajouterDiplome.Visible = edit;
-            modifierDiplome.Visible = edit;
-            supprimerDiplome.Visible = edit;
             personnelView.editPanel.Visible = edit;
+            if (edit)
+            {
+                this.mdv = new ModifDiplomeView();
+                this.tabControl1.Controls.Add(mdv);
+                this.tabControl1.SelectedTab = mdv;
+            }
+            else
+            {
+                this.tabControl1.Controls.Remove(mdv);
+            }
             foreach(DiplomeView dv in diplomesView)
                 dv.editPanel.Visible = edit;
         }
