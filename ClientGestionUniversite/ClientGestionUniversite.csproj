@@ -76,6 +76,12 @@
     <Compile Include="view\DiplomeManageView.Designer.cs">
       <DependentUpon>DiplomeManageView.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\InputAddCategoriePersonnelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\InputAddCategoriePersonnelForm.Designer.cs">
+      <DependentUpon>InputAddCategoriePersonnelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\InputModifAnneeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\DiplomeManageView.resx">
       <DependentUpon>DiplomeManageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputAddCategoriePersonnelForm.resx">
+      <DependentUpon>InputAddCategoriePersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifAnneeForm.resx">
       <DependentUpon>InputModifAnneeForm.cs</DependentUpon>

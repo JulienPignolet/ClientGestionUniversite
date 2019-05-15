@@ -29,6 +29,7 @@ namespace ClientGestionUniversite.view
             this.modifierAffectationButton = new System.Windows.Forms.Button();
             this.ajouterAffectationButton = new System.Windows.Forms.Button();
             this.modCategorie = new System.Windows.Forms.Button();
+            this.addCategorie = new System.Windows.Forms.Button();
             this.filterPanel = new System.Windows.Forms.Panel();
             this.filterBox = new System.Windows.Forms.TextBox();
             this.filterLabel = new System.Windows.Forms.Label();
@@ -152,6 +153,7 @@ namespace ClientGestionUniversite.view
             this.editPanel.Controls.Add(this.modifierAffectationButton);
             this.editPanel.Controls.Add(this.ajouterAffectationButton);
             this.editPanel.Controls.Add(this.modCategorie);
+            this.editPanel.Controls.Add(this.addCategorie);
             this.editPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.editPanel.Location = new System.Drawing.Point(3, 62);
             this.editPanel.MaximumSize = new System.Drawing.Size(0, 35);
@@ -228,6 +230,16 @@ namespace ClientGestionUniversite.view
             this.modCategorie.TabIndex = 6;
             this.modCategorie.Text = "Modifier categorie";
             this.modCategorie.Click += new System.EventHandler(this.modifCategorie);
+            // 
+            // addCategorie
+            // 
+            this.addCategorie.AutoSize = true;
+            this.addCategorie.Location = new System.Drawing.Point(909, 5);
+            this.addCategorie.Name = "addCategorie";
+            this.addCategorie.Size = new System.Drawing.Size(124, 23);
+            this.addCategorie.TabIndex = 6;
+            this.addCategorie.Text = "Ajouter categorie";
+            this.addCategorie.Click += new System.EventHandler(this.ajouterCategorie);
             // 
             // filterPanel
             // 
@@ -330,6 +342,7 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.Button modifierAffectationButton;
         private System.Windows.Forms.Button ajouterAffectationButton;
         private System.Windows.Forms.Button modCategorie;
+        private System.Windows.Forms.Button addCategorie;
         private System.Windows.Forms.DataGridView personnelDetailsGridView;
         private System.Windows.Forms.TextBox filterBox;
         private System.Windows.Forms.Label filterLabel;

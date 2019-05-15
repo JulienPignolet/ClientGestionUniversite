@@ -300,7 +300,7 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
-        /// Modification d'un categorie
+        /// Modification d'une categorie
         /// </summary>
         private void modifCategorie(object sender, EventArgs e)
         {
@@ -308,7 +308,16 @@ namespace ClientGestionUniversite.view
             var formPopup = new InputModifCategoriePersonnel();
             formPopup.ShowDialog(this);
             personnelGridViewLoad();
+        }
 
+        /// <summary>
+        /// ajout d'une categorie
+        /// </summary>
+        private void ajouterCategorie(object sender, EventArgs e)
+        {
+            var formPopup = new InputAddCategoriePersonnelForm();
+            formPopup.ShowDialog(this);
+            personnelGridViewLoad();
         }
     }
 }
