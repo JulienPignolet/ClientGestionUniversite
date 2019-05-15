@@ -1,6 +1,6 @@
 ﻿namespace ClientGestionUniversite.view
 {
-    partial class InputModifCategoriePersonnel
+    partial class InputModifCategoriePersonnelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -112,6 +112,7 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ratio";
+            this.groupBox1.Enabled = false;
             // 
             // ratioTextBox
             // 

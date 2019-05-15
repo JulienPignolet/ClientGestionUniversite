@@ -80,7 +80,8 @@ namespace ClientGestionUniversite.view
             for (int i = 0; i < personnelGridView.Rows.Count; i++)
             {
                 Personnel personnel = ((ObjectView<Personnel>)personnelGridView.Rows[i].DataBoundItem).Object;
-                if (personnel.getSommeHorraire() > personnel.categoriePersonnel.volumeHoraire)
+                if (personnel.getSommeHorraire() > personnel.categoriePersonnel.volumeHoraire + 10 
+                    || personnel.getSommeHorraire() < personnel.categoriePersonnel.volumeHoraire - 10)
                 {
                     personnelGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                 }
@@ -305,7 +306,7 @@ namespace ClientGestionUniversite.view
         private void modifCategorie(object sender, EventArgs e)
         {
 
-            var formPopup = new InputModifCategoriePersonnel();
+            var formPopup = new InputModifCategoriePersonnelForm();
             formPopup.ShowDialog(this);
             personnelGridViewLoad();
         }

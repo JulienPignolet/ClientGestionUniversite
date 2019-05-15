@@ -26,6 +26,7 @@ namespace ClientGestionUniversite.view
             this.elementConstitutif = element;
             InitializeComponent();
             load();
+            groupeLabel.Text = "Groupe";
         }
 
         public InputModifCoursForm(String name, Cours cours, ElementConstitutif element): this(name, element)
@@ -38,6 +39,7 @@ namespace ClientGestionUniversite.view
             this.groupeBox.Text = cours.numeroGroupe;
             this.volumeBox.Text = cours.volumeHoraire.ToString();
             load();
+            groupeLabel.Text = "No groupe";
         }
 
         /// <summary>
@@ -76,13 +78,18 @@ namespace ClientGestionUniversite.view
             }
             else
             {
-                Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
+                
                 if (input)
                 {
-                    CoursDAO.create(cours);
+                    List<Cours> cours = new List<Cours>();
+                    for (int i = 0; i < Int32.Parse(groupeBox.Text); i++)
+                        cours.Add(new Cours(elementConstitutif, intervenant, typeCours, typeCours.ToString() + (i + 1).ToString(), System.Convert.ToInt32(volumeBox.Text)));
+                    foreach(Cours c in cours)
+                        CoursDAO.create(c);
                 }
                 else
                 {
+                    Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
                     cours.id = coursModifie.id;
                     if (cours.intervenant != null) CoursDAO.updateIntervenant(cours.intervenant.id, cours.id);
                     CoursDAO.update(cours);

@@ -88,11 +88,11 @@
     <Compile Include="view\InputModifAnneeForm.Designer.cs">
       <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\InputModifCategoriePersonnel.cs">
+    <Compile Include="view\InputModifCategoriePersonnelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\InputModifCategoriePersonnel.Designer.cs">
-      <DependentUpon>InputModifCategoriePersonnel.cs</DependentUpon>
+    <Compile Include="view\InputModifCategoriePersonnelForm.Designer.cs">
+      <DependentUpon>InputModifCategoriePersonnelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="view\InputModifPeriodeForm.cs">
       <SubType>Form</SubType>
@@ -191,8 +191,8 @@
     <EmbeddedResource Include="view\InputModifAnneeForm.resx">
       <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\InputModifCategoriePersonnel.resx">
-      <DependentUpon>InputModifCategoriePersonnel.cs</DependentUpon>
+    <EmbeddedResource Include="view\InputModifCategoriePersonnelForm.resx">
+      <DependentUpon>InputModifCategoriePersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifCoursForm.resx">
       <DependentUpon>InputModifCoursForm.cs</DependentUpon>

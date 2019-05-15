@@ -50,7 +50,7 @@ namespace ClientGestionUniversite.businessLogic
                     throw e;
                 }
             }
-            
+
             return _connection;
 
         }
