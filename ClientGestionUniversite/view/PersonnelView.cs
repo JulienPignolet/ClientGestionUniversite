@@ -244,5 +244,17 @@ namespace ClientGestionUniversite.view
                 personnelViewModel.update(p);
             }
         }
+
+        /// <summary>
+        /// Modification d'un categorie
+        /// </summary>
+        private void modifCategorie(object sender, EventArgs e)
+        {
+
+            var formPopup = new InputModifCategoriPersonel();
+            formPopup.ShowDialog(this);
+            personnelGridViewLoad();
+
+        }
     }
 }

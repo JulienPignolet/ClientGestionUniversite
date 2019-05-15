@@ -70,6 +70,10 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputModifCategoriPersonel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputModifCategoriPersonel.Designer.cs" />
     <Compile Include="view\DiplomeManageView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -164,6 +168,7 @@
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputModifCategoriPersonel.resx" />
     <EmbeddedResource Include="view\DiplomeManageView.resx">
       <DependentUpon>DiplomeManageView.cs</DependentUpon>
     </EmbeddedResource>
