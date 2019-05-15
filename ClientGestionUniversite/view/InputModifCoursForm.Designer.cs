@@ -71,11 +71,11 @@
             // groupeLabel
             // 
             this.groupeLabel.AutoSize = true;
-            this.groupeLabel.Location = new System.Drawing.Point(102, 27);
+            this.groupeLabel.Location = new System.Drawing.Point(12, 27);
             this.groupeLabel.Name = "groupeLabel";
-            this.groupeLabel.Size = new System.Drawing.Size(64, 17);
+            this.groupeLabel.Size = new System.Drawing.Size(69, 17);
             this.groupeLabel.TabIndex = 8;
-            this.groupeLabel.Text = "Groupe :";
+            this.groupeLabel.Text = "Groupe :*";
             // 
             // typeCoursLabel
             // 
