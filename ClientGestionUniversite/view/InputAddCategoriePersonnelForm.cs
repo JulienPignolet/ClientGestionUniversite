@@ -63,8 +63,8 @@ namespace ClientGestionUniversite.view
                     {
                         Ratio temp = new Ratio();
                         temp.ratio = 1;
-                        temp.typeCours.id = typeCours.id;
-                        temp.categoriePersonnel.id = categorie.id;
+                        temp.typeCours = typeCours;
+                        temp.categoriePersonnel = categorie;
                         RatioDAO.create(temp);
                     }
                        

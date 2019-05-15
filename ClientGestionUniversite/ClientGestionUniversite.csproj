@@ -158,6 +158,12 @@
     <Compile Include="view\InputModifPersonnelForm.Designer.cs">
       <DependentUpon>InputModifPersonnelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\InputRemplacerCategoriePersonnelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\InputRemplacerCategoriePersonnelForm.Designer.cs">
+      <DependentUpon>InputRemplacerCategoriePersonnelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\PersonnelView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -220,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifPersonnelForm.resx">
       <DependentUpon>InputModifPersonnelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputRemplacerCategoriePersonnelForm.resx">
+      <DependentUpon>InputRemplacerCategoriePersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\PersonnelView.resx">
       <DependentUpon>PersonnelView.cs</DependentUpon>

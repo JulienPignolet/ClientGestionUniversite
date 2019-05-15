@@ -319,5 +319,18 @@ namespace ClientGestionUniversite.view
             formPopup.ShowDialog(this);
             personnelGridViewLoad();
         }
+
+        private void supprimerCategorie(object sender, EventArgs e)
+        {
+            /*
+             * pop up pour remplacer une categorie par une autre
+             * pop up avec 2 combobox
+             * categorie a supprimer
+             * categorie qui remplace
+             * */
+            var formPopup = new InputRemplacerCategoriePersonnelForm();
+            formPopup.ShowDialog(this);
+            personnelGridViewLoad();
+        }
     }
 }

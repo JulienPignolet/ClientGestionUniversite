@@ -24,6 +24,7 @@ namespace ClientGestionUniversite.businessLogic
             if (_connection == null
                 || _connection.State == System.Data.ConnectionState.Broken
                 || _connection.State == System.Data.ConnectionState.Closed
+                || !_connection.Ping()
                 )
             {
 
