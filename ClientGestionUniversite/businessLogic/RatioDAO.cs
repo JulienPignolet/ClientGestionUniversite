@@ -153,7 +153,7 @@ namespace ClientGestionUniversite.businessLogic
 
             try
             {
-                sql = "UPDATE ratio set ratio = @ratio WHERE type_id = @typeId, categorie_id = @categorieId ";
+                sql = "UPDATE ratio set ratio = @ratio WHERE type_id = @typeId AND categorie_id = @categorieId ";
                 _cmd.CommandText = sql;
 
                 _cmd.Parameters.AddWithValue("@categorieId", obj.categoriePersonnel.id);
@@ -207,7 +207,7 @@ namespace ClientGestionUniversite.businessLogic
         {
             Ratio resultat = new Ratio();
 
-            resultat.ratio = Convert.ToDouble(reader["ratio"]);
+            resultat.ratio = Convert.ToDouble(Convert.ToDecimal(reader["ratio"]));
 
             return resultat;
         }
