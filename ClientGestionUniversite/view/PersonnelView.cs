@@ -27,7 +27,7 @@ namespace ClientGestionUniversite.view
         /// <summary>
         /// Charge les données de la grille personnel
         /// </summary>
-        private void personnelGridViewLoad()
+        public void personnelGridViewLoad()
         {
             BindingListView<Personnel> bindingSourcePersonnel = new BindingListView<Personnel>(PersonnelDAO.findAll());
             personnelGridView.DataSource = bindingSourcePersonnel;
@@ -75,7 +75,7 @@ namespace ClientGestionUniversite.view
         /// <summary>
         /// Coloration de la grille du personnel si il y a une sur/sous affectation
         /// </summary>
-        public void colorPersonnelGridView()
+        private void colorPersonnelGridView()
         {
             for (int i = 0; i < personnelGridView.Rows.Count; i++)
             {
@@ -202,7 +202,7 @@ namespace ClientGestionUniversite.view
                 CoursDAO.updateIntervenant(null, cppvm.id);
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
-                colorPersonnelGridView();
+                personnelGridViewLoad();
             }
             else
             {
@@ -257,6 +257,7 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
+                personnelGridViewLoad();
             }
             else
             {
@@ -293,6 +294,7 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                
                 personnelDetailsGridViewLoad();
+                personnelGridViewLoad();
                 personnelViewModel.update(p);
             }
         }

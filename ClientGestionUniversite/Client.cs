@@ -164,6 +164,10 @@ namespace ClientGestionUniversite
             {
                 this.statistiquesView.updateCharts();
             }
+            else if (this.tabControl1.SelectedIndex == 1)
+            {
+                this.personnelView.personnelGridViewLoad();
+            }
         }
     }
 }
