@@ -77,6 +77,8 @@ namespace ClientGestionUniversite
             {
                 this.tabControl1.Controls.Add(dv);
             }
+            if(this.mdv != null)
+                this.mdvIndex = tabControl1.TabPages.IndexOf(this.mdv);
         }
 
         /// <summary>
