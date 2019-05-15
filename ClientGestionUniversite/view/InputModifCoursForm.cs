@@ -110,7 +110,7 @@ namespace ClientGestionUniversite.view
                         this.Close();
                     }
                 }
-                
+                this.Close();
             }
         }
 
