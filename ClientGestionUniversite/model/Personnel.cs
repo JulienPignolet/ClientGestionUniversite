@@ -38,7 +38,7 @@ namespace ClientGestionUniversite.modele
 
             foreach(Cours c in cours)
             {
-                Ratio r = ratio.Find(x => x.typeCours.id == c.typeCours.id);
+                Ratio r = ratio.Find(x => x.typeCours.id == c.typeCours.id && x.categoriePersonnel.id == this.categoriePersonnel.id);
                 somme += r.ratio * c.volumeHoraire;
             }
             return Math.Round(somme, 2);
