@@ -305,7 +305,7 @@ namespace ClientGestionUniversite.view
         private void modifCategorie(object sender, EventArgs e)
         {
 
-            var formPopup = new InputModifCategoriePersonnel();
+            var formPopup = new InputModifCategoriePersonnelForm();
             formPopup.ShowDialog(this);
             personnelGridViewLoad();
 

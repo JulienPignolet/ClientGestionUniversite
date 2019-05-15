@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace ClientGestionUniversite.view
 {
-    public partial class InputModifCategoriePersonnel : Form
+    public partial class InputModifCategoriePersonnelForm : Form
     {
         CategoriePersonnel categorie = null;
         TypeCours typeCours = null;
         Ratio ratioModif = null;
 
-        public InputModifCategoriePersonnel()
+        public InputModifCategoriePersonnelForm()
         {
            
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace ClientGestionUniversite.view
 
         private void categorieCB_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.groupBox1.Enabled = true;
             categorie = (CategoriePersonnel)categorieCB.SelectedItem;
             List<TypeCours> tcs = TypeCoursDAO.findAll();
 
