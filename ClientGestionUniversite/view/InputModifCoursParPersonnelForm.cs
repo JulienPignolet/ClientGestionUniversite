@@ -65,40 +65,21 @@ namespace ClientGestionUniversite.view
         /// </summary>
         private void valider(object sender, EventArgs e)
         {
-            int volumeHoraire = 0;
+
             TypeCours typeCours = (TypeCours)this.typeBox.SelectedItem;
 
-            Boolean typeCoursIncorrect = typeCours == null;
-            Boolean volumeHoraireIncorrect = !Int32.TryParse(this.heureBox.Text, out volumeHoraire);
-
-            if (typeCoursIncorrect || volumeHoraireIncorrect)
+            if (input)
             {
-                // Initializes the variables to pass to the MessageBox.Show method.
-                string message = "Erreur lors de la saisie des données \n";
-                message += volumeHoraireIncorrect ? " le volume horaire est incorrect" : "";
-                message += typeCoursIncorrect ? " le type de cours est incorrect" : "";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
-
+                CoursDAO.updateIntervenant(personnelId, ((Cours)this.coursBox.SelectedItem).id);
             }
             else
             {
+                modifCours.volumeHoraire = Int32.Parse(this.heureBox.Text);
                 modifCours.numeroGroupe = this.groupBox.Text;
                 modifCours.typeCours.id = typeCours.id;
-                if (input)
-                {
-                    CoursDAO.updateIntervenant(personnelId, ((Cours)this.coursBox.SelectedItem).id);
-                }
-                else
-                {
-                    CoursDAO.update(modifCours);
-                }
-                this.Close();
+                CoursDAO.update(modifCours);
             }
+            this.Close();
         }
 
         private void loadType()

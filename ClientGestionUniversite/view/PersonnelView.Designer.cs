@@ -260,6 +260,7 @@ namespace ClientGestionUniversite.view
             this.personnelGridView.Size = new System.Drawing.Size(194, 150);
             this.personnelGridView.TabIndex = 1;
             this.personnelGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.personnelGridView_DataBindingComplete);
+            this.personnelGridView.DataSourceChanged += new EventHandler(this.personnelGridView_DataSourceChanged);
             this.personnelGridView.SelectionChanged += new System.EventHandler(this.personnelGridView_SelectionChanged);
             // 
             // tableLayoutPanel1

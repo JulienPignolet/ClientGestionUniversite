@@ -23,7 +23,7 @@ namespace ClientGestionUniversite
             diplomeViewLoad();
             edit = true;
             switchEdition(null, null);
-            this.MinimumSize = new Size(900, 500);
+            this.MinimumSize = new Size(1200, 600);
             //On charge une fois les statistiques car on arrive sur cette page
             this.statistiquesView.updateCharts();
         }
@@ -40,7 +40,6 @@ namespace ClientGestionUniversite
             {
                 this.mdv = new ModifDiplomeView(this);
                 this.tabControl1.Controls.Add(mdv);
-                this.tabControl1.SelectedTab = mdv;
                 this.mdvIndex = this.mdv.TabIndex;
             }
             else
@@ -166,6 +165,5 @@ namespace ClientGestionUniversite
                 this.statistiquesView.updateCharts();
             }
         }
-
     }
 }
