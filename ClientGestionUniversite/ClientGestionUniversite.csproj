@@ -70,6 +70,16 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputModifCategoriPersonel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputModifCategoriPersonel.Designer.cs" />
+    <Compile Include="view\DiplomeManageView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="view\DiplomeManageView.Designer.cs">
+      <DependentUpon>DiplomeManageView.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\InputModifAnneeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,10 +92,6 @@
     <Compile Include="view\InputModifPeriodeForm.Designer.cs">
       <DependentUpon>InputModifPeriodeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\ModifDiplomeView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="view\ModifDiplomeView.Designer.cs" />
     <Compile Include="view\InputModifCoursForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,8 +168,21 @@
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputModifCategoriPersonel.resx" />
+    <EmbeddedResource Include="view\DiplomeManageView.resx">
+      <DependentUpon>DiplomeManageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifAnneeForm.resx">
+      <DependentUpon>InputModifAnneeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifCoursForm.resx">
       <DependentUpon>InputModifCoursForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifDiplomeForm.resx">
+      <DependentUpon>InputModifDiplomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputModifPeriodeForm.resx">
+      <DependentUpon>InputModifPeriodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifUEForm.resx">
       <DependentUpon>InputModifUEForm.cs</DependentUpon>

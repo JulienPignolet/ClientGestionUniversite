@@ -1,5 +1,6 @@
 ﻿using ClientGestionUniversite.businessLogic;
 using ClientGestionUniversite.modele;
+using ClientGestionUniversite.view;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,12 +60,7 @@ namespace ClientGestionUniversite
                 // Initializes the variables to pass to the MessageBox.Show method.
                 string message = "Erreur lors de la saisie des données \n";
                 message += " le nom de l'élément constitutif est vide !";
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);
 
             }
             else

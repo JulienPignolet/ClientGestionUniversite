@@ -38,7 +38,7 @@ namespace ClientGestionUniversite
             personnelView.editPanel.Visible = edit;
             if (edit)
             {
-                this.mdv = new ModifDiplomeView(this);
+                this.mdv = new DiplomeManageView(this);
                 this.tabControl1.Controls.Add(mdv);
                 this.mdvIndex = this.mdv.TabIndex;
             }

@@ -71,6 +71,7 @@ namespace ClientGestionUniversite.view
             if (input)
             {
                 CoursDAO.updateIntervenant(personnelId, ((Cours)this.coursBox.SelectedItem).id);
+                
             }
             else
             {

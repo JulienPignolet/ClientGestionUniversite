@@ -30,9 +30,7 @@
         {
             this.annulerButton = new System.Windows.Forms.Button();
             this.validerButton = new System.Windows.Forms.Button();
-            this.elemConstitutifComboBox = new System.Windows.Forms.ComboBox();
             this.groupeBox = new System.Windows.Forms.TextBox();
-            this.elemConstitutifLabel = new System.Windows.Forms.Label();
             this.groupeLabel = new System.Windows.Forms.Label();
             this.typeCoursLabel = new System.Windows.Forms.Label();
             this.typeCoursBox = new System.Windows.Forms.ComboBox();
@@ -45,7 +43,7 @@
             // 
             // annulerButton
             // 
-            this.annulerButton.Location = new System.Drawing.Point(368, 248);
+            this.annulerButton.Location = new System.Drawing.Point(368, 191);
             this.annulerButton.Name = "annulerButton";
             this.annulerButton.Size = new System.Drawing.Size(133, 23);
             this.annulerButton.TabIndex = 13;
@@ -55,7 +53,7 @@
             // 
             // validerButton
             // 
-            this.validerButton.Location = new System.Drawing.Point(172, 248);
+            this.validerButton.Location = new System.Drawing.Point(172, 191);
             this.validerButton.Name = "validerButton";
             this.validerButton.Size = new System.Drawing.Size(133, 23);
             this.validerButton.TabIndex = 12;
@@ -63,31 +61,12 @@
             this.validerButton.UseVisualStyleBackColor = true;
             this.validerButton.Click += new System.EventHandler(this.valider);
             // 
-            // elemConstitutifComboBox
-            // 
-            this.elemConstitutifComboBox.DisplayMember = "libelle";
-            this.elemConstitutifComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.elemConstitutifComboBox.Location = new System.Drawing.Point(172, 58);
-            this.elemConstitutifComboBox.Name = "elemConstitutifComboBox";
-            this.elemConstitutifComboBox.Size = new System.Drawing.Size(329, 24);
-            this.elemConstitutifComboBox.TabIndex = 11;
-            this.elemConstitutifComboBox.ValueMember = "id";
-            // 
             // groupeBox
             // 
             this.groupeBox.Location = new System.Drawing.Point(172, 27);
             this.groupeBox.Name = "groupeBox";
             this.groupeBox.Size = new System.Drawing.Size(329, 22);
             this.groupeBox.TabIndex = 10;
-            // 
-            // elemConstitutifLabel
-            // 
-            this.elemConstitutifLabel.AutoSize = true;
-            this.elemConstitutifLabel.Location = new System.Drawing.Point(35, 60);
-            this.elemConstitutifLabel.Name = "elemConstitutifLabel";
-            this.elemConstitutifLabel.Size = new System.Drawing.Size(136, 17);
-            this.elemConstitutifLabel.TabIndex = 9;
-            this.elemConstitutifLabel.Text = "Element constitutif :*";
             // 
             // groupeLabel
             // 
@@ -101,7 +80,7 @@
             // typeCoursLabel
             // 
             this.typeCoursLabel.AutoSize = true;
-            this.typeCoursLabel.Location = new System.Drawing.Point(59, 95);
+            this.typeCoursLabel.Location = new System.Drawing.Point(59, 58);
             this.typeCoursLabel.Name = "typeCoursLabel";
             this.typeCoursLabel.Size = new System.Drawing.Size(112, 17);
             this.typeCoursLabel.TabIndex = 14;
@@ -112,7 +91,7 @@
             this.typeCoursBox.DisplayMember = "libelle";
             this.typeCoursBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeCoursBox.FormattingEnabled = true;
-            this.typeCoursBox.Location = new System.Drawing.Point(172, 92);
+            this.typeCoursBox.Location = new System.Drawing.Point(172, 55);
             this.typeCoursBox.Name = "typeCoursBox";
             this.typeCoursBox.Size = new System.Drawing.Size(328, 24);
             this.typeCoursBox.TabIndex = 15;
@@ -123,7 +102,7 @@
             this.intervenantBox.DisplayMember = "text";
             this.intervenantBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.intervenantBox.FormattingEnabled = true;
-            this.intervenantBox.Location = new System.Drawing.Point(172, 126);
+            this.intervenantBox.Location = new System.Drawing.Point(172, 89);
             this.intervenantBox.Name = "intervenantBox";
             this.intervenantBox.Size = new System.Drawing.Size(329, 24);
             this.intervenantBox.TabIndex = 16;
@@ -132,7 +111,7 @@
             // intervenantLabel
             // 
             this.intervenantLabel.AutoSize = true;
-            this.intervenantLabel.Location = new System.Drawing.Point(79, 129);
+            this.intervenantLabel.Location = new System.Drawing.Point(79, 92);
             this.intervenantLabel.Name = "intervenantLabel";
             this.intervenantLabel.Size = new System.Drawing.Size(87, 17);
             this.intervenantLabel.TabIndex = 17;
@@ -141,7 +120,7 @@
             // volumeLabel
             // 
             this.volumeLabel.AutoSize = true;
-            this.volumeLabel.Location = new System.Drawing.Point(103, 161);
+            this.volumeLabel.Location = new System.Drawing.Point(103, 124);
             this.volumeLabel.Name = "volumeLabel";
             this.volumeLabel.Size = new System.Drawing.Size(68, 17);
             this.volumeLabel.TabIndex = 18;
@@ -149,7 +128,7 @@
             // 
             // volumeBox
             // 
-            this.volumeBox.Location = new System.Drawing.Point(172, 161);
+            this.volumeBox.Location = new System.Drawing.Point(172, 124);
             this.volumeBox.Name = "volumeBox";
             this.volumeBox.Size = new System.Drawing.Size(328, 22);
             this.volumeBox.TabIndex = 19;
@@ -157,7 +136,7 @@
             // obligatoire
             // 
             this.obligatoire.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.obligatoire.Location = new System.Drawing.Point(171, 202);
+            this.obligatoire.Location = new System.Drawing.Point(171, 165);
             this.obligatoire.Multiline = true;
             this.obligatoire.Name = "obligatoire";
             this.obligatoire.ReadOnly = true;
@@ -169,7 +148,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 297);
+            this.ClientSize = new System.Drawing.Size(573, 232);
             this.Controls.Add(this.obligatoire);
             this.Controls.Add(this.volumeBox);
             this.Controls.Add(this.volumeLabel);
@@ -179,9 +158,7 @@
             this.Controls.Add(this.typeCoursLabel);
             this.Controls.Add(this.annulerButton);
             this.Controls.Add(this.validerButton);
-            this.Controls.Add(this.elemConstitutifComboBox);
             this.Controls.Add(this.groupeBox);
-            this.Controls.Add(this.elemConstitutifLabel);
             this.Controls.Add(this.groupeLabel);
             this.Name = "InputModifCoursForm";
             this.Text = "Ajouter ou modifier un cours";
@@ -194,9 +171,7 @@
 
         private System.Windows.Forms.Button annulerButton;
         private System.Windows.Forms.Button validerButton;
-        private System.Windows.Forms.ComboBox elemConstitutifComboBox;
         private System.Windows.Forms.TextBox groupeBox;
-        private System.Windows.Forms.Label elemConstitutifLabel;
         private System.Windows.Forms.Label groupeLabel;
         private System.Windows.Forms.Label typeCoursLabel;
         private System.Windows.Forms.ComboBox typeCoursBox;

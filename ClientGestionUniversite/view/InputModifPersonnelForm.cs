@@ -85,12 +85,7 @@ namespace ClientGestionUniversite.view
                 message += prenomIncorrect ? " le prenom est vide" : "";
                 message += categorieIncorrecte ? " la categorie est incorrecte" : "";
 
-                string caption = "Erreur";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                DialogResult result;
-
-                // Displays the MessageBox.
-                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);
 
             }
             else

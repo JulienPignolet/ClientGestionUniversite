@@ -186,6 +186,7 @@ namespace ClientGestionUniversite.view
 
                 // Displays the MessageBox.
                 result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);      
             }
         }
 
@@ -212,6 +213,7 @@ namespace ClientGestionUniversite.view
 
                 // Displays the MessageBox.
                 result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);  
             }
 
         }
@@ -238,6 +240,7 @@ namespace ClientGestionUniversite.view
 
                 // Displays the MessageBox.
                 result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);                
             }
         }
 
@@ -264,6 +267,7 @@ namespace ClientGestionUniversite.view
 
                 // Displays the MessageBox.
                 result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
+                DiplomeView.afficherPopup(message);         
             }
         }
 
@@ -286,14 +290,23 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 var formPopup = new InputModifCoursParPersonnelForm("Ajouter Affectation", p);
-                try
-                {
-                    formPopup.ShowDialog(this);
-                }
-                catch (Exception ignored) { }
+                formPopup.ShowDialog(this);
+               
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
             }
+        }
+
+        /// <summary>
+        /// Modification d'un categorie
+        /// </summary>
+        private void modifCategorie(object sender, EventArgs e)
+        {
+
+            var formPopup = new InputModifCategoriPersonel();
+            formPopup.ShowDialog(this);
+            personnelGridViewLoad();
+
         }
     }
 }

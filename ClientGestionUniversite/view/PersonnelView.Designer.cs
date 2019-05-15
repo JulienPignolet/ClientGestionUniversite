@@ -28,6 +28,7 @@ namespace ClientGestionUniversite.view
             this.supprimerAffectationButton = new System.Windows.Forms.Button();
             this.modifierAffectationButton = new System.Windows.Forms.Button();
             this.ajouterAffectationButton = new System.Windows.Forms.Button();
+            this.modCategorie = new System.Windows.Forms.Button();
             this.filterPanel = new System.Windows.Forms.Panel();
             this.filterBox = new System.Windows.Forms.TextBox();
             this.filterLabel = new System.Windows.Forms.Label();
@@ -150,6 +151,7 @@ namespace ClientGestionUniversite.view
             this.editPanel.Controls.Add(this.supprimerAffectationButton);
             this.editPanel.Controls.Add(this.modifierAffectationButton);
             this.editPanel.Controls.Add(this.ajouterAffectationButton);
+            this.editPanel.Controls.Add(this.modCategorie);
             this.editPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.editPanel.Location = new System.Drawing.Point(3, 62);
             this.editPanel.MaximumSize = new System.Drawing.Size(0, 35);
@@ -216,6 +218,16 @@ namespace ClientGestionUniversite.view
             this.ajouterAffectationButton.TabIndex = 5;
             this.ajouterAffectationButton.Text = "Ajouter une affectation";
             this.ajouterAffectationButton.Click += new System.EventHandler(this.ajouterAffectation);
+            // 
+            // modifierCategorie
+            // 
+            this.modCategorie.AutoSize = true;
+            this.modCategorie.Location = new System.Drawing.Point(779, 5);
+            this.modCategorie.Name = "modifCategorie";
+            this.modCategorie.Size = new System.Drawing.Size(124, 23);
+            this.modCategorie.TabIndex = 6;
+            this.modCategorie.Text = "Modifier categorie";
+            this.modCategorie.Click += new System.EventHandler(this.modifCategorie);
             // 
             // filterPanel
             // 
@@ -301,7 +313,7 @@ namespace ClientGestionUniversite.view
         }
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel filterPanel; 
+        private System.Windows.Forms.Panel filterPanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel detailsPanel;
         public System.Windows.Forms.Panel editPanel;
@@ -316,7 +328,8 @@ namespace ClientGestionUniversite.view
         private System.Windows.Forms.Button ajouterPersonnelButton;
         private System.Windows.Forms.Button supprimerAffectationButton;
         private System.Windows.Forms.Button modifierAffectationButton;
-        private System.Windows.Forms.Button ajouterAffectationButton; 
+        private System.Windows.Forms.Button ajouterAffectationButton;
+        private System.Windows.Forms.Button modCategorie;
         private System.Windows.Forms.DataGridView personnelDetailsGridView;
         private System.Windows.Forms.TextBox filterBox;
         private System.Windows.Forms.Label filterLabel;

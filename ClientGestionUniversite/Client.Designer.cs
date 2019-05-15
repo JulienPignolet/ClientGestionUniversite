@@ -111,7 +111,7 @@ namespace ClientGestionUniversite
         private System.Windows.Forms.ToolStripMenuItem editionMenu;
         private System.Windows.Forms.ToolStripMenuItem editionMode;
         private ClientGestionUniversite.view.PersonnelView personnelView;
-        private ModifDiplomeView mdv;
+        private DiplomeManageView mdv;
         private ClientGestionUniversite.view.StatistiquesView statistiquesView;
         private System.Collections.Generic.List<ClientGestionUniversite.view.DiplomeView> diplomesView;
         private System.Windows.Forms.TabControl tabControl1;
