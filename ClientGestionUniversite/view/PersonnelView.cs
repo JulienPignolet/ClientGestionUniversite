@@ -42,12 +42,7 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 List<Cours> coursAll = CoursDAO.findByPersonnel(p.id);
-                List<Cours> cours = new List<Cours>();
-                foreach (Cours c in coursAll)
-                {
-                    cours.Add(c);
-                }
-                BindingListView<Cours> bindingSourcePersonnelDetails = new BindingListView<Cours>(cours);
+                BindingListView<Cours> bindingSourcePersonnelDetails = new BindingListView<Cours>(coursAll);
                 personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
             }
         }
