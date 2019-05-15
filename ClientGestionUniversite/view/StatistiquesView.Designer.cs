@@ -30,7 +30,7 @@ namespace ClientGestionUniversite.view
             // 
             chartArea1.AxisX.MajorGrid.Enabled = false;
             chartArea1.Name = "ChartArea1";
-            this.column.Titles.Add("Taux d'affectation des heures de cours par diplomes");
+            this.column.Titles.Add("Taux d'affectation des heures de cours par UE");
             this.column.ChartAreas.Add(chartArea1);
             this.column.Dock = System.Windows.Forms.DockStyle.Fill;
             this.column.Location = new System.Drawing.Point(491, 3);

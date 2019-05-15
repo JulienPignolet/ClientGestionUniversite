@@ -70,6 +70,12 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\InputTypesCours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\InputTypesCours.Designer.cs">
+      <DependentUpon>InputTypesCours.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\DiplomeManageView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -133,12 +139,6 @@
     </Compile>
     <Compile Include="view\DiplomeView.Designer.cs">
       <DependentUpon>DiplomeView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="view\InputModifCoursParPersonnelForm.cs">
       <SubType>Form</SubType>
@@ -218,14 +218,14 @@
     <EmbeddedResource Include="view\DiplomeView.resx">
       <DependentUpon>DiplomeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifCoursParPersonnelForm.resx">
       <DependentUpon>InputModifCoursParPersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputModifPersonnelForm.resx">
       <DependentUpon>InputModifPersonnelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\InputTypesCours.resx">
+      <DependentUpon>InputTypesCours.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\InputRemplacerCategoriePersonnelForm.resx">
       <DependentUpon>InputRemplacerCategoriePersonnelForm.cs</DependentUpon>

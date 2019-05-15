@@ -42,12 +42,7 @@ namespace ClientGestionUniversite.view
             if (p != null)
             {
                 List<Cours> coursAll = CoursDAO.findByPersonnel(p.id);
-                List<Cours> cours = new List<Cours>();
-                foreach (Cours c in coursAll)
-                {
-                    cours.Add(c);
-                }
-                BindingListView<Cours> bindingSourcePersonnelDetails = new BindingListView<Cours>(cours);
+                BindingListView<Cours> bindingSourcePersonnelDetails = new BindingListView<Cours>(coursAll);
                 personnelDetailsGridView.DataSource = bindingSourcePersonnelDetails;
             }
         }
@@ -80,8 +75,9 @@ namespace ClientGestionUniversite.view
             for (int i = 0; i < personnelGridView.Rows.Count; i++)
             {
                 Personnel personnel = ((ObjectView<Personnel>)personnelGridView.Rows[i].DataBoundItem).Object;
-                if (personnel.getSommeHorraire() > personnel.categoriePersonnel.volumeHoraire + 10 
-                    || personnel.getSommeHorraire() < personnel.categoriePersonnel.volumeHoraire - 10)
+                double sHoraire = personnel.getSommeHorraire();
+                if (sHoraire > personnel.categoriePersonnel.volumeHoraire + 10
+                    || sHoraire < personnel.categoriePersonnel.volumeHoraire - 10)
                 {
                     personnelGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
                 }

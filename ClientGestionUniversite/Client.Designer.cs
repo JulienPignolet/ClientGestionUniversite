@@ -32,6 +32,7 @@ namespace ClientGestionUniversite
             this.menu = new System.Windows.Forms.MenuStrip();
             this.editionMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.editionMode = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionTypesCoursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personnelView = new ClientGestionUniversite.view.PersonnelView();
             this.statistiquesView = new view.StatistiquesView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -51,7 +52,7 @@ namespace ClientGestionUniversite
             // editionMenu
             // 
             this.editionMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editionMode});
+            this.editionMode, this.gestionTypesCoursToolStripMenuItem});
             this.editionMenu.Name = "editionMenu";
             this.editionMenu.Size = new System.Drawing.Size(56, 20);
             this.editionMenu.Text = "Edition";
@@ -88,6 +89,14 @@ namespace ClientGestionUniversite
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(updateStat);
             // 
+            // gestionTypesCoursToolStripMenuItem
+            // 
+            this.gestionTypesCoursToolStripMenuItem.Name = "gestionTypesCoursToolStripMenuItem";
+            this.gestionTypesCoursToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.gestionTypesCoursToolStripMenuItem.Text = "Gestion types cours";
+            this.gestionTypesCoursToolStripMenuItem.Visible = false;
+            this.gestionTypesCoursToolStripMenuItem.Click += new System.EventHandler(this.gestionTypesCoursToolStripMenuItem_Click);
+            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -110,6 +119,7 @@ namespace ClientGestionUniversite
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem editionMenu;
         private System.Windows.Forms.ToolStripMenuItem editionMode;
+        private System.Windows.Forms.ToolStripMenuItem gestionTypesCoursToolStripMenuItem;
         private ClientGestionUniversite.view.PersonnelView personnelView;
         private DiplomeManageView mdv;
         private ClientGestionUniversite.view.StatistiquesView statistiquesView;

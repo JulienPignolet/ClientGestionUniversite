@@ -41,6 +41,7 @@ namespace ClientGestionUniversite
                 this.mdv = new DiplomeManageView(this);
                 this.tabControl1.Controls.Add(mdv);
                 this.mdvIndex = this.mdv.TabIndex;
+                this.gestionTypesCoursToolStripMenuItem.Visible = true;
             }
             else
             {
@@ -170,6 +171,12 @@ namespace ClientGestionUniversite
             {
                 this.personnelView.personnelGridViewLoad();
             }
+        }
+
+        private void gestionTypesCoursToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            var formPopup = new InputTypesCours();
+            formPopup.ShowDialog(this);
         }
     }
 }

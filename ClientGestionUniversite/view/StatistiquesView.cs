@@ -92,14 +92,16 @@ namespace ClientGestionUniversite.view
 
                 if (somme > total)
                 {
+                    double diff = Math.Round(somme - total, 2);
                     chartT.Series["Series1"].Points.AddXY(libelle, total);
-                    chartT.Series["Series2"].Points.AddXY(libelle, somme - total);
+                    chartT.Series["Series2"].Points.AddXY(libelle, diff);
                     chartT.Series["Series2"].Points.Last().Color = System.Drawing.Color.FromArgb(255, 40, 40);
                 }
                 else
                 {
+                    double diff = Math.Round(total - somme, 2);
                     chartT.Series["Series1"].Points.AddXY(libelle, somme);
-                    chartT.Series["Series2"].Points.AddXY(libelle, total - somme);
+                    chartT.Series["Series2"].Points.AddXY(libelle, diff);
                 }
             }
         }
