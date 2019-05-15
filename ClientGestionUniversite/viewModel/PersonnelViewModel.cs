@@ -76,7 +76,7 @@ namespace ClientGestionUniversite.viewModel
                 + " ( " + p.id + " )";
             double volumeEff = p.getSommeHorraire();
             heureEff = volumeEff + " / " + p.categoriePersonnel.volumeHoraire;
-            if (volumeEff > p.categoriePersonnel.volumeHoraire)
+            if (volumeEff > p.categoriePersonnel.volumeHoraire + 10 || volumeEff < p.categoriePersonnel.volumeHoraire - 10)
             {
                 view.nbHeureEffValue.ForeColor = Color.Red;
             }
