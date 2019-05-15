@@ -35,6 +35,7 @@ namespace ClientGestionUniversite.view
             // 
             // diplomeGridView
             // 
+            this.diplomeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.diplomeGridView.AllowUserToAddRows = false;
             this.diplomeGridView.AllowUserToDeleteRows = false;
             this.diplomeGridView.AllowUserToResizeColumns = false;
@@ -52,6 +53,7 @@ namespace ClientGestionUniversite.view
             // 
             // anneeGridView
             // 
+            this.anneeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.anneeGridView.AllowUserToAddRows = false;
             this.anneeGridView.AllowUserToDeleteRows = false;
             this.anneeGridView.AllowUserToResizeColumns = false;
@@ -69,6 +71,7 @@ namespace ClientGestionUniversite.view
             // 
             // periodeGridView
             // 
+            this.periodeGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.periodeGridView.AllowUserToAddRows = false;
             this.periodeGridView.AllowUserToDeleteRows = false;
             this.periodeGridView.AllowUserToResizeColumns = false;

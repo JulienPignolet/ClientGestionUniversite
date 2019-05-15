@@ -92,6 +92,7 @@ namespace ClientGestionUniversite.view
             ///
             /// ueGridView
             ///
+            this.ueGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ueGridView.AllowUserToAddRows = false;
             this.ueGridView.AllowUserToDeleteRows = false;
             this.ueGridView.AllowUserToResizeColumns = false;
@@ -105,6 +106,7 @@ namespace ClientGestionUniversite.view
             ///
             /// ecGridView
             ///
+            this.ecGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ecGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ecGridView.AllowUserToAddRows = false;
             this.ecGridView.AllowUserToDeleteRows = false;
@@ -118,6 +120,7 @@ namespace ClientGestionUniversite.view
             ///
             /// ecDetailsGridView
             ///
+            this.ecDetailsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ecDetailsGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ecDetailsGridView.AllowUserToAddRows = false;
             this.ecDetailsGridView.AllowUserToDeleteRows = false;
