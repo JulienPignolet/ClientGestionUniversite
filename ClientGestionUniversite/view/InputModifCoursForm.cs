@@ -93,17 +93,24 @@ namespace ClientGestionUniversite.view
                     else
                     {
                         DiplomeView.afficherPopup("Nombre de groupe incorrect, un int est attendu");
-                    }
-                    
+                    }              
                 }
                 else
                 {
-                    Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
-                    cours.id = coursModifie.id;
-                    if (cours.intervenant != null) CoursDAO.updateIntervenant(cours.intervenant.id, cours.id);
-                    CoursDAO.update(cours);
+                    if (String.IsNullOrWhiteSpace(groupeBox.Text))
+                    {
+                        DiplomeView.afficherPopup("Nom du groupe incorrect");
+                    }
+                    else
+                    {
+                        Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
+                        cours.id = coursModifie.id;
+                        if (cours.intervenant != null) CoursDAO.updateIntervenant(cours.intervenant.id, cours.id);
+                        CoursDAO.update(cours);
+                        this.Close();
+                    }
                 }
-                this.Close();
+                
             }
         }
 
