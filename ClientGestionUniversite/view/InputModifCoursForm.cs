@@ -26,7 +26,7 @@ namespace ClientGestionUniversite.view
             this.elementConstitutif = element;
             InitializeComponent();
             load();
-            groupeLabel.Text = "Groupe";
+            groupeLabel.Text = "Nombre de groupe :*";
         }
 
         public InputModifCoursForm(String name, Cours cours, ElementConstitutif element): this(name, element)
@@ -39,7 +39,7 @@ namespace ClientGestionUniversite.view
             this.groupeBox.Text = cours.numeroGroupe;
             this.volumeBox.Text = cours.volumeHoraire.ToString();
             load();
-            groupeLabel.Text = "No groupe";
+            groupeLabel.Text = "Nom du groupe :*";
         }
 
         /// <summary>
@@ -81,20 +81,36 @@ namespace ClientGestionUniversite.view
                 
                 if (input)
                 {
-                    List<Cours> cours = new List<Cours>();
-                    for (int i = 0; i < Int32.Parse(groupeBox.Text); i++)
-                        cours.Add(new Cours(elementConstitutif, intervenant, typeCours, typeCours.ToString() + (i + 1).ToString(), System.Convert.ToInt32(volumeBox.Text)));
-                    foreach(Cours c in cours)
-                        CoursDAO.create(c);
+                    int nbGroupe = 0;
+                    if (Int32.TryParse(groupeBox.Text, out nbGroupe))
+                    {
+                        List<Cours> cours = new List<Cours>();
+                        for (int i = 0; i < nbGroupe; i++)
+                            cours.Add(new Cours(elementConstitutif, intervenant, typeCours, typeCours.ToString() + (i + 1).ToString(), System.Convert.ToInt32(volumeBox.Text)));
+                        foreach (Cours c in cours)
+                            CoursDAO.create(c);
+                    }
+                    else
+                    {
+                        DiplomeView.afficherPopup("Nombre de groupe incorrect, un int est attendu");
+                    }              
                 }
                 else
                 {
-                    Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
-                    cours.id = coursModifie.id;
-                    if (cours.intervenant != null) CoursDAO.updateIntervenant(cours.intervenant.id, cours.id);
-                    CoursDAO.update(cours);
+                    if (String.IsNullOrWhiteSpace(groupeBox.Text))
+                    {
+                        DiplomeView.afficherPopup("Nom du groupe incorrect");
+                    }
+                    else
+                    {
+                        Cours cours = new Cours(elementConstitutif, intervenant, typeCours, groupeBox.Text, System.Convert.ToInt32(volumeBox.Text));
+                        cours.id = coursModifie.id;
+                        if (cours.intervenant != null) CoursDAO.updateIntervenant(cours.intervenant.id, cours.id);
+                        CoursDAO.update(cours);
+                        this.Close();
+                    }
                 }
-                this.Close();
+                
             }
         }
 

@@ -44,6 +44,7 @@ namespace ClientGestionUniversite.view
 
             List<Ratio> listeRatio = RatioDAO.findAll();
 
+            this.typeCoursComboBox.Items.Clear();
             this.volumeTextBox.Text = categorie.volumeHoraire.ToString();
             foreach (Ratio ratio in listeRatio)
             {

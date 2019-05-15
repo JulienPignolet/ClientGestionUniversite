@@ -1,6 +1,6 @@
 ﻿namespace ClientGestionUniversite.view
 {
-    partial class InputModifCategoriePersonnelForm
+    partial class InputAddCategoriePersonnelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.categorieCB = new System.Windows.Forms.ComboBox();
             this.categorieLabel = new System.Windows.Forms.Label();
             this.valider = new System.Windows.Forms.Button();
             this.annuler = new System.Windows.Forms.Button();
             this.volumeTextBox = new System.Windows.Forms.TextBox();
             this.volumeLabel = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ratioTextBox = new System.Windows.Forms.TextBox();
-            this.ratioLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.typeCoursComboBox = new System.Windows.Forms.ComboBox();
+            this.categorietextBox = new System.Windows.Forms.TextBox();
             this.obligatoire = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // categorieCB
-            // 
-            this.categorieCB.FormattingEnabled = true;
-            this.categorieCB.Location = new System.Drawing.Point(129, 22);
-            this.categorieCB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.categorieCB.Name = "categorieCB";
-            this.categorieCB.Size = new System.Drawing.Size(205, 24);
-            this.categorieCB.TabIndex = 0;
-            this.categorieCB.SelectedIndexChanged += new System.EventHandler(this.categorieCB_SelectedIndexChanged);
             // 
             // categorieLabel
             // 
@@ -64,7 +50,7 @@
             // 
             // valider
             // 
-            this.valider.Location = new System.Drawing.Point(120, 251);
+            this.valider.Location = new System.Drawing.Point(115, 190);
             this.valider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.valider.Name = "valider";
             this.valider.Size = new System.Drawing.Size(88, 34);
@@ -75,7 +61,7 @@
             // 
             // annuler
             // 
-            this.annuler.Location = new System.Drawing.Point(246, 251);
+            this.annuler.Location = new System.Drawing.Point(241, 190);
             this.annuler.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.annuler.Name = "annuler";
             this.annuler.Size = new System.Drawing.Size(88, 34);
@@ -100,58 +86,17 @@
             this.volumeLabel.TabIndex = 9;
             this.volumeLabel.Text = "Volume horaire :*";
             // 
-            // groupBox1
+            // categorietextBox
             // 
-            this.groupBox1.Controls.Add(this.ratioTextBox);
-            this.groupBox1.Controls.Add(this.ratioLabel);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.typeCoursComboBox);
-            this.groupBox1.Location = new System.Drawing.Point(14, 98);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 123);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ratio";
-            this.groupBox1.Enabled = false;
-            // 
-            // ratioTextBox
-            // 
-            this.ratioTextBox.Location = new System.Drawing.Point(115, 77);
-            this.ratioTextBox.Name = "ratioTextBox";
-            this.ratioTextBox.Size = new System.Drawing.Size(205, 22);
-            this.ratioTextBox.TabIndex = 11;
-            // 
-            // ratioLabel
-            // 
-            this.ratioLabel.AutoSize = true;
-            this.ratioLabel.Location = new System.Drawing.Point(60, 77);
-            this.ratioLabel.Name = "ratioLabel";
-            this.ratioLabel.Size = new System.Drawing.Size(49, 17);
-            this.ratioLabel.TabIndex = 11;
-            this.ratioLabel.Text = "Ratio :";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 17);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Type de cours :";
-            // 
-            // typeCoursComboBox
-            // 
-            this.typeCoursComboBox.FormattingEnabled = true;
-            this.typeCoursComboBox.Location = new System.Drawing.Point(115, 31);
-            this.typeCoursComboBox.Name = "typeCoursComboBox";
-            this.typeCoursComboBox.Size = new System.Drawing.Size(205, 24);
-            this.typeCoursComboBox.TabIndex = 0;
-            this.typeCoursComboBox.SelectedIndexChanged += new System.EventHandler(this.typeCours_SelectedIndexChanged);
+            this.categorietextBox.Location = new System.Drawing.Point(130, 25);
+            this.categorietextBox.Name = "categorietextBox";
+            this.categorietextBox.Size = new System.Drawing.Size(204, 22);
+            this.categorietextBox.TabIndex = 11;
             // 
             // obligatoire
             // 
             this.obligatoire.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.obligatoire.Location = new System.Drawing.Point(19, 227);
+            this.obligatoire.Location = new System.Drawing.Point(14, 165);
             this.obligatoire.Multiline = true;
             this.obligatoire.Name = "obligatoire";
             this.obligatoire.ReadOnly = true;
@@ -159,24 +104,41 @@
             this.obligatoire.TabIndex = 22;
             this.obligatoire.Text = "* : Les champs marqués d\'une étoile sont obligatoire.";
             // 
-            // InputModifCategoriePersonnel
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 99);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(221, 17);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Les ratios sont tous initialisés à 1.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(287, 17);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Allez dans modifier catégorie pour les gérer.";
+            // 
+            // InputAddCategoriePersonnelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 296);
+            this.ClientSize = new System.Drawing.Size(385, 234);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.obligatoire);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.categorietextBox);
             this.Controls.Add(this.volumeLabel);
             this.Controls.Add(this.volumeTextBox);
             this.Controls.Add(this.annuler);
             this.Controls.Add(this.valider);
             this.Controls.Add(this.categorieLabel);
-            this.Controls.Add(this.categorieCB);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "InputModifCategoriePersonnel";
+            this.Name = "InputAddCategoriePersonnelForm";
             this.Text = "Modif Catégorie";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,17 +146,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox categorieCB;
         private System.Windows.Forms.Label categorieLabel;
         private System.Windows.Forms.Button valider;
         private System.Windows.Forms.Button annuler;
         private System.Windows.Forms.TextBox volumeTextBox;
         private System.Windows.Forms.Label volumeLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox ratioTextBox;
-        private System.Windows.Forms.Label ratioLabel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox typeCoursComboBox;
+        private System.Windows.Forms.TextBox categorietextBox;
         private System.Windows.Forms.TextBox obligatoire;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
