@@ -41,25 +41,25 @@ namespace ClientGestionUniversite.view
         private void updateTauxAffectationAnnee()
         {
             // On fait la somme par année des cours et des cours qui sont affectés
-            var tabAnnee = new ArrayList();
+            var tabUe = new ArrayList();
             var tabAnneeSumCours = new List<int>();
             var tabAnneeSumCoursAffecte = new List<int>();
             foreach (Cours c in cours)
             {
-                Annee annee = c.elementConstitutif.uniteEnseignement.periode.annee;
+                UniteEnseignement ue = c.elementConstitutif.uniteEnseignement;
                 int index = -1;
-                for (int i = 0; i < tabAnnee.Count; i++)
+                for (int i = 0; i < tabUe.Count; i++)
                 {
-                    Annee tmp = (Annee)(tabAnnee[i]);
-                    if (tmp.id == annee.id)
+                    UniteEnseignement tmp = (UniteEnseignement)(tabUe[i]);
+                    if (tmp.id == ue.id)
                     {
                         index = i;
                     }
                 }
                 if (index < 0)
                 {
-                    tabAnnee.Add(annee);
-                    index = tabAnnee.Count - 1;
+                    tabUe.Add(ue);
+                    index = tabUe.Count - 1;
                     tabAnneeSumCours.Add(0);
                     tabAnneeSumCoursAffecte.Add(0);
                 }
@@ -69,10 +69,11 @@ namespace ClientGestionUniversite.view
             }
 
             //On ajoute pour chaque année le pourcentage
-            for (int i = 0; i < tabAnnee.Count; i++)
+            for (int i = 0; i < tabUe.Count; i++)
             {
                 float percentage = tabAnneeSumCoursAffecte[i] * 100 / tabAnneeSumCours[i];
-                string libelle = ((Annee)tabAnnee[i]).libelle;
+                UniteEnseignement ue = ((UniteEnseignement)tabUe[i]);
+                string libelle = ue.periode.annee + " " + ue.libelle;
                 column.Series["Series1"].Points.AddXY(libelle, percentage);
             }
         }
