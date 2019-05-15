@@ -1,5 +1,6 @@
 ﻿using ClientGestionUniversite.businessLogic;
 using ClientGestionUniversite.modele;
+using ClientGestionUniversite.view;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,15 +37,22 @@ namespace ClientGestionUniversite
         //Ajout
         private void button1_Click(object sender, EventArgs e)
         {
-            TypeCours type = new TypeCours(textBox1.Text);
-            TypeCoursDAO.create(type);
-            upadateList();
-            List<CategoriePersonnel>catList = CategoriePersonnelDAO.findAll();
-            foreach(CategoriePersonnel cat in catList)
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
             {
-                Ratio r = new Ratio(type, cat);
-                r.ratio = 1;
-                RatioDAO.create(r);
+                DiplomeView.afficherPopup("Le nom est vide");
+            }
+            else
+            {
+                TypeCours type = new TypeCours(textBox1.Text);
+                TypeCoursDAO.create(type);
+                upadateList();
+                List<CategoriePersonnel> catList = CategoriePersonnelDAO.findAll();
+                foreach (CategoriePersonnel cat in catList)
+                {
+                    Ratio r = new Ratio(type, cat);
+                    r.ratio = 1;
+                    RatioDAO.create(r);
+                }
             }
         }
 
