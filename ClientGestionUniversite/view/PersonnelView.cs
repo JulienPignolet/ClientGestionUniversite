@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -14,8 +15,11 @@ namespace ClientGestionUniversite.view
 {
     public partial class PersonnelView : TabPage
     {
+        private bool color;
+
         public PersonnelView()
         {
+            color = false;
             InitializeComponent();
             personnelGridViewLoad();
         }
@@ -23,7 +27,7 @@ namespace ClientGestionUniversite.view
         /// <summary>
         /// Charge les données de la grille personnel
         /// </summary>
-        private void personnelGridViewLoad()
+        public void personnelGridViewLoad()
         {
             BindingListView<Personnel> bindingSourcePersonnel = new BindingListView<Personnel>(PersonnelDAO.findAll());
             personnelGridView.DataSource = bindingSourcePersonnel;
@@ -49,6 +53,14 @@ namespace ClientGestionUniversite.view
         }
 
         /// <summary>
+        /// Evenement changement de datasource
+        /// </summary>
+        private void personnelGridView_DataSourceChanged(object sender, EventArgs e)
+        {
+            colorPersonnelGridView();
+        }
+
+        /// <summary>
         /// Évènement fin de remplissage de la grille du personnel
         /// </summary>
         private void personnelGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -58,6 +70,21 @@ namespace ClientGestionUniversite.view
             personnelGridView.Columns["nom"].HeaderText = "Nom";
             personnelGridView.Columns["prenom"].HeaderText = "Prenom";
             personnelGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        /// <summary>
+        /// Coloration de la grille du personnel si il y a une sur/sous affectation
+        /// </summary>
+        private void colorPersonnelGridView()
+        {
+            for (int i = 0; i < personnelGridView.Rows.Count; i++)
+            {
+                Personnel personnel = ((ObjectView<Personnel>)personnelGridView.Rows[i].DataBoundItem).Object;
+                if (personnel.getSommeHorraire() > personnel.categoriePersonnel.volumeHoraire)
+                {
+                    personnelGridView.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
         }
 
         /// <summary>
@@ -153,6 +180,12 @@ namespace ClientGestionUniversite.view
             else
             {
                 string message = "Aucun personnel sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
                 DiplomeView.afficherPopup(message);      
             }
         }
@@ -169,10 +202,17 @@ namespace ClientGestionUniversite.view
                 CoursDAO.updateIntervenant(null, cppvm.id);
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
+                personnelGridViewLoad();
             }
             else
             {
                 string message = "Aucun personnel sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
                 DiplomeView.afficherPopup(message);  
             }
 
@@ -194,6 +234,12 @@ namespace ClientGestionUniversite.view
             else
             {
                 string message = "Aucun personnel sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
                 DiplomeView.afficherPopup(message);                
             }
         }
@@ -211,10 +257,17 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                 personnelDetailsGridViewLoad();
                 personnelViewModel.update(p);
+                personnelGridViewLoad();
             }
             else
             {
                 string message = "Aucun personnel ou aucun cours sélectionné \n";
+                string caption = "Erreur";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons, MessageBoxIcon.Exclamation);
                 DiplomeView.afficherPopup(message);         
             }
         }
@@ -241,6 +294,7 @@ namespace ClientGestionUniversite.view
                 formPopup.ShowDialog(this);
                
                 personnelDetailsGridViewLoad();
+                personnelGridViewLoad();
                 personnelViewModel.update(p);
             }
         }
